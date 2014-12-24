@@ -214,19 +214,17 @@
 
 					}
 					$scope.sites = filtered;
-					  $location.hash('top');
-				      $anchorScroll();
+					   $anchorScroll();
 				};
 				$scope.putAryBack = function(){
 					$scope.sites = $scope.sitesUrl;
-					 $location.hash('top');
+				
 				      $anchorScroll();
 				}
 				$scope.showAll = function(){
 					 $scope.searchBy = null;
 					$scope.sites = $scope.sitesUrl;	
-					 $location.hash('top');
-				      $anchorScroll();
+						  $anchorScroll();
 				}
 
 
