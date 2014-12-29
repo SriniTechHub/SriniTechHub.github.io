@@ -15,6 +15,7 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
@@ -26,7 +27,35 @@ module.exports = function (grunt) {
 
     // Project settings
     yeoman: appConfig,
-
+    bower: {
+       all: {
+    rjsConfig: '<%= yeoman.app %>/scripts/app.js',
+    options: {
+      exclude: ['modernizr', 'sass-bootstrap', 'qtip2']
+    }
+  },
+         target: {
+      rjsConfig: 'app/config.js'
+    }
+    },
+     cdn: {
+            options: {
+                /** @required - root URL of your CDN (may contains sub-paths as shown below) */
+                cdn: 'http://cdn.cloudfront.net/container/',
+                /** @optional  - if provided both absolute and relative paths will be converted */
+                flatten: false,
+                /** @optional  - if provided will be added to the default supporting types */
+                supportedTypes: { 'phtml': 'html' }
+            },
+            dist: {
+                /** @required  - gets sources here, may be same as dest  */
+                cwd: './dist/static/',
+                /** @required  - puts results here with respect to relative paths  */
+                dest: './dist/static/',
+                /** @required  - files to process */
+                src: ['index.html', '*.css', '{,*/}*.html', '{,**/}*.html'],
+            }
+        },
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -438,4 +467,7 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  grunt.loadNpmTasks('grunt-bower-requirejs');
+
+grunt.registerTask('default', ['bower']);
 };
