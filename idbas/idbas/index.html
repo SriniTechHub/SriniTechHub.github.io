@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>idbas</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -12,6 +12,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
    
+   <link rel="shortcut icon" href="images/favicon1.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.1/custom/bootstrap.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css">
      <link rel="stylesheet" href="half-slider.css">
@@ -83,6 +84,10 @@
         padding-bottom: 0;
         }
         .navbar a.navbar-brand {padding: 9px 15px 8px; }
+        .gutter-top-bottom{
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
      </style>
     <!-- endbuild -->
   </head>
@@ -179,7 +184,7 @@
           </button>
         
           
-               <a class="navbar-brand"><img src="images/blue200x34.png"></a>
+               <a class="navbar-brand gutter-top-bottom"><img src="images/idba-logo.jpg"></a>
     
         </div>
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-6">
@@ -595,8 +600,8 @@
                         var link = $(this).attr('href');
                         var posi = $(link).offset().top+20;
                         $('body,html').animate({scrollTop:posi},{
-                           duration: 1000,
-                           easing: 'easeInElastic'
+                           duration: 500,
+                           easing: 'linear'
                         });
 
                       });
