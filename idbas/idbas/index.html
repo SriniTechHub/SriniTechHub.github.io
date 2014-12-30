@@ -1,0 +1,601 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.1/custom/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css">
+     <link rel="stylesheet" href="half-slider.css">
+      <style>
+       ul.nav li a.icon{
+           font-size: 20px;
+        }
+        .social-icon{
+          font-size: 20px;
+          margin-right: 40px;
+        }
+        .social-icon:hover{
+          text-decoration: none;
+        }
+    
+        .brandImg{
+             margin-left: 15px;
+        }
+      .nopadding {
+         padding: 0 !important;
+         margin: 0 !important;
+      }
+      .hr-line{
+        border-bottom: 1px solid rgb(231, 231, 231);
+      }
+      .no-gutter{
+          padding-right:0;
+          padding-left:0;
+      }
+      .marginTop10{
+        margin-top:10px;
+      }
+      .chat-btn{
+        width: 150px;
+        height: 150px;
+        border-radius: 80px;
+      }
+      *{
+        outline: 0;
+      }
+      .footer{
+        background-color: #D2D7D3;
+      }
+      img{
+        width: 100%;
+      }
+      .navbar {
+      position: relative;
+      min-height: 50px;
+      margin-bottom: 0;
+      border: 1px solid rgba(0, 0, 0, 0);
+      }
+      #nav {
+        width: 100%;
+        position:static;
+        }
+
+      #nav.affix {
+         position: fixed;
+         top: 0;
+         z-index:10;
+         -webkit-transition: all .6s ease-in-out;
+      }
+      .navbar .brand {
+        max-height: 40px;
+        overflow: visible;
+        padding-top: 0;
+        padding-bottom: 0;
+        }
+        .navbar a.navbar-brand {padding: 9px 15px 8px; }
+     </style>
+    <!-- endbuild -->
+  </head>
+  <body ng-app="idbasApp" data-spy="scroll" data-target="#nav" >
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+   <nav class="navbar navbar-default navbar-inverse hidden-xs" id="home">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+             <a class="icon">
+                <i class="fa fa-facebook"></i>
+              </a>
+        </li>
+        <li>
+             <a class="icon">
+                <i class="fa fa-tumblr"></i>
+              </a>
+        </li>
+        <li>
+             <a class="icon">
+                <i class="fa fa-google-plus"></i>
+              </a>
+        </li>
+        <li>
+             <a class="icon">
+                <i class="fa fa-linkedin"></i>
+              </a>
+        </li>
+        <li>
+             <a class="icon">
+                <i class="fa fa-youtube"></i>
+              </a>
+        </li>
+         <li>
+             <a class="icon">
+                <i class="fa fa-rss"></i>
+              </a>
+        </li>
+      
+        
+      </ul>
+       <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+       </form>
+      <ul class="nav navbar-nav navbar-right">
+         <li>  <a class="icon" href="#"><i class="fa fa-rss"></i></a></li>
+       <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+     
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+
+</nav>
+<nav class="navbar navbar-default navbar-static-top" id="nav" >
+    <div class="container-fluid" >
+    <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        
+          
+               <a class="navbar-brand"><img src="images/blue220x50.png"></a>
+    
+        </div>
+    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-6">
+      <ul class="nav navbar-nav main-nav">
+            <li><a href="#home" >HOME</a></li>
+         
+            <li><a href="#services">SERVICES</a></li>
+             <li><a href="#technologySol">PRODUCTS</a></li>
+              <li><a href="#expertise">EXPERTISE</a></li>
+               <li><a href="#clients">CLIENTS</a></li>
+                <li><a href="#about">ABOUT US</a></li>
+                 <li><a href="#">BLOG</a></li>
+          </ul>
+    </div>
+
+</div>
+</nav>
+<div class="container-fluid">
+  <div class="row hidden-xs">
+  <div class="col-xs-12 col-md-12 nopadding">
+          <!-- Half Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+        
+                <div class="fill"><img class="img-responsive" src="images/pink1200x300.png"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 1</h2>
+                </div>
+            </div>
+            <div class="item">
+          
+                <div class="fill"><img class="img-responsive" src="images/green1200x300.png"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 2</h2>
+                </div>
+            </div>
+            <div class="item">
+             
+                <div class="fill">
+                  <img class="img-responsive" src="images/yellow1200x300.png">
+                </div>
+                <div class="carousel-caption">
+                    <h2>Caption 3</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+  </div>
+
+</div>
+  <div class="row">
+    <div class="col-xs-12"><h1 id="services" class="hr-line">OUR SERVICES</h1></div>
+    <div class="col-lg-12 marginTop10">
+    <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+     
+        <img  class="img-circle img-responsive" src="images/green200x200.png" alt="">
+         <div class="caption">
+        <h3>Managed Services</h3>
+        <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+        <p class="text-center"><a href="#">Read More...</a> </p>
+      </div>
+     
+    </div>
+      <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+      
+        <img  class="img-circle img-responsive" src="images/pink200x200.png" alt="">
+         <div class="caption">
+        <h3>Managed Services</h3>
+        <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+       <p class="text-center"><a href="#">Read More...</a> </p>
+      </div>
+     
+    </div>
+      <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+     
+        <img  class="img-circle img-responsive" src="images/green200x200.png" alt="">
+         <div class="caption">
+        <h3>Managed Services</h3>
+        <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+        <p class="text-center"><a href="#">Read More...</a> </p>
+      </div>
+   
+    </div>
+    </div>
+  </div>
+      <div class="row">
+    <div class="col-xs-12"><h1 id="technologySol" class="hr-line">iDBAS TECHNOLOGY SOLUTIONS</h1></div>
+    <div class="col-lg-12 marginTop10">
+    <div class="col-sm-6 col-md-3 col-lg-3 text-center">
+     
+        <img  class="img-circle img-responsive" src="images/pink200x200.png" alt="">
+         <div class="caption">
+        <h3>Managed Services</h3>
+        <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+        <p class="text-center"><a href="#">Read More...</a> </p>
+      </div>
+     
+    </div>
+      <div class="col-sm-6 col-md-3 col-lg-3 text-center">
+      
+        <img  class="img-circle img-responsive" src="images/green200x200.png" alt="">
+         <div class="caption">
+        <h3>Managed Services</h3>
+        <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+       <p class="text-center"><a href="#">Read More...</a> </p>
+      </div>
+     
+    </div>
+      <div class="col-sm-6 col-md-3 col-lg-3 text-center">
+     
+        <img  class="img-circle img-responsive" src="images/pink200x200.png" alt="">
+         <div class="caption">
+        <h3>Managed Services</h3>
+        <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+        <p class="text-center"><a href="#">Read More...</a> </p>
+      </div>
+   
+    </div>
+       <div class="col-sm-6 col-md-3 col-lg-3 text-center">
+     
+        <img  class="img-circle img-responsive" src="images/green200x200.png" alt="">
+         <div class="caption">
+        <h3>Managed Services</h3>
+        <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+        <p class="text-center"><a href="#">Read More...</a> </p>
+      </div>
+   
+    </div>
+    </div>
+  </div>
+ <div class="row">
+    <div class="col-xs-12">
+      <div class="col-sm-12 col-md-6">
+        <h1 class="hr-line">EVENTS</h1>
+        <div class="col-xs-12 no-gutter marginTop10">
+          <div class="col-xs-12 col-sm-3 no-gutter">
+            <img src="images/green200x200.png" alt="">
+          </div>
+          <div class="col-xs-12 col-sm-9">
+            <h4>Managed Services</h4>
+             <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+          </div>
+
+        </div>
+         <div class="col-xs-12 no-gutter marginTop10">
+          <div class="col-xs-12 col-sm-3 no-gutter">
+            <img src="images/pink200x200.png" alt="">
+          </div>
+          <div class="col-xs-12 col-sm-9">
+            <h4>Managed Services</h4>
+             <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+          </div>
+          
+        </div>
+         <div class="col-xs-12 no-gutter marginTop10">
+          <div class="col-xs-12 col-sm-3 no-gutter">
+            <img src="images/green200x200.png" alt="">
+          </div>
+          <div class="col-xs-12 col-sm-9">
+            <h4>Managed Services</h4>
+             <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+          </div>
+          
+        </div>
+        <p class="text-right"><a href="">Read More...</a></p>
+      </div>
+      <div class="col-sm-12 col-md-6 col-md-6">
+        <h1 id="expertise" class="hr-line">EXPERTISES</h1>
+        <div class="col-xs-12 no-gutter">
+           <ul class="nav nav-tabs" id="myTab">
+                <li><a data-toggle="tab" href="#unparalleded">UNPARALLEDED</a></li>
+                <li><a data-toggle="tab" href="#flesxible">FLESXIBLE</a></li>
+                <li><a data-toggle="tab" href="#security">SECURITY</a></li>
+                <li><a data-toggle="tab" href="#transparency">TRANSPARENCY</a></li>
+            </ul>
+          <div class="tab-content">
+            <div id="unparalleded" class="tab-pane fade in active marginTop10">
+            
+              <div class="col-sm-12">
+                  <div class="col-sm-7"><p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p></div>
+              <div class="col-sm-5">
+                <img src="images/green200x200.png" alt="">
+              </div>
+
+              </div>
+            </div>
+            <div id="flesxible" class="tab-pane fade marginTop10">
+              <div class="col-sm-12">
+                  <div class="col-sm-7"><p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p></div>
+              <div class="col-sm-5">
+                <img src="images/pink200x200.png" alt="">
+              </div>
+
+              </div>
+            </div>
+            <div id="security" class="tab-pane fade marginTop10">
+               <div class="col-sm-12">
+                  <div class="col-sm-7"><p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p></div>
+              <div class="col-sm-5">
+                <img src="images/green200x200.png" alt="">
+              </div>
+
+              </div>
+            </div>
+            <div id="transparency" class="tab-pane fade marginTop10">
+               <div class="col-sm-12">
+                  <div class="col-sm-7"><p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p></div>
+              <div class="col-sm-5">
+                <img src="images/pink200x200.png" alt="">
+              </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <h1 id="clients" class="hr-line">CLIENTS</h1>
+      <div class="col-xs-12 no-gutter">
+          <div class="col-xs-6 col-sm-3 marginTop10">
+            <img  src="images/pink200x200.png" alt="">
+          </div>
+          <div class="col-xs-6 col-sm-3 marginTop10">
+            <img  src="images/pink200x200.png" alt="">
+          </div>
+          <div class="col-xs-6 col-sm-3 marginTop10">
+            <img  src="images/pink200x200.png" alt="">
+          </div>
+          <div class="col-xs-6 col-sm-3 marginTop10">
+            <img  src="images/pink200x200.png" alt="">
+          </div>
+      </div>
+     
+    </div>
+    <div class="col-sm-6 col-xs-12">
+      <h1 class="hr-line">TESTIMONIALS</h1>
+      <div class="col-xs-12 no-gutter">
+         <div class="col-xs-12 col-sm-3  marginTop10">
+            <img src="images/green200x200.png" alt="">
+          </div>
+          <div class="col-xs-12 col-sm-9">
+            <h4>Managed Services</h4>
+             <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+  <div class="row footer marginTop10">
+    <div class="col-md-3">
+      <h3 id="about">ABOUT iDBAS</h3>
+      <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed servicesSafeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+      <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+      <p><a href="">Readmore...</a></p>
+    </div>
+    <div class="col-md-3">
+      <h3>RECENT WHITEPAPERS</h3>
+      <div class="col-md-12 no-gutter">
+        <div class="col-md-3 no-gutter"><img src="images/green200x200.png" alt=""></div>
+        <div class="col-md-9"><p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p></div>
+      </div>
+      <div class="col-md-12 no-gutter">
+        <div class="col-md-3 no-gutter"><img src="images/pink200x200.png" alt=""></div>
+        <div class="col-md-9"><p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p></div>
+      </div>
+      <div class="col-md-12 no-gutter">
+        <div class="col-md-3 no-gutter"><img src="images/green200x200.png" alt=""></div>
+        <div class="col-md-9"><p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p></div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h3>LATEST TWEETS</h3>
+       <div class="col-md-12 no-gutter">
+        <div class="col-md-3 no-gutter"><img src="images/pink200x200.png" alt=""></div>
+        <div class="col-md-9"><p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p></div>
+      </div>
+      <div class="col-md-12 no-gutter">
+        <div class="col-md-3 no-gutter"><img src="images/green200x200.png" alt=""></div>
+        <div class="col-md-9"><p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p></div>
+      </div>
+      <div class="col-md-12 no-gutter">
+        <div class="col-md-3 no-gutter"><img src="images/pink200x200.png" alt=""></div>
+        <div class="col-md-9"><p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p></div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h3>CONTACT US</h3>
+       <div class="col-md-12 no-gutter">
+         <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
+         <p>+91 40 4013 3997</p>
+         <p>info@idbas.com</p>
+         <p>
+            <a class="social-icon">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a class="social-icon">
+                <i class="fa fa-tumblr"></i>
+            </a>
+            <a class="social-icon">
+              <i class="fa fa-google-plus"></i>
+            </a>
+            <a class="social-icon">
+              <i class="fa fa-linkedin"></i>
+            </a>
+            <a class="social-icon">
+              <i class="fa fa-rss"></i>
+            </a>
+
+         </p>
+         <div class="text-center "><button class="btn btn-primary chat-btn" type="submit">CHAT !</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="navbar navbar-inverse">
+   <div class="container-fluid">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#footer-items">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       
+    </div>
+    <ul class="nav navbar-nav navbar-left">
+      <li><a href="#"> <i class="fa fa-circle"></i> Copyright 2014 iDBAS. ALL RIGHTS RESERVED</a></li>
+    </ul>
+     <ul class="nav navbar-nav navbar-right" id="footer-items">
+            <li><a href="#">HOME</a></li>
+         
+            <li><a href="#services">SERVICES</a></li>
+             <li><a href="#technologySol">PRODUCTS</a></li>
+              <li><a href="#expertise">EXPERTISE</a></li>
+               <li><a href="#clients">CLIENTS</a></li>
+                <li><a href="#about">ABOUT US</a></li>
+                 <li><a href="#">BLOG</a></li>
+          </ul>
+   </div>
+</nav>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="jquery-scrollspy.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    
+  <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+      
+        <!-- endbuild -->
+          <script>
+              $('.carousel').carousel({
+                  interval: 5000 //changes the speed
+              });
+              $(document).ready(function(){ 
+                      $("#myTab li:eq(0) a").tab('show');
+                       $(".main-nav.nav li").on("click", function() {
+                          $(".nav li").removeClass("active");
+                          $(this).addClass("active");
+                        });
+
+                   
+                  });
+                  /* affix the navbar after scroll below header */
+                        $('#nav').affix({
+                              offset: {
+                                top: $('header').height()-$('#nav').height()
+                              }
+                        }); 
+                        /* highlight the top nav as scrolling occurs */
+                      // $('body').scrollspy({ target: '#nav' });
+                       /* smooth scrolling for scroll to top */
+                      $('.scroll-top').click(function(){
+                        $('body,html').animate({scrollTop:0},1000);
+                      });
+
+                      /* smooth scrolling for nav sections */
+                      $('#nav .navbar-nav li>a').click(function(){
+                        var link = $(this).attr('href');
+                        var posi = $(link).offset().top+20;
+                        $('body,html').animate({scrollTop:posi},700);
+                      });
+
+         </script>
+</body>
+</html>
