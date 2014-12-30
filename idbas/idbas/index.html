@@ -64,6 +64,18 @@
       margin-bottom: 0;
       border: 1px solid rgba(0, 0, 0, 0);
       }
+      #nav {
+        width: 100%;
+        position:static;
+        top:-32px;
+      }
+
+      #nav.affix {
+         position: fixed;
+         top: 0;
+         z-index:10;
+         -webkit-transition: all .6s ease-in-out;
+      }
      </style>
     <!-- endbuild -->
   </head>
@@ -73,7 +85,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-   <nav class="navbar navbar-default navbar-inverse">
+   <nav class="navbar navbar-default navbar-inverse hidden-xs ">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -149,7 +161,7 @@
   </div><!-- /.container-fluid -->
 
 </nav>
-<nav class="navbar navbar-default navbar-default">
+<nav class="navbar navbar-default navbar-static-top" id="nav">
     <div class="container-fluid">
     <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6">
@@ -160,18 +172,18 @@
           </button>
         
           
-               <div class="col-md-12"><img src="images/blue220x50.png" class="brandImg img-responsive"></div> 
+               <div class="col-md-12 col-xs-11"><img src="images/blue220x50.png" class="brandImg img-responsive"></div> 
     
         </div>
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-6">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav main-nav">
             <li class="active"><a href="#">HOME</a></li>
          
-            <li><a href="#">SERVICES</a></li>
-             <li><a href="#">PRODUCTS</a></li>
-              <li><a href="#">EXPERTISE</a></li>
-               <li><a href="#">CLIENTS</a></li>
-                <li><a href="#">ABOUT US</a></li>
+            <li><a href="#services">SERVICES</a></li>
+             <li><a href="#technologySol">PRODUCTS</a></li>
+              <li><a href="#expertise">EXPERTISE</a></li>
+               <li><a href="#clients">CLIENTS</a></li>
+                <li><a href="#about">ABOUT US</a></li>
                  <li><a href="#">BLOG</a></li>
           </ul>
     </div>
@@ -179,7 +191,7 @@
 </div>
 </nav>
 <div class="container-fluid">
-  <div class="row">
+  <div class="row hidden-xs">
   <div class="col-xs-12 col-md-12 nopadding">
           <!-- Half Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
@@ -230,7 +242,7 @@
 
 </div>
   <div class="row">
-    <div class="col-xs-12"><h1 class="hr-line">OUR SERVICES</h1></div>
+    <div class="col-xs-12"><h1 id="services" class="hr-line">OUR SERVICES</h1></div>
     <div class="col-lg-12 marginTop10">
     <div class="col-sm-4 col-md-4 col-lg-4 text-center">
      
@@ -265,7 +277,7 @@
     </div>
   </div>
       <div class="row">
-    <div class="col-xs-12"><h1 class="hr-line">iDBAS TECHNOLOGY SOLUTIONS</h1></div>
+    <div class="col-xs-12"><h1 id="technologySol" class="hr-line">iDBAS TECHNOLOGY SOLUTIONS</h1></div>
     <div class="col-lg-12 marginTop10">
     <div class="col-sm-6 col-md-3 col-lg-3 text-center">
      
@@ -346,7 +358,7 @@
         <p class="text-right"><a href="">Read More...</a></p>
       </div>
       <div class="col-sm-12 col-md-6 col-md-6">
-        <h1 class="hr-line">EXPERTISES</h1>
+        <h1 id="expertise" class="hr-line">EXPERTISES</h1>
         <div class="col-xs-12 no-gutter">
            <ul class="nav nav-tabs" id="myTab">
                 <li><a data-toggle="tab" href="#unparalleded">UNPARALLEDED</a></li>
@@ -399,7 +411,7 @@
   </div>
   <div class="row">
     <div class="col-sm-6 col-xs-12">
-      <h1 class="hr-line">CLIENTS</h1>
+      <h1 id="clients" class="hr-line">CLIENTS</h1>
       <div class="col-xs-12 no-gutter">
           <div class="col-xs-6 col-sm-3 marginTop10">
             <img  src="images/pink200x200.png" alt="">
@@ -432,7 +444,7 @@
   </div>
   <div class="row footer marginTop10">
     <div class="col-md-3">
-      <h3>ABOUT iDBAS</h3>
+      <h3 id="about">ABOUT iDBAS</h3>
       <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed servicesSafeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services keep your business critical systems healthy and performing optimally with Pythian managed services</p>
       <p>Safeguard your data and keep your business critical systems healthy and performing optimally with Pythian managed services</p>
       <p><a href="">Readmore...</a></p>
@@ -513,11 +525,11 @@
      <ul class="nav navbar-nav navbar-right" id="footer-items">
             <li><a href="#">HOME</a></li>
          
-            <li><a href="#">SERVICES</a></li>
-             <li><a href="#">PRODUCTS</a></li>
-              <li><a href="#">EXPERTISE</a></li>
-               <li><a href="#">CLIENTS</a></li>
-                <li><a href="#">ABOUT US</a></li>
+            <li><a href="#services">SERVICES</a></li>
+             <li><a href="#technologySol">PRODUCTS</a></li>
+              <li><a href="#expertise">EXPERTISE</a></li>
+               <li><a href="#clients">CLIENTS</a></li>
+                <li><a href="#about">ABOUT US</a></li>
                  <li><a href="#">BLOG</a></li>
           </ul>
    </div>
@@ -536,6 +548,7 @@
     <!-- bower:js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
     
   <!-- endbower -->
     <!-- endbuild -->
@@ -548,8 +561,32 @@
                   interval: 5000 //changes the speed
               });
               $(document).ready(function(){ 
-                  $("#myTab li:eq(0) a").tab('show');
-              });
+                      $("#myTab li:eq(0) a").tab('show');
+                       $(".main-nav.nav li").on("click", function() {
+                          $(".nav li").removeClass("active");
+                          $(this).addClass("active");
+                        });
+                       /* affix the navbar after scroll below header */
+                        $('#nav').affix({
+                              offset: {
+                                top: $('header').height()-$('#nav').height()
+                              }
+                        }); 
+                        /* highlight the top nav as scrolling occurs */
+                       $('body').scrollspy({ target: '#nav' });
+                       /* smooth scrolling for scroll to top */
+                      $('.scroll-top').click(function(){
+                        $('body,html').animate({scrollTop:0},1000);
+                      });
+
+                      /* smooth scrolling for nav sections */
+                      $('#nav .navbar-nav li>a').click(function(){
+                        var link = $(this).attr('href');
+                        var posi = $(link).offset().top+20;
+                        $('body,html').animate({scrollTop:posi},700);
+                      });
+                  });
+
          </script>
 </body>
 </html>
