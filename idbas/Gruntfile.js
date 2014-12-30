@@ -27,6 +27,15 @@ module.exports = function (grunt) {
 
     // Project settings
     yeoman: appConfig,
+
+     cssmin: {
+      production: {
+        expand: true,
+        cwd: 'css',
+        src: ['*.css'],
+        dest: 'css'
+      }
+    },
     bower: {
        all: {
     rjsConfig: '<%= yeoman.app %>/scripts/app.js',
@@ -456,10 +465,10 @@ module.exports = function (grunt) {
     'copy:dist',
     'cdnify',
     'cssmin',
-    'uglify',
+   // 'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+   // 'htmlmin'
   ]);
 
   grunt.registerTask('default', [
@@ -468,6 +477,7 @@ module.exports = function (grunt) {
     'build'
   ]);
   grunt.loadNpmTasks('grunt-bower-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 grunt.registerTask('default', ['bower']);
 };
