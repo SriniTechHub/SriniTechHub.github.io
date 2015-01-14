@@ -59,13 +59,20 @@
 		:-ms-input-placeholder {  
 		   	color: #34495e; 
 		}
-  
+		@media screen and (max-width: 40em){
+			header {
+				height: 10%;
+			}
+		}
+  		.ng-cloak{
+  			display: none !important; 
+  		}
 	</style>
 </head>
-<body ng-controller="mainController">
+<body ng-controller="mainController" >
 	<header><input type="search" placeholder="Search Uinversal Facts" ng-model="search"><i class="fa fa-search search-icon"></i></header>
-	<ul>
-		<li ng-repeat="fact in facts | filter:search ">
+	<ul class="ng-cloak">
+		<li ng-repeat="fact in facts | filter:search">
 			<p>{{fact}}</p>
 		</li>
 
