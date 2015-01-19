@@ -46,6 +46,7 @@ body {
   float: left;
   width: 100%;
   box-sizing: border-box;
+  overflow:hidden;
 }
 div.f {
   height: 250px;
