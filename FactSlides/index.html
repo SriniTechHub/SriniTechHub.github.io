@@ -13,6 +13,7 @@
       <link rel="stylesheet" type="text/css" href="css/component.css" />
       <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
       <link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css" />
+      <link rel="stylesheet" type="text/css" href="css/sweet-alert.css" />
       <script src="js/modernizr.custom.js"></script>
       <style>
       @font-face {
@@ -134,6 +135,7 @@ div.col-md-4:hover p{
           font-weight: bold;
           letter-spacing: 2px;
           word-spacing: 3px;
+          outline: 0;
         }
         .navbar-default {
           background-color: #2ECC71;
@@ -299,7 +301,7 @@ div.col-md-4:hover p{
          <nav class="navbar navbar-default navbar-fixed-top">
               <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                 <a class="navbar-brand" href="#">Universal Facts</a>
+                 <a class="navbar-brand" href="#" id="info-btn">Universal Facts</a>
                 <div class="navbar-header pull-right">
                  
                   <button type="button" class="block navbar-toggle collapsed showLeft" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20730,6 +20732,7 @@ div.col-md-4:hover p{
       <script src="js/jquery.min.js"></script>
       <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
       <script src="js/jquery.jscrollpane.min.js"></script>
+      <script src="js/sweet-alert.min.js"></script>
       <script>
        $(document).ready(function () {
          
@@ -20766,6 +20769,9 @@ div.col-md-4:hover p{
             $(this).toggleClass('active');
 
           });
+           $("#info-btn").on('click', function(){
+             swal("Universal Facts", "By Srinivas Tenali(Srini), you can reach me on srinitechhub@gmail.com.", "success");
+         });
       </script>
       
    </body>
