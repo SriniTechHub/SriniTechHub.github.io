@@ -1,0 +1,250 @@
+.btn:focus {outline: none;box-shadow: none;border:2px solid transparent;}
+*{
+	outline:0;
+}
+		.none{
+			display:none;
+		}
+		.nofloat{
+			float: none;
+		}
+		.hideOver{
+			overflow: hidden;
+		}
+		.header{
+			height:95px;
+		}
+		.logo{
+			padding-top: 17px;
+	
+		}
+		ul{
+			list-style: none;
+		}
+		ul li{
+			display: inline-block;
+		}
+		.navbar-default .navbar-nav>li.login> a{
+		    background: #7db701;
+    	}
+		.navbar-default .navbar-nav>li.regis> a{
+			background: #008fb4;
+		}
+		.navbar-default .navbar-nav>li.login> a,
+		.navbar-default .navbar-nav>li.regis> a{
+			color: #fff ;
+			font-weight: bold;
+		}
+		.s-icons div:nth-child(1) li:nth-child(1){
+			background-color: #7db701;
+			color: #fff;
+			padding: 5px 10px;
+			font-size: 1.3em;
+		}
+		.s-icons div:nth-child(1) li:nth-child(2){
+			background-color: #008fb4;
+			color: #fff;
+			padding: 5px 10px;
+			font-size: 1.3em;
+		}
+		.fa-facebook-square{
+			color: #405d99;
+	
+			font-size: 2.7em;
+		}
+		.fa-twitter-square{
+			color: #29a8df;
+		
+			font-size: 2.7em;
+		}
+		.s-icons li{
+			margin-right: 10px;
+		}
+		.main-menu a{
+			margin-left: 10px;
+		}
+		.main-menu a{
+			font-size: 16px;
+			font-weight: bold;
+			color: #616566;
+			line-height: 2.3em;
+		}
+		.main-menu a:hover{
+			text-decoration: none;
+		}
+		
+		.by-now{
+		
+			background-image: url(../imgs/skyblue.png);
+		}
+		
+		.db-fun h3{
+			font-size: 1.4em;
+		}
+		.db-fun i{
+			color: #c6ccca;
+		}
+		.db-fun p{
+			color: #838786;
+			margin-left: 21px;
+		}
+		.search-db{
+			
+			background-image: url(../imgs/skyblue.png);
+			color: #fff;
+		}
+		
+		.b-selling h1,.db-fun h1{
+			color: #1676a6;
+		}
+		
+		.car > div{
+			height:inherit;
+		}
+		.s-div{
+			padding-top: 40px;
+		}
+		.s-div div{
+			margin-bottom: 10px;
+		}
+		.search-box{
+			padding: 30px;
+		}
+		.search-box button{
+			border-radius: 50px;
+			color: #2adefa;
+			background: #fff;
+		}
+		.p-now{
+			padding-top:50px;
+			background-color: #3687bf;
+			color: #fff;
+			position: relative;
+		}
+		.p-now div{
+			height: inherit;
+		}
+		.p-now p,.p-now button{
+			position: relative;
+			  top: 50%;
+			  -webkit-transform: translateY(-50%);
+			  -ms-transform: translateY(-50%);
+			  transform: translateY(-50%);
+		}
+		.p-now p,.p-now button{
+			font-size: 1.4em;
+		}
+		.p-now button{
+			border: 1px solid #fff;
+			border-radius: 20px;
+		}
+		.footer{
+		
+			background-color: #d6d6d6;
+			padding-top: 40px;
+		}
+		.glyphicon-search{
+			-webkit-transform: rotateY(180deg);
+			-moz-transform: rotateY(180deg);
+			-o-transform: rotateY(180deg);
+			-ms-transform: rotateY(180deg);
+			unicode-bidi: bidi-override;
+			direction: rtl;
+		}
+		.carousel-control.left,.carousel-control.right{
+			background:none;
+		}
+		.fa-map-marker,.fa-mobile{
+		font-size: 3em;
+		color: #3d76b8;
+		}
+	
+ @media all and (max-width: 1075px) { 
+	.lg-dis{
+		display:none;
+	}
+	.ham-menu{
+		display: block;
+	}
+
+ }
+ @media all and (min-width: 1075px) { 
+	.lg-dis{
+		display:block;
+	}
+	.ham-menu{
+		display: none;
+	}
+
+ }
+ /*Second page*/
+ .pro{
+	color: #fff;
+	background-image: url(../imgs/product-sky-blue.png);
+ }
+ .pro h1{
+	font-size: 3.3em;
+	padding: 40px 10px 10px 0px;
+ }
+ .path{
+	padding-top: 20px;
+ }
+.s-tabs{
+	padding-top: 20px ;
+	padding-bottom: 20px ;
+}
+.s-tabs > div{
+	
+	margin-bottom: 20px ;
+}
+.s-tabs button {
+border-radius: 40px;
+padding: 15px 10px;
+background: #fff;
+color: #2fcaf5;
+border: 2px solid #2fcaf5;
+font-weight: 600;
+font-size: 14px;
+
+}
+.pro-cont > div > div{
+	border: 1px solid #ccc;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.pro-cont > div > div img{
+	margin: 0 auto;
+}
+.pro-cont h4{
+	color: #f09f69;
+font-weight: bold;
+}
+.pro-cont p{
+		color: #f09f69;
+		font-weight:bold;
+
+}
+.pro-cont h4+p{
+	color: #757877;
+	font-style: italic;
+}
+.pro-cont button.det{
+	background: #3eccf7;
+	border: none;
+	padding: 5px 10px 5px 10px;
+	border-radius: 35px;
+	color: #fff;
+	font-weight: bold;
+	width: 95px;
+	margin-bottom: 10px;
+}
+.sam{
+background: #a4d450;
+border: none;
+color: #fff;
+font-weight: bold;
+padding: 5px 10px 5px 10px;
+border-radius: 25px;
+width: 124px;
+margin-bottom: 10px;
+}
