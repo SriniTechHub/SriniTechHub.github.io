@@ -13,10 +13,11 @@ header{
 }
 
 body{
-	height: 155px;
-	background: url(imgs/bg.jpg) repeat-x bottom;
+	
+	background:  url(imgs/bg.jpg) repeat-x top;
 	float: left;
-	width: 100%;
+	min-width: 100%;
+	background-size: 100% 200px;
 }
 .inner-cont{
 	width: 980px;
