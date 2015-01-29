@@ -11,8 +11,8 @@
 <body>
 	<div class="container-fluid">
 		<div class="row top-bg">
-			<div class="container">
-				<div class="row">
+			<div class="container container-fixed">
+				<div class="row con">
 					<div class="col-md-3 logo"><img src="resources/css/imgs/logo.jpg" alt=""></div>
 
 					<div class="col-md-9">
@@ -88,44 +88,196 @@
 
 					</div>
 					<div class="col-md-12 car">
-					<h3>Every Picture Tells A Story..!</h3>
+					<h3 class="welcome-text">Every Picture Tells A Story..!</h3>
 					<div class="col-md-12 hr"></div>
-				 <div id="myCarousel" class="col-md-12 carousel slide" data-interval="3000" data-ride="carousel">
-    	<!-- Carousel indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>   
-       <!-- Carousel items -->
-        <div class="carousel-inner">
-            <div class="active item">
-                <div class="col-md-10 col-md-offset-2"><img src="resources/css/imgs/tast1.jpg" class="img-responsive"></div>
-              
-            </div>
-            <div class="item">
-                <div class="col-md-10 col-md-offset-2"><img src="resources/css/imgs/taste2.jpg" class="img-responsive"></div>
-               
-            </div>
-          
-        </div>
-        <!-- Carousel nav -->
-        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="carousel-control right" href="#myCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-    </div>
+			<div id="myCarousel" class="carousel slide">
+			   <!-- Carousel indicators -->
+			   <ol class="carousel-indicators">
+			      <li data-target="#myCarousel" data-slide-to="0" 
+			         class="active"></li>
+			      <li data-target="#myCarousel" data-slide-to="1"></li>
+			      <li data-target="#myCarousel" data-slide-to="2"></li>
+			   </ol>   
+			   <!-- Carousel items -->
+			   <div class="carousel-inner">
+			      <div class="item active">
+			          <div class="col-md-12">
+			       	 <div class="col-md-3 pad-lef-no">
+			       	 	<img src="resources/css/imgs/tast1.jpg" alt="Second slide">
+
+			       	 </div>
+						<div class="col-md-9 pad-lef-no">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+							<p class="pull-right"><a href="#">Read More...</a></p>
+						</div>
+			       </div>
+			      </div>
+			      <div class="item">
+			       <div class="col-md-12">
+			       	 <div class="col-md-3 pad-lef-no">
+			       	 	<img src="resources/css/imgs/taste2.jpg" alt="Second slide">
+
+			       	 </div>
+						<div class="col-md-9 pad-lef-no">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+							<p class="pull-right"><a href="#">Read More...</a></p>
+						</div>
+			       </div>
+			        
+			      </div>
+			       <div class="item">
+			       <div class="col-md-12">
+			       	 <div class="col-md-3 pad-lef-no">
+			       	 	<img src="resources/css/imgs/taste2.jpg" alt="Second slide">
+
+			       	 </div>
+						<div class="col-md-9 pad-lef-no">
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+							<p class="pull-right"><a href="#">Read More...</a></p>
+						</div>
+			       </div>
+			        
+			      </div>
+			  
+			   </div>
+			   <!-- 
+			   <a class="carousel-control left" href="#myCarousel" 
+			      data-slide="prev">&lsaquo;</a>
+			   <a class="carousel-control right" href="#myCarousel" 
+			      data-slide="next">&rsaquo;</a>
+			    -->
+			    <div class="row">
+				    <div class="col-sm-offset-5 col-sm-2 text-center">
+				        <div class="btn-group btn-menu" >
+				            <button type="button" class="btn btn-default slide-one">1</button>
+					        <button type="button" class="btn btn-default slide-two">2</button>
+					        <button type="button" class="btn btn-default slide-three">3</button>
+				        </div>
+				    </div>
+				</div>
+	
+			</div> 
 			</div>
 				</div>
 			</div>
 		</div>
 		
-		
+		<div class="row footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2">
+						<h4>Browse</h4>
+						<div class="col-md-12 hr"></div>
+						 <ul>
+						 	<li><a href="">Home</a></li>
+						 	<li><a href="">About Us</a></li>
+						 	<li><a href="">Services</a></li>
+						 	<li><a href="">Menu | Packages</a></li>
+						 	<li><a href="">Gallery</a></li>
+						 	<li><a href="">Contact Us</a></li>
+						 	<li><a href="">Testimonials</a></li>
+						 </ul>
+					</div>
+					<div class="col-md-2">
+						<h4>Get Social</h4>
+						<div class="col-md-12 hr"></div>
+						 <ul>
+						 	<li><a href=""><span class="socio fb"></span>Facebook</a></li>
+						 	<li><a href=""><span class="socio twi"></span>Twitter</a></li>
+						 	<li><a href=""><span class="socio google"></span>Google</a></li>
+						 	<li><a href=""><span class="socio yt"></span>Youtube</a></li>
+						 	<li><a href=""><span class="socio flic"></span>Flicker</a></li>
+						 	<li><a href=""><span class="socio pin"></span>Pinterest</a></li>
+						 	<li><a href=""><span class="socio in"></span>LinkedIn</a></li>
+						 	<li><a href=""><span class="socio insta"></span>Instagram</a></li>
+						 	<li><a href=""><span class="socio rss"></span>RSS</a></li>
+						 </ul>
+					</div>
+					<div class="col-md-2">
+						<h4>Plus Us</h4>
+						<div class="col-md-12 hr"></div>
+						<g:plusone data-annotation="bubble"></g:plusone>
+						<h4>Follow Us</h4>
+						<div class="col-md-12 hr"></div>
+						<a href="http://twitter.com/aleenacaterers" class="twitter-follow-button" data-show-count="true">Follow @aleenacaterers</a>
+					</div>
+					<div class="col-md-3">
+						<h4>Resources</h4>
+						<div class="col-md-12 hr"></div>
+						 <ul>
+						 	<li><a href="">Recipes</a></li>
+						 	<li><a href="">Andhra Cuisine</a></li>
+						 	<li><a href="">Hyderabadi Biryani</a></li>
+						 	<li><a href="">Hyderabad Cuisine</a></li>
+						 	<li><a href="">Kitchen Tips & Tricks</a></li>
+						 	<li><a href="">Royal Hyderabadi Cooking</a></li>
+						 	<li><a href="">Hyderabad Marriage Halls</a></li>
+						 </ul>
+						 <h4>Catering Locations</h4>
+						<div class="col-md-12 hr"></div>
+						 <ul>
+						 	<li><a href="">Catering in Hyderabad</a></li>
+						 	<li><a href="">Catering in Secunderabad</a></li>
+						 	<li><a href="">Catering in Telanagana</a></li>
+						 	<li><a href="">Catering in Andhra Pradesh</a></li>
+						 </ul>
+					</div>
+					<div class="col-md-3">
+						<h4>Need Help? Contact Us!</h4>
+						<div class="col-md-12 hr"></div>
+						 <ul>
+						 	<li>Aleena Caterers</li>
+						 	<li>Email: info@aleenacaterers.com</li>
+						 	<li>Mobile: +91 - 9963094345</li>
+						 	<li>Phone: +91.40 - 23566345</li>
+						 	<li>Url: www.aleenacaterers.com</li>
+						 	<li>#9-4-61/174/A, Miraj Colony,</li>
+						 	<li>Toli Chowki, Hyderbad 500008</li>
+						 	<li>Telangana India.</li>
+						 </ul>
+						 <h4>Network Sites</h4>
+						<div class="col-md-12 hr"></div>
+						 <ul>
+						 	<li>thefcn.org  -<a href=""> Flow Cytometry Network</a></li>
+						 	<li>DesiTised -<a href=""> Social Networking Site</a></li>
+						
+						 </ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	<script src="resources/js/jquery.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<script>
+   $(function(){
+      // Initializes the carousel
+      
+        // $("#myCarousel").carousel('cycle');
+       $('.carousel').carousel({
+		   interval: 100
+		  });
+       $('#myCarousel').on('slide.bs.carousel', function () {
+       	    $(".btn-menu button").removeClass('btn-primary');
+			 var index = $(this).find('.active').index();
+			 $(".btn-menu button:eq("+index+")").addClass('btn-primary');
+		});
+      $(".btn-menu button").click(function(){
+         $("#myCarousel").carousel($(this).index());
+         $(".btn-menu button").removeClass('btn-primary');
+         $(this).addClass('btn-primary');
+      });
+  
+           
+   
+      
+   
+   });
+</script>
+
 </body>
 </html>
