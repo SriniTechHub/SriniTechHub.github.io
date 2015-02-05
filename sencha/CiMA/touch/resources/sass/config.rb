@@ -9,4 +9,4 @@ fonts_path = File.join(dir, '..', 'themes/fonts/')
 sass_path = dir
 css_path = File.join(dir, "..", "css")
 environment  = :development
-output_style = :nested
+output_style = :compressed

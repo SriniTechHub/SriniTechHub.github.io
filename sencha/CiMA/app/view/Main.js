@@ -1,50 +1,138 @@
 Ext.define('CiMA.view.Main', {
-    extend: 'Ext.tab.Panel',
+    extend: 'Ext.Container',
     xtype: 'main',
-    requires: [
-        'Ext.TitleBar',
-        'Ext.Video'
-    ],
+    requires: [ 'Ext.Menu', 'Ext.layout.VBox','Ext.layout.HBox'],
     config: {
-        tabBarPosition: 'bottom',
-
-        items: [
-            {
-                title: 'Welcome',
-                iconCls: 'home',
-
-                styleHtmlContent: true,
-                scrollable: true,
-
-                items: {
-                    docked: 'top',
-                    xtype: 'titlebar',
-                    title: 'Welcome to Sencha Touch 2'
-                },
-
-                html: [
-                    "You've just generated a new Sencha Touch 2 project. What you're looking at right now is the ",
-                    "contents of <a target='_blank' href=\"app/view/Main.js\">app/view/Main.js</a> - edit that file ",
-                    "and refresh to change what's rendered here."
-                ].join("")
-            },
-            {
-                title: 'Get Started',
-                iconCls: 'action',
-
-                items: [
-                    {
-                        docked: 'top',
-                        xtype: 'titlebar',
-                        title: 'Getting Started'
+             layout: {
+                        type: 'card'
+                      },
+           
+            items: [
+               {
+                 xtype: 'container',
+                 padding: '0 0 10 0',
+                 scrollable : {
+                
+                     direction: 'vertical',
+                     directionLock: true  
+                  },
+                 items: [  {
+                                xtype: 'toolbar',
+                                docked: 'top',
+                                title: 'CIMA',
+                                items: [
+                                    {
+                                        xtype: 'button',
+                                        id: 'listButton',
+                                        iconCls: 'list',
+                                        ui: 'plain',
+                                        handler: function(){
+                                            if(Ext.Viewport.getMenus().left.isHidden()){
+                                                Ext.Viewport.showMenu('left');
+                                            }
+                                            else
+                                            {
+                                                Ext.Viewport.hideMenu('left');
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                {
+                    xtype: 'container',
+                    padding: '0 10 0 10',
+                    cls:'grid1',
+                     layout:{
+                        type: 'hbox',
+                        align: 'middle'
                     },
-                    {
-                        xtype: 'video',
-                        url: 'http://av.vimeo.com/64284/137/87347327.mp4?token=1330978144_f9b698fea38cd408d52a2393240c896c',
-                        posterUrl: 'http://b.vimeocdn.com/ts/261/062/261062119_640.jpg'
+                    defaults: {
+                        xtype: 'button',
+                        flex: 1,
+                       
+                        cls:'tile'
+                    },
+                    items: [
+                        {ui: 'decline', text: 'Map',
+                        margin: '10 10 0 0'},
+                        {ui: 'decline', text: 'In Progress',margin: '10 0 0 0'}
+
+                    ]
+                },{
+                    xtype: 'container',
+                    padding: '0 10 0 10',
+                    cls:'grid2',
+                     layout:{
+                        type: 'hbox',
+                        align: 'middle'
+                    },
+                    defaults: {
+                        xtype: 'button',
+                        flex: 1,
+                       
+                        
+                        
+                        cls:'tile'
+                    },
+                    items: [
+                        {ui: 'decline', text: 'Office Info',
+                        margin: '10 10 0 0'},
+                        {ui: 'decline', text: 'Working Here',margin: '10 0 0 0'}
+
+                    ]
+                },
+                {
+                    xtype: 'container',
+                    cls:'grid3',
+                    padding: '0 10 10 10',
+                     layout:{
+                        type: 'hbox',
+                        align: 'middle'
+                    },
+                    defaults: {
+                        xtype: 'button',
+                        flex: 1,
+                        cls:'tile'
+                    },
+                    items: [
+                        {ui: 'decline', text: 'Lorem',
+                        margin: '10 10 0 0'},
+                        {ui: 'decline', text: 'Dolar Site',margin: '10 0 0 0'}
+
+                    ]
+                }]
+               }
+            ]
+
+        
+    },
+    initialize: function(){
+        Ext.Viewport.setMenu(this.createMenu(),{
+            side: 'left',
+            reveal: true
+        });
+    },
+       createMenu: function(){
+        var menu = Ext.create('Ext.Menu', {
+            width: 250,
+            scrollable: 'vertical',
+            items: [
+                {
+                    xtype: 'button',
+                    text: 'Option 1',
+                    handler: function(){
+                        Ext.Viewport.hideMenu('left');
                     }
-                ]
-            }
-        ]
+                },
+                {
+                    xtype: 'button',
+                    text: 'Option 2',
+                    handler: function(){
+                         Ext.Viewport.hideMenu('left');
+                    }
+                }
+            ]
+        });
+        return menu;
     }
 });

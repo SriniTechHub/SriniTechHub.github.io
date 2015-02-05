@@ -2,7 +2,7 @@
     /**
      * The application's namespace, used by Sencha Command to generate classes
      */
-    "name": "cima",
+    "name": "CiMA",
 
     /**
      * The file path to this application's front HTML document, relative to this app.json file
@@ -131,5 +131,5 @@
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "707720fb-e373-4774-bc11-effccf2db792"
+    "id": "aa1dd850-1444-4e4e-acd3-dabb65d97812"
 }

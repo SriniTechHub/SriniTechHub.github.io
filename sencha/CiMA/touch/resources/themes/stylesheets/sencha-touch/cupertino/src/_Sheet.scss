@@ -6,7 +6,7 @@
 
 	.x-button {
 		margin-bottom: 7px;
-		@include border-radius(6px);
+		@include border-radius(0px);
 
 		&:last-child {
 			margin-bottom: 0;

@@ -44,18 +44,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     ".sencha/app/development.properties": {
@@ -64,18 +64,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     ".sencha/app/native.properties": {
@@ -84,18 +84,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     ".sencha/app/package.properties": {
@@ -104,18 +104,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     ".sencha/app/production.properties": {
@@ -124,18 +124,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     ".sencha/app/sencha.cfg": {
@@ -144,18 +144,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     ".sencha/app/testing.properties": {
@@ -164,18 +164,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     "app.js": {
@@ -184,18 +184,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     "app.json": {
@@ -204,18 +204,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     "index.html": {
@@ -224,18 +224,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     "resources/sass/app.scss": {
@@ -244,18 +244,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     },
     "resources/sass/config.rb": {
@@ -264,18 +264,18 @@
       "parameters": {
         "appControllers": "",
         "appModels": "",
-        "appName": "cima",
+        "appName": "CiMA",
         "appStores": "",
         "appViews": "",
-        "controllerNamespace": "cima.controller",
+        "controllerNamespace": "CiMA.controller",
         "frameworkName": "touch",
         "frameworkPath": "touch",
         "library": "core",
-        "modelNamespace": "cima.model",
-        "name": "cima",
+        "modelNamespace": "CiMA.model",
+        "name": "CiMA",
         "senchadir": ".sencha",
-        "uniqueId": "707720fb-e373-4774-bc11-effccf2db792",
-        "viewNamespace": "cima.view"
+        "uniqueId": "aa1dd850-1444-4e4e-acd3-dabb65d97812",
+        "viewNamespace": "CiMA.view"
       }
     }
   }

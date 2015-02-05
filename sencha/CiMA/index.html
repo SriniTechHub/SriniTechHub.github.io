@@ -2,7 +2,7 @@
 <html manifest="" lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title>cima</title>
+    <title>CiMA</title>
     <style type="text/css">
          /**
          * Example of an initial loading indicator.
@@ -48,6 +48,41 @@
                 opacity: 0.8
             }
         }
+       .tile.x-button span.x-button-label{
+        display: block;
+        width: 100%;
+        background: black;
+        position: absolute;
+        bottom: 0;
+        height: 40px;
+        padding-top: 15px;
+        color: #fff;
+       }
+      
+       .tile.x-button{
+        border: 0;
+        border-radius: 0;
+        background: #f0f0f0;
+        padding: 0;
+        min-height: 150px;
+       }
+       .grid1 .tile.x-button:nth-child(1) span.x-button-label{
+        background: #734c4b;
+       }
+       .grid1 .tile.x-button:nth-child(2) span.x-button-label{
+        background: #4daab3;
+       }
+       .grid2 .tile.x-button:nth-child(1) span.x-button-label{
+        background: #898f4d;
+       }
+       .grid2 .tile.x-button:nth-child(2) span.x-button-label{
+        background: #00ace0;
+       }
+       .grid3 .tile.x-button span.x-button-label{
+       
+        background: #d92765;
+       }
+       
     </style>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>

@@ -1,8 +1,8 @@
 .x-button {
 	height: 2.1em;
 	padding: 0 8px;
-	@include border-radius(6px);
-	background-color: #fff;
+	@include border-radius(0px);
+	background-color: #eee;
 	border-color: $ios7-blue;
 }
 
