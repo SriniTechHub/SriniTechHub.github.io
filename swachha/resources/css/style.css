@@ -47,10 +47,10 @@ ul.menu li a{
 	padding: 8px;
 	text-decoration: none;
 }
-ul.menu li a:hover {
+ 
+ul.menu li a.active,ul.menu li a:hover {
 	background: #fff;
 	padding: 8px;
-	border-radius: 5px;
 	color: red;
 }
 
@@ -135,6 +135,8 @@ ul.menu li a:hover {
 	height: 1px;
 	background-color: #ccc;
 	margin-bottom: 10px;
+	float: left;
+	width: 100%;
 }
 .headerText{
 	color: #499903;
@@ -248,4 +250,170 @@ background: url(imgs/icons.png) 0px -2940px;
 }
 .rss{
 	background: url(imgs/icons.png) 0px -4240px;
+}
+
+.paragraph{
+	text-align: justify;
+	width: 600px;
+	float: left;
+}
+.advertise{
+	width: 300px;
+	margin-left: 20px;
+	float: left;
+}
+.advertise img{
+	margin-top: 20px;
+}
+.thumnail-item .services-thubnali,.services-thubnali{
+	width: 220px;
+	float: left;
+	margin-right: 10px;
+}
+.services-thubnali ul{
+	padding: 0 0 0 15px;
+}
+.services-thubnali:last-child{
+	margin-right: 0px;
+}
+h4.headerText{
+	color: #fc4300;
+	font-size: 15px;
+	font-weight: bold;
+}
+.advertise a.sldimg-box{
+	display: inline-block;
+	width: 263px;
+	padding: 6px 15px 15px;
+	background-color: #D7CFC8;
+	text-decoration: none;
+	color: #000;
+	margin-top: 10px;
+}
+.advertise a.sldimg-box h3{
+	color: #fc4300;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+body.menu .thumnail-item h3{
+	text-align: left;
+	padding-bottom: 10px;
+	border-bottom: 2px solid#ff4000;
+}
+body.gallery .paragraph img{
+	width: 100px;
+	float: left;
+	margin: 10px;
+}
+iframe{
+	height: 250px;
+}
+.contactImg{
+	padding: 0 10px 10px 10px;
+	float: left;
+}
+.contact .advertise img{
+	margin: 0;
+	margin-right: 10px;
+}
+.form-all{
+	background: url('http://cms.interlogy.com/uploads/image_upload/image_upload/global/8688_bg_form_envelope.png') no-repeat;
+margin: 0;
+padding-left: 24px;
+padding-top: 80px !important;
+width: 560px;
+height: 400px;
+}
+.form-section, .form-section-closed{
+	list-style: none;
+	list-style-position: outside;
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	zoom: 1;
+	clear: both;
+}
+.form-line {
+padding-top: 10px;
+padding-bottom: 10px;
+}
+.form-label-top {
+display: block !important;
+}
+.form-label-top {
+margin-bottom: 6px;
+display: block;
+white-space: normal;
+}
+.form-all input, select, textarea {
+border: 1px solid #b7bbbd;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+padding: 4px;
+
+}
+.form-all textarea {
+
+height: 50px;
+}
+.form-section li{
+	float: left;
+	margin-left: 20px;
+}
+.contact .paragraph{
+	margin-left: 50px;
+width: 540px;
+}
+
+.testimonial{
+	margin: 0;
+background: #f2f2f2;
+padding: 10px 50px;
+position: relative;
+text-align: justify;
+font: italic 14px/22px Georgia, "Times New Roman", Times, serif;
+color: #53646d;
+border-radius: 5px;
+text-shadow: 0 1px 0 #ffffff;
+background-image: linear-gradient(#f2f2f2, #f2f2f2);
+background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f2f2f2), to(#f2f2f2));
+background-image: -webkit-linear-gradient(top, #f2f2f2, #f2f2f2);
+background-image: -moz-linear-gradient(top, #f2f2f2, #f2f2f2);
+background-image: -ms-linear-gradient(top, #f2f2f2, #f2f2f2);
+background-image: -o-linear-gradient(top, #f2f2f2, #f2f2f2);
+}
+.arrow-down {
+width: 0 !important;
+height: 0;
+border-top: 30px solid #f2f2f2;
+border-left: 30px solid transparent;
+border-right: 0px solid transparent;
+float: left;
+margin-left: 25px;
+}
+.testimonial-author {
+font-size: 16px;
+font-family: Arial, Helvetica, sans-serif;
+float: left;
+margin: 0 8px;
+color: #1e4673;
+padding-top: 5px;
+width: 230px !important;
+}
+.testimonial:before, .testimonial:after {
+content: "\201C";
+position: absolute;
+font-size: 70px;
+line-height: 1;
+color: #999;
+font-style: normal;
+margin-left: -40px;
+margin-top: -10px;
+}
+.testimonial:after {
+content: "\201D";
+right: 10px;
+bottom: -0.5em;
 }
