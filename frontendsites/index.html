@@ -8,11 +8,12 @@
 			padding: 0;
 			margin:0;
 			box-sizing: border-box;
+			font-family: helvetica;
 			outline: 0;
 		}
 		body{
-			border: 10px solid #e67e22;
-			background:#1abc9c;
+			
+			background:#95a5a6;
 			font-family: Calibri;
 			color: #fff;
 		}
@@ -23,32 +24,37 @@
 					top:0;
 					left: 0;
 					position: fixed;
-					background: #1abc9c;
-					border-top: 10px solid #3498db;
-					border-left: 10px solid #e74c3c;
-					border-right: 10px solid #f1c40f;
+					background: #2c3e50;
 					box-sizing: border-box;
 					z-index: 1000;
+					padding: 10px;
 		}
 		li{
-			padding: 5px;
+		
 			text-align: center;
 		}
 		a{
 			color: #fff;
 			text-decoration: none;
 			font-family: arial;
+			padding: 15px 0;
+			display: inline-block;
+			width: 100%;
 		}
 		
 		input {
 			height: 30px;
 		}
 		ol{
-			margin-top: 110px;
-
+			margin-top: 125px;
+			float: left;
+			width: 100%;
 		}
 		ol > li{
-			border-top: 1px solid #e67e22;
+			
+			background: #2c3e50;
+			margin: 10px;
+			box-sizing: border-box;
 		}
 		.site-listing.ng-move,
 		.site-listing.ng-enter,
@@ -94,7 +100,9 @@
 					width: 100%;
 				}
 				li{
-					width: 100%;
+					background: #000;
+					margin: 0px;
+					box-sizing: border-box;
 					 word-wrap: break-word;
 				}
 				
@@ -164,6 +172,15 @@
 		.showAll-btn:active{
 			background: #D2527F;
 		}
+		.list-con{
+			background: #fff;
+		}
+		.move-to-top{
+			position: fixed;
+			border: 1px solid red;
+			bottom: 0;
+			right: 0;
+		}
 	</style>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
@@ -171,7 +188,7 @@
 	
 </head>
 <body ng-controller="DeveloperSitesController">
-  	<a id="top"></a>
+  	
 	<header>
 		<h1>Front End Developer Sites</h1>	<label for="search"><b> Search:</b> <input id="search" type="search" ng-model="searchBy" autofocus></label>		<br><b class="records"> {{values.length}} records loaded...</b>	
 		<div class="selective-search">
@@ -185,11 +202,15 @@
 		</div>
 	</header>
 	<br>
-	<ol>
-		<li ng-repeat="site in values = (sites|filter:searchBy)" class="site-listing"><p><a href="{{site.l}}" target="_blank">{{site.t}}</a></p></li>
-		
-	</ol>
+	<div class="list-con">
 
+			<ol>
+
+				<li ng-repeat="site in values = (sites|filter:searchBy)" class="site-listing"><p><a href="{{site.l}}" target="_blank">{{site.t}}</a></p></li>
+				
+			</ol>
+	
+	</div>
 	<div ng-hide="values.length">No items found </div>	
 	<script>
 			angular.module("App",['ngAnimate'])
