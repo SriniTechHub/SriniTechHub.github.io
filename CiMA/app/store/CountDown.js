@@ -6,7 +6,7 @@ requires:['CiMA.model.CountDown'],
 
         proxy: {
             type: 'rest',
-            url: "http://demoeappstech.uk/CIMA/rest/v1/COUNTDOWN",
+            url: "data/COUNTDOWN.json",
             reader: {
                 type: 'json',
                 rootProperty: "countdown"

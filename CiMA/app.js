@@ -17,10 +17,10 @@ Ext.application({
         'Main'
     ],
     models: [
-        'Main','CountDown'
+        'Main','CountDown','OfficeInfo','WorkingHere','MapContent','Comments','LocationService','RatingService','Review'
     ],
     stores: [
-        'Main','CountDown'
+        'Main','CountDown','OfficeInfo','WorkingHere','MapContent','Comments','LocationService','RatingService','Review'
     ],
 
     icon: {
@@ -52,7 +52,7 @@ Ext.application({
         cls: 'splash-screen'
     });
     splash.show();
-    Ext.defer(function() { splash.destroy(); }, 10000);
+    Ext.defer(function() { splash.destroy(); }, 1000);
     },
 
     onUpdated: function() {

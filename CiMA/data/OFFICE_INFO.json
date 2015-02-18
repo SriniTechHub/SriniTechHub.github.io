@@ -1,0 +1,34 @@
+{
+  "officeinfo": [
+    {
+      "id": "1",
+      "content_name": "Visiting",
+      "content_title": "Visiting",
+      "content_description": "We all get assemble at new office. Try to locate our respective work place displayed in the building. Help each other."
+    },
+    {
+      "id": "2",
+      "content_name": "Floor Plan",
+      "content_title": "Floor Plan",
+      "content_description": "Test"
+    },
+     {
+      "id": "3",
+      "content_name": "Opening Times",
+      "content_title": "Opening Times",
+      "content_description": "We all get assemble at new office. Try to locate our respective work place displayed in the building. Help each other."
+    },
+    {
+      "id": "4",
+      "content_name": "Logistics",
+      "content_title": "Logistics",
+      "content_description": "Test"
+    },
+    {
+      "id": "5",
+      "content_name": "Facilities in the Helicon",
+      "content_title": "Facilities in the Helicon",
+      "content_description": "Test"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "mapcontent": [
+    {
+      "id": "1",
+      "content_name": "LOCATION SERVICE",
+      "content_title": "LOCATION SERVICE",
+      "content_description": "We all get assemble at new office. Try to locate our respective work place displayed in the building. Help each other."
+    },
+    {
+      "id": "2",
+      "content_name": "COMMENTS",
+      "content_title": "COMMENTS",
+      "content_description": "Test"
+    },
+     {
+      "id": "3",
+      "content_name": "RATING SERVICE",
+      "content_title": "RATING SERVICE",
+      "content_description": "We all get assemble at new office. Try to locate our respective work place displayed in the building. Help each other."
+    },
+    {
+      "id": "4",
+      "content_name": "REVIEW",
+      "content_title": "REVIEW",
+      "content_description": "Test"
+    }
+  ]
+}

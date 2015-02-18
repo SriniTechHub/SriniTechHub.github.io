@@ -6,7 +6,7 @@ Ext.define('CiMA.store.Main', {
 
         proxy: {
             type: 'rest',
-            url: "http://demoeappstech.uk/CIMA/rest/v1/static_content",
+            url: "data/static_content.json",
             reader: {
                 type: 'json',
                 rootProperty: "static_content"
