@@ -1,0 +1,10 @@
+// 20150208095123
+// http://demoeappstech.uk/CIMA/rest/v1/COUNTDOWN
+
+{
+  "countdown": [
+    {
+      "countdown": "20"
+    }
+  ]
+}

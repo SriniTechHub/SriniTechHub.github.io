@@ -1,0 +1,72 @@
+/**
+ * @class Ext.dataview.List
+ */
+
+.x-list {
+	background-color: #fff;
+
+	.x-list-disclosure {
+		border: 0px;
+		background-color: transparent;
+		margin: 10px 15px 10px;
+
+		&:before {
+			@include absolute-position(0, 0, 0, 0);
+			content: '!';
+			font-family: 'iOS7';
+			font-size: 14px;
+			text-align: center;
+			background-color: transparent;
+			line-height: 26px;
+			padding-left: 2px;
+		}
+	}
+
+	.x-list-item {
+		color: #000;
+		font-weight: 400;
+		border-top: 1px solid transparent;
+
+		&.x-item-pressed {
+			background-color: rgba(0, 0, 0, 0);
+			color: rgb(217, 39, 101);
+		}
+
+		&.x-item-selected.x-list-item-tpl {
+			background-color: rgba(0, 0, 0, 0);
+			
+			.x-list-disclosure {
+				background-color: transparent;
+			}
+		}
+
+		.x-list-item-body,
+		&.x-list-item-tpl .x-innerhtml {
+			padding: 1em 1em .7em 1em;
+		}
+
+		&.x-list-item-tpl:before {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: 0px;
+			left: 0em;
+			right: 0px;
+			border-bottom: solid 1px $list-item-border-color;
+		}
+
+		&.x-item-pressed.x-list-item-tpl:before, &.x-item-selected.x-list-item-tpl:before, &.x-list-footer-wrap.x-list-item-tpl:before{
+			border-bottom: solid 1px $list-item-border-color;
+		}
+	}
+}
+
+.x-list .x-list-header {
+	background-color: $list-header-color;
+	border: 0px;
+	padding: 0em 1em;
+	.x-innerhtml {
+		font-size: 1.2em;
+		font-weight: 600;
+	}
+}

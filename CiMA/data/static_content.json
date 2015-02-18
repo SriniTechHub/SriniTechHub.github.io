@@ -1,0 +1,16 @@
+{
+  "static_content": [
+    {
+      "id": "1",
+      "content_name": "DAYONE",
+      "content_title": "What to do on day one?",
+      "content_description": "We all get assemble at new office. Try to locate our respective work place displayed in the building. Help each other."
+    },
+    {
+      "id": "2",
+      "content_name": "COUNTDOWN",
+      "content_title": "Countdown",
+      "content_description": "Test"
+    }
+  ]
+}

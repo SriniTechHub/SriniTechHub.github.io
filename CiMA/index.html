@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html manifest="" lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>CiMA</title>
+
+ 
+    
+    
+    
+    <style type="text/css">
+         /**
+         * Example of an initial loading indicator.
+         * It is recommended to keep this as minimal as possible to provide instant feedback
+         * while other resources are still being loaded for the first time
+         */
+        html, body,.x-layout-card-item.splash-screen {
+            height: 100%;
+            background-color: #d90064;
+        }
+
+        #appLoadingIndicator {
+            position: absolute;
+            top: 50%;
+            margin-top: -15px;
+            text-align: center;
+            width: 100%;
+            height: 30px;
+           
+            -webkit-animation-duration: 1s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
+        }
+
+        #appLoadingIndicator > * {
+           
+           display: block;
+           height: 100%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            position: absolute !important;
+            
+        }
+
+        @-webkit-keyframes appLoadingIndicator{
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.8
+            }
+        }
+        .tile.x-button{
+            background-size: 90px 90px;
+            background-repeat: no-repeat;
+            background-position: 50% 30%; 
+        }
+        #ext-container-2 .tile.x-button:nth-child(1){
+             background-image: url(resources/css/imgs/map.png);
+        }
+         #ext-container-2 .tile.x-button:nth-child(2){
+             background-image: url(resources/css/imgs/in-progress.png);
+        }
+         #ext-container-3 .tile.x-button:nth-child(1){
+             background-image: url(resources/css/imgs/office-info.png);
+        }
+         #ext-container-3 .tile.x-button:nth-child(2){
+             background-image: url(resources/css/imgs/working-here.png);
+        }
+       
+
+       
+       .tile.x-button span.x-button-label{
+        display: block;
+        width: 100%;
+        background: #656565;
+        position: absolute;
+        bottom: 0;
+        height: 40px;
+        padding-top: 15px;
+        color: #fff;
+       
+       }
+      
+       .tile.x-button{
+        border: 0;
+        border-radius: 0;
+        background-color:  #f0f0f0;
+        padding: 0;
+        min-height: 150px;
+       }
+       .x-list.count-down .x-list-item-first.x-item-pressed.x-list-item-tpl{
+            background: none;
+       }
+       .x-list.count-down .x-list-item{
+        border-top: 0 !important;
+       }
+       .x-list.count-down .x-list-item.x-list-item-tpl:before{
+        border-bottom: 0 !important;
+       }
+       .x-list.count-down .x-innerhtml div{
+            text-align: center;
+       }
+     #appLoadingIndicator div,.x-layout-card-item.splash-screen{
+        background-image: url(resources/css/imgs/CIMA_Logo.png);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+     }
+    </style>
+    <!-- The line below must be kept intact for Sencha Command to build your application -->
+    <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
+    
+  
+</head>
+<body>
+    <div id="appLoadingIndicator">
+        <div></div>
+    </div>
+</body>
+</html>
