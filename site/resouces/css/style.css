@@ -1,0 +1,32 @@
+body{
+	background: url(imgs/bg.jpg);
+	background-size: 100% 100%; 
+	color: #fff;
+}
+.site-slide{
+	height: 500px;
+	position: relative;
+}
+.site-slide:nth-child(1){
+	background-color: #e74c3c;
+}
+.site-slide:nth-child(2){
+	background-color: #3498db;
+}
+.site-slide:nth-child(4){
+	background-color: #f1c40f;
+}
+.site-slide:nth-child(5){
+	background-color: #1abc9c;
+}
+.site-slide{
+	content:"";
+    position:relative; 
+  
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+ 
+ } 
+
+

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Unique Development</title>
+	<link rel="stylesheet" href="resouces/css/bootstrap.min.css">
+	<link rel="stylesheet" href="resouces/css/style.css">'
+	<style>
+		.v-center {
+		       display: table-cell;
+			  vertical-align: middle;
+			  float: none;
+			  height: 500px;
+			  text-align: center;
+			  width: 360px;
+			  position: relative;
+			  font-size: 22px;
+		}
+		.site-slide a {
+			color: #fff;
+			text-decoration: none;
+		}
+		/* entire container, keeps perspective */
+
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 360px;
+	height: 300px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+
+}
+.back-content{
+		border-radius: 50%;
+	background: #fff;
+	width: 360px;
+	height: 360px;
+	color: #000;
+	padding-top: 40px;
+}
+	
+	/* flip the pane when hovered */
+	.flip-container1:hover .flipper1, .flip-container1.hover1 .flipper1{
+		transform: rotateY(180deg);
+	}
+
+.flip-container1{
+	width: 165px;
+  height: 500px;
+  font-size: 22px;
+  display: table-cell;
+  vertical-align: middle;
+}
+ .front1, .back1 {
+	  height: 200px;
+	font-size: 22px;
+  display: table-cell;
+  vertical-align: middle;
+  	width: 165px;
+ }
+
+/* flip speed goes here */
+.flipper1 {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front1, .back1 {
+	backface-visibility: hidden;
+
+	position: absolute;
+	  top: -18px;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front1 {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back1 {
+	transform: rotateY(180deg);
+		top: -230px;
+}
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		
+		<div class="row">
+			<h1 class="text-center">Unique</h1>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 site-slide"><a href=""><h3 class="text-center v-center">Usability</h3></a></div>
+					<div class="col-md-2 site-slide"><a href=""><h3 class="text-center v-center">UI Design</h3></a></div>
+					<div class="col-md-4 site-slide">
+						
+					      <div class="v-center">
+									<div class="flip-container">
+										<div class="flipper">
+											<div class="front">
+												  <img  src="resouces/css/imgs/2.png" alt="">
+											</div>
+											<div class="back">
+												<div class="back-content">
+
+													<img  class="img-circle" src="resouces/css/imgs/srini.jpg" alt="">
+													<h2>Srinivas Tenali</h2>
+													<h3>UX Developer and  Trainer</h3>
+													<h4>tenalisreenivas@gmail.com</h4>
+													<h4>+91-9849695643</h4>
+												</div>
+											</div>
+										</div>
+									</div>
+	
+					    </div>
+					    
+					</div>	
+					<div class="col-md-2 site-slide"><a href="">
+							<div class="v-center">
+									<div class="flip-container1">
+										<div class="flipper1">
+											<div class="front1">
+												 UI Development
+											</div>
+											<div class="back1">
+												<div >
+												<img   src="resouces/css/imgs/html5.png" alt="">
+												<img   src="resouces/css/imgs/jquery.png" alt="">
+												<img   src="resouces/css/imgs/foundation5.png" alt="">
+												<img   src="resouces/css/imgs/bootstrap.png" alt="">
+												<img   src="resouces/css/imgs/nodejs.png" alt="">
+												<img  src="resouces/css/imgs/backbonejs.png" alt="">
+												<img  src="resouces/css/imgs/angularjs.png" alt="">
+												<img  src="resouces/css/imgs/emberjs.png" alt="">
+												<img   src="resouces/css/imgs/senchatouch.png" alt="">
+												<img   src="resouces/css/imgs/toolset.png" alt="">
+												
+												<a href=""><h3>Many More...</h3></a>
+
+												</div>
+											</div>
+										</div>
+									</div>
+	
+					    </div>
+					</a></div>	
+					<div class="col-md-2 site-slide"><a href=""><h3 class="text-center v-center">UI Testing</h3></a></div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
