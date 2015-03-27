@@ -210,7 +210,7 @@
 
 			
 			<div class="list-group">
-				<a href="{{site.l}}" class="list-group-item" ng-repeat="site in values = (sites|filter:searchBy)" target="_blank">{{site.t}}</a>
+				<a href="{{site.l}}" class="list-group-item" ng-repeat="site in values = (sites|filter:searchBy)" target="_blank" ng-cloak>{{site.t}}</a>
 			</div>
 	
 	</div>
