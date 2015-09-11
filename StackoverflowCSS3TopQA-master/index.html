@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3 Top 100 By Vote StackOverFlow</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <style>
+        .question {
+            background-color: rgb(219, 255, 219);
+        }
+        
+        body {
+            background: url("img/css3-logo.png") no-repeat right center fixed;
+        }
+    </style>
+    <script src='js/angular.min.js'></script>
+    <script src='js/angular-sanitize.min.js'></script>
+    <script src='js/css3-top-100-ByVote-Stackoverflow.js'></script>
+    <script src='js/jquery-1.11.1.js'></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        var app = angular.module('myApp', ['ngSanitize']);
+        app.config(function ($sceProvider) {
+            // Completely disable SCE.
+            $sceProvider.enabled(false);
+        });
+        app.controller('myCtrl', function ($scope) {
+            $scope.jsonData = jsonData;
+            $scope.openPopUp = function (data) {
+                $scope.title = data.t;
+                $scope.link = data.l;
+                $scope.question = data.q;
+                $scope.answer = data.a;
+                $('#myModal').modal('show');
+            };
+        });
+    </script>
+</head>
+
+<body class='container' ng-controller="myCtrl">
+    <h1 class='text-center'>CSS3 Q&amp;A Top 100 By Vote StackOverFlow</h1>
+    <h6 class='text-center'>As of <em>Thu Jul 30 2015 03:30:02 GMT-0500</em></h6>
+    <div class='text-center'>
+        <input size='120' type='text' ng-model='search' placeholder='enter text to search' />
+    </div>
+    <br/>
+    <ol>
+        <li ng-repeat="data in jsonData | filter : search"><a ng-click='openPopUp(data)' ng-href='#'>{{data.t}}</a>
+        </li>
+    </ol>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel"><a target="_blank" ng-href="{{link}}" ng-bind-html="title"></a></h4>
+                    <h6>Click above link to go to stackoverflow thread</h6>
+                </div>
+                <div class="modal-body">
+                    <h3 class='question'>Question:</h3>
+                    <div class='question' ng-bind-html="question"></div>
+                    <h3 class='answer'>Answer:</h3>
+                    <div class='answer' ng-bind-html="answer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
