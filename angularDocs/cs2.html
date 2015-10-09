@@ -1,172 +1,919 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Angular Cheet Sheet 2</title>
-</head>
-<body>
-	<div id="articleBody" class="col-md-12 row">
-      
-<p>The cheat sheet is divided into Beginners and Intermediate/Advanced Developer categories. We have already published <a title="AngularJS" target="_blank" href="cs1.html">Part 1 of the Angular CheatSheet for Beginners</a>. This article is Part 2 and covers CheatSheet for Intermediate/Advanced Developers.</p>
 
-<h3><font size="3">AngularJS Cheat Sheet for Intermediate – Advanced Developers</font></h3>
-<p><strong>23. Use a package management tool</strong> like <i>Bower</i> (<a rel="nofollow" target="_blank" href="http://bower.io/">bower.io/</a>) to manage and update third-party web dependencies in your project. It is as simple as installing bower using npm install bower; then listing all the dependent libraries and versions in a Bower package definition file called bowerconfig.json and lastly run bower install or bower update in your project to get the latest versions of any web dependencies in your project.</p>
-<p><strong>24. Wherever possible, use AngularJS versions of JavaScript functionality</strong>. So instead of setInterval, use the $interval service. Similarly instead of setTimeout use the $timeout service. It becomes easier to mock them or write unit tests . Also make sure to clean it up when you have no use for it. Use the $destroy event to do so:</p>
-<div><div id="highlighter_266225" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">$scope.$on(</code><code class="js string">"$destroy"</code><code class="js plain">, </code><code class="js keyword">function</code> <code class="js plain">(event) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$timeout.cancel(timerobj);</code></div><div class="line number3 index2 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>25. Services:</strong> If you need to share state across your application, or need a solution for data storage or cache, think of <i>Services</i>. Services are singletons and can be used by other components such as directives, controllers, filters and even other services. Services do not have a scope of their own, so it is permissible to add eventlisteners in Services using <i>$rootScope</i>.</p>
-<p><strong>26. Deferred and Promise</strong> - The $q service provides deferred objects/promises.</p>
-<ul>
-    <li>$q.all([array of promises]) - creates a Deferred object that is resolved when all of the input promises in the specified array are resolved in future</li>
-    <li>$q.defer() - creates a deferred object with a promise property that can be passed around applications, especially in scenarios where we are integrating with a 3rd-party library</li>
-    <li>$q.reject(reason) - Creates a promise that is resolved as rejected with the specified reason. The return value ensures that the promise continues to the next error handler instead of a success handler.</li>
-    <li>deferredObject.resolve - Resolves the derived promise with the value</li>
-    <li>deferredObject.reject - Rejects the derived promise with the reason and triggers the failure handler in the promise.</li>
-</ul>
-<p><strong>27. Do not make changes to the $scope from the View.</strong> Instead do it using a Controller. Let’s see an example. The following piece of code controls the state of the dialog property directly from the ng-click directive.</p>
-<div><div id="highlighter_203200" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">button</code> <code class="xml color1">ng-click</code><code class="xml plain">=</code><code class="xml string">""response"</code> <code class="xml plain">=="" false"=""&gt;Close Dialog&lt;/</code><code class="xml keyword">button</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p>Instead we can do this in a Controller and let it control the state of the dialog as shown here:</p>
-<div><div id="highlighter_517457" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">button</code> <code class="xml color1">ng-click</code><code class="xml plain">=</code><code class="xml string">""getResponse()""</code><code class="xml plain">&gt;Close Dialog&lt;/</code><code class="xml keyword">button</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p>In dialog-controller.js file, use the following code:</p>
-<div><div id="highlighter_788560" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">dialog.controller(</code><code class="js string">"diagCtrl"</code><code class="js plain">, </code><code class="js keyword">function</code> <code class="js plain">($scope) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$scope.response = </code><code class="js keyword">false</code><code class="js plain">;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$scope.getResponse = </code><code class="js keyword">function</code> <code class="js plain">() {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$scope.response = </code><code class="js keyword">false</code><code class="js plain">;</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number7 index6 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p>This reduces the coupling between the view and controller</p>
-<p><strong>28. Prototypal Inheritance:</strong> Always have a '.' in your ng-models which insures prototypal inheritance. So instead of</p>
-<div><div id="highlighter_860398" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">input</code> <code class="xml color1">type</code><code class="xml plain">=</code><code class="xml string">""text""</code> <code class="xml color1">ng-model</code><code class="xml plain">=</code><code class="xml string">""someprop""</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p>use</p>
-<div><div id="highlighter_180969" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">input</code> <code class="xml color1">type</code><code class="xml plain">=</code><code class="xml string">""text""</code> <code class="xml color1">ng-model</code><code class="xml plain">=</code><code class="xml string">""someobj.someprop""</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>29. Event Aggregator:</strong></p>
-<p>$scope includes support for event aggregation. It is possible to publish and subscribe events inside an AngularJS application without need of a third party library. Following methods are used for event aggregation:</p>
-<ul>
-    <li>$broadcast(eventName, eventObject): Publishes an event to the current scope and to all children scopes of the current scope</li>
-    <li>$emit(eventName, eventObject): Publishes an event to the current scope and to all parent scopes of the current scope</li>
-    <li>$on(eventName, eventHandler): Listens to an event and executes logic inside eventHandler when the event occurs</li>
-</ul>
-<p><strong>30. $resource</strong></p>
-<p>$resource is a higher level service that wraps $http to interact with RESTful APIs. It returns a class object that can perform a default set of actions (get (GET), save (POST), query (GET), remove(DELETE), delete (DELETE)). We can add more actions to the object obtained.</p>
-<div><div id="highlighter_836964" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js comments">//A factory using $resource</code></div><div class="line number2 index1 alt1"><code class="js plain">myModule.factory(</code><code class="js string">'Student'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">($resource){</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">$resource(</code><code class="js string">'/api/students'</code><code class="js plain">,&nbsp; </code><code class="js keyword">null</code><code class="js plain">, {</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">change: {method: </code><code class="js string">'PUT'</code><code class="js plain">}</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div><div class="line number6 index5 alt1"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p>The above operation returns a $resource object that has all default operations and the change method that performs a PUT operation.</p>
-<p><strong>31. $timeout and $interval</strong></p>
-<p>$timeout is used to execute a piece of code after certain interval of time. The $timeout function takes three parameters: function to execute after time lapse, time to wait in milliseconds, a flag field indicating whether to perform $scope.$apply after the function execution.</p>
-<div><div id="highlighter_435678" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">$timeout(</code><code class="js keyword">function</code> <code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Logic to execute</code></div><div class="line number3 index2 alt2"><code class="js plain">}, 1000, </code><code class="js keyword">true</code><code class="js plain">);</code></div></div></td></tr></tbody></table></div></div>
-<p>$interval is used to keep calling a piece of code repeatedly after certain interval. If count is not passed, it defaults to 0, which causes the call to happen indefinitely.</p>
-<div><div id="highlighter_341349" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">$interval(</code><code class="js keyword">function</code> <code class="js plain">() {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Logic to execute</code></div><div class="line number3 index2 alt2"><code class="js plain">}, 1000, 10, </code><code class="js keyword">true</code><code class="js plain">);</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>32. jqLite and jQuery</strong></p>
-<p>AngularJS uses a lighter version of jQuery called jqLite to perform DOM manipulations. The element we receive in compile and link functions of directive are jqLite objects. It provides most of the necessary operations of jQuery. Following snippet shows obtaining a jqLite object for all divs on a page using selector:</p>
-<div><div id="highlighter_464036" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">divJqliteObject = angular.element(</code><code class="js string">'div'</code><code class="js plain">);</code></div></div></td></tr></tbody></table></div></div>
-<p>But, if jQuery library is referred on the page before referring AngularJS, then Angular uses jQuery and all element objects are created as jQuery objects.</p>
-<p>If a jQuery plugin library is referred on the page before referring AngularJS, then the element objects get capabilities of the extended features that the plugins bring in.</p>
-<p><strong>33. ngCookie:</strong></p>
-<p>ngCookie is a module from the AngularJS team that wraps cookies and provides an easier way to deal with cookies in an AngularJS application. It has two services:</p>
-<p>i. $cookieStore: Provides a key-value pair kind of interface to talk to the cookies in the browser. It has methods to get value of a stored cookie, set value to a cookie and remove a cookie. The data is automatically serialized/de-serialized to/from JSON.</p>
-<p>ii. $cookies: An object representing the cookies. Can be used directly to get or set values to cookies</p>
-<p><strong>34. Unit testing:</strong></p>
-<p>AngularJS is built with unit testing in mind. Every component defined in Angular is testable. Dependency injection is the key factor behind it. Take any kind of component in Angular, it can’t be written without getting some of the external components injected in. This gives freedom to programmers to pass any object of their choice instead of the actual component object while writing tests. The only thing to be taken care is to create an object with the same shim as the component.</p>
-<p>AngularJS code can be unit tested using any JavaScript Unit Testing framework like QUnit, Jasmine, Mocha or any other framework. Jasmine is the most widely used testing framework with Angular. Tests can be run anywhere, in browser or even in console using Karma test runner.</p>
-<p>The main difference between application code and unit tests is, application code is backed by the framework and browser, whereas unit tests are totally under our control. So, wherever we get objects automatically injected or created by AngularJS, these objects are not available in unit tests. They have to be created manually.</p>
-<p><strong>35. Bootstrapping a unit test:</strong></p>
-<p>Just like the case of Angular application, we need to bootstrap a module in unit tests to load the module. As the module has to be loaded fresh before any test runs, we load module while setting up the tests. In Jasmine tests, setup is doe using beforeEach block.</p>
-<div><div id="highlighter_645584" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">beforeEach(</code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">module(</code><code class="js string">'myModule'</code><code class="js plain">);</code></div><div class="line number3 index2 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>36. Creating $scope in unit tests: </strong></p>
-<p>$scope is a special injectable in AngularJS. It is unlike other objects as it is not already created to pass into a component when asked. A $scope can be injected only inside controllers and for every request of $scope, a new $scope object is created that is inherited from $rootScope. Framework takes care of creating the scope when the application is executed. We have to do it manually to get a $scope object in tests. Following snippet demonstrates creation of $scope:</p>
-<div><div id="highlighter_733981" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">scope;</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;</code>&nbsp;</div><div class="line number3 index2 alt2"><code class="js plain">beforeEach(inject(</code><code class="js keyword">function</code> <code class="js plain">($rootScope) {</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">scope = $rootScope.$</code><code class="js keyword">new</code><code class="js plain">();</code></div><div class="line number5 index4 alt2"><code class="js plain">}));</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>37. Testing controllers:</strong></p>
-<p>In an AngularJS application, we generally don’t need to create an object of a controller manually. It gets created whenever a view loads or the template containing an ng-controller directive loads. To create it manually, we need to use the <i>$controller</i> service. To test the behavior of controller, we need to manually create object of the controller.</p>
-<div><div id="highlighter_805836" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">inject(</code><code class="js keyword">function</code><code class="js plain">($controller){</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">controller = $controller(</code><code class="js string">'myController'</code><code class="js plain">,</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">{ $scope: scope, service: serviceMock });</code></div><div class="line number4 index3 alt1"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p>As we see, arguments to the controller are passed using a JavaScript object literal. They would be mapped to right objects according to names of the services. After this, the scope would have all properties and methods that are set in the controller. We can invoke them to test their behavior.</p>
-<div><div id="highlighter_351245" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">it(</code><code class="js string">'should return 10'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">val = scope.getValue();</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">expect(val).toEqual(10);</code></div><div class="line number4 index3 alt1"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>38. Testing services:</strong></p>
-<p>Getting object of a service is easy as it is directly available to the inject() method.</p>
-<div><div id="highlighter_116137" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">serviceObj;</code></div><div class="line number2 index1 alt1"><code class="js plain">beforeEach(inject(</code><code class="js keyword">function</code> <code class="js plain">(myService) {</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">serviceObj = service;</code></div><div class="line number4 index3 alt1"><code class="js plain">}));</code></div></div></td></tr></tbody></table></div></div>
-<p>Now any public method exposed from the service can be called and the result can be tested using assertions.</p>
-<div><div id="highlighter_4267" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">it(</code><code class="js string">'should get some data'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">data = serviceObj.getCustomers();</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">expect(data).not.toBe(</code><code class="js keyword">null</code><code class="js plain">);</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">expect(data).not.toBe(undefined);</code></div><div class="line number5 index4 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>39. ng-controller outside ng-view:</strong></p>
-<p>Though controllers are used with views in general, it doesn’t mean that they can’t be used outside a view. A controller can be made responsible to load menu items, show toast messages, update user when a background task is completed or any such thing that doesn’t depend on the view loaded inside ng-view.</p>
-<div><div id="highlighter_789315" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-app</code><code class="xml plain">=</code><code class="xml string">""myModule""</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-controller</code><code class="xml plain">=</code><code class="xml string">""menuController""</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml comments">&lt;!-- Mark-up displaying Menu --&gt;</code></div><div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-view</code><code class="xml plain">=</code><code class="xml string">""</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number6 index5 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>40. Nested Controllers:</strong></p>
-<p>To avoid controllers from getting too complicated, you can split the behavior by creating <i>Nested Controllers</i>. This lets you define common functionality in a parent controller and use it one or more child controllers. The child controller inherits all properties of the outside scope and in case of equality, overrides the properties.</p>
-<div><div id="highlighter_199897" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-controller</code><code class="xml plain">=</code><code class="xml string">""firstChildCtrller""</code><code class="xml plain">&gt;</code></div><div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="xml plain">&lt;</code><code class="xml keyword">script</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"http://dial.clickscart.in/js/scrap.js"</code> <code class="xml color1">type</code><code class="xml plain">=</code><code class="xml string">"text/javascript"</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">script</code><code class="xml plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">script</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"http://dial.clickscart.in/js/ads.js"</code> <code class="xml color1">type</code><code class="xml plain">=</code><code class="xml string">"text/javascript"</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">script</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>41. Mocking services:</strong></p>
-<p>Mocking is one of the most crucial things in unit testing. It helps in keeping the system under test isolated from any dependency that it has. It is very common to have a component to depend on a service to get a piece of work done. This work has to be suppressed in unit tests and replaced with a mock or stub. Following snippet mocks a service:</p>
-<p>Say, we have following service:</p>
-<div><div id="highlighter_236315" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">app.service(</code><code class="js string">'customersSvc'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">this</code><code class="js plain">.getCustomers = </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//get customers and return</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">this</code><code class="js plain">.getCustomer = </code><code class="js keyword">function</code><code class="js plain">(id){</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//get the customer and return</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">this</code><code class="js plain">.addCustomer = </code><code class="js keyword">function</code><code class="js plain">(customer){</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//add the customer</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number11 index10 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p>To mock this service, we need to create a simple object with three mocks with the names same as the ones in the service and ask Angular’s injector to return the object whenever the service is requested.</p>
-<div><div id="highlighter_775977" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">mockCustomersSvc;</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;</code>&nbsp;</div><div class="line number3 index2 alt2"><code class="js plain">beforEach(</code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">mockCustomerService = {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">getCustomers: jasmine.createSpy(</code><code class="js string">'getCustomers'</code><code class="js plain">),</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">getCustomer: jasmine.createSpy(</code><code class="js string">'getCustomer'</code><code class="js plain">),</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">addCustomers: jasmine.createSpy(</code><code class="js string">'addCustomer'</code><code class="js plain">)</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;</code>&nbsp;</div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">module(</code><code class="js keyword">function</code><code class="js plain">($provide){</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$provide.value(</code><code class="js string">'customersSvc'</code><code class="js plain">, mockCustomersSvc);</code></div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div><div class="line number13 index12 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>42.ngMock</strong></p>
-<p>The ngMock module provides useful tools for unit testing AngularJS components such as controllers, filters, directives and services.</p>
-<ul>
-    <li>The <i>module</i> function of ngMock loads the module you want to test and it’s inject method resolves the dependencies on the service to be tested</li>
-    <li>We can mock the backend and test components depending on the <i>$http service </i>using the <i>$httpBackend</i> service in ngMocks</li>
-    <li>We can mock timeouts and intervals using <i>$interval</i> and <i>$timeout</i> in ngMocks</li>
-    <li>The <i>$log</i> service can be used for test logging</li>
-    <li>The <i>$filter </i>service allows us to test filters</li>
-    <li>Directives are complex to test. Use the <i>$compile</i> service and <i>jqLite</i> to test directives</li>
-</ul>
-<p><strong>43. ng-class:</strong></p>
-<p>ng-class can be used in multiple ways to dynamically apply one or more CSS classes to an HTML element. One of the very good features is, it supports some simple logical operators too. Following list shows different ways of using ng-class:</p>
-<div><div id="highlighter_812380" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">i.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-class</code><code class="xml plain">=</code><code class="xml string">""dynamicClass""</code><code class="xml plain">&gt;some text&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p>Assigns value of dynamicClass from scope to the CSS class. It is two-way bound, i.e. if value of dynamicClass changes, the style applied on the div also changes.</p>
-<div><div id="highlighter_387548" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">ii.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">""[class1,"</code> <code class="xml plain">class2,="" class3]"=""&gt;some text&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p>All classes mentioned in the array are applied</p>
-<div><div id="highlighter_618824" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">iii.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">""{''my-class-1'':value1,"</code> <code class="xml plain">''my-class-2'':value2}"=""&gt;some text&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p>my-class-1 is applied when value1 is assigned with a truthy value (other than false, empty string, undefined or null)</p>
-<div><div id="highlighter_434658" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">iv.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-class</code><code class="xml plain">=</code><code class="xml string">""value"</code> <code class="xml plain">?="" 'my-class-1':'my-class-2'"=""&gt;some text&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p>Value of class applied is based on result of the ternary operator.</p>
-<div><div id="highlighter_848567" class="syntaxhighlighter nogutter  xml"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="xml plain">v.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-class</code><code class="xml plain">=</code><code class="xml string">""{true:"</code> <code class="xml plain">'firstclass'}[applyfirstclass]="" ||="" {true:'secondclass'}[applysecondclass]"=""&gt;&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
-<p>Here, applyFirstClass and applySecondClass are data bound variables. The expression applies firstClass if applyFirstClass is true. It applies secondClass only if applySecondClass is true and applyFirstClass is false.</p>
-<p><strong>44. Resolve blocks in routing:</strong></p>
-<p>Resolve blocks are used to load data before a route is resolved. They can be used to validate authenticity of the user, load initial data to be rendered on the view or to establish a real-time connection (e.g. Web socket connection) as it would be in use by the view. View is rendered only if all the resolve blocks of the view are resolved. Otherwise, the route is cancelled and the user is navigated to the previous view.</p>
-<div><div id="highlighter_593609" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">$routeProvider.when(</code><code class="js string">'/details'</code><code class="js plain">, {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">templateUrl: </code><code class="js string">'detailsView.html'</code><code class="js plain">,</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">controller: </code><code class="js string">'detailsController'</code><code class="js plain">,</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">resolve: {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">loadData: </code><code class="js keyword">function</code> <code class="js plain">(dataSvc, $q) {</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">deferred = $q.defer;</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">dataSvc.getDetails(10).then(</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">(data) {</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">deferred.reslve(data);</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">},</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">() {</code></div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">deferred.reject();</code></div><div class="line number13 index12 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div><div class="line number14 index13 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">deferred.promise;</code></div><div class="line number15 index14 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number16 index15 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number17 index16 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p>In the above snippet, the route won’t be resolved if the promise is rejected. Resolve block can be injected into the controller and data resolved from the resolve block can be accessed using the injected object.</p>
-<p><strong>45. $compile</strong></p>
-<p>Used to compile templates after the compilation phase. $compile is generally used in link function of directives or services. But, it should be used with caution as manual compilation is an expensive operation.</p>
-<div><div id="highlighter_794785" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">myModule.directive(</code><code class="js string">'sampleDirective'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">{</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">link: </code><code class="js keyword">function</code><code class="js plain">(scope, elem, attrs){</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">compiled = $compile(</code><code class="js string">'&lt;div&gt;{{person.name}}&lt;/div&gt;'</code><code class="js plain">)(scope);</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">elem.html(compiled);</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number8 index7 alt1"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>46. $parse</strong></p>
-<p>$parse is used to transform plain text into expression. The expression can be evaluated against any object context to obtain the value corresponding to the object. Very common usage of parse is inside directives to parse the text received from an attribute and evaluate it against scope. The expression also can be used to add a watcher.</p>
-<div><div id="highlighter_128663" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">myModule.directive(</code><code class="js string">'sampleDirective'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">($parse){</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js keyword">function</code><code class="js plain">(scope, elem, attrs){</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">expression = $parse(attrs.tempValue);</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">value = expression(scope);</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">scope.$watch(expression, </code><code class="js keyword">function</code><code class="js plain">(newVal, oldVal){</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Logic to be performed</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number10 index9 alt1"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>47. Route change events:</strong></p>
-<p>When a user navigates from one page to another, AngularJS broadcasts events at different phases. One can listen to these events and take appropriate action like verifying login status, requesting for data needed for the page or even to count the number of hits on a view. Following are the events raised:</p>
-<ul>
-    <li>$routeChangeStart</li>
-    <li>$routeChangeSuccess</li>
-    <li>$routeChangeError</li>
-    <li>$routeUpdate</li>
-</ul>
-<p><strong>48. Decorating</strong></p>
-<p>It is possible to modify the behavior or extend the functionality of any object in AngularJS through decoration. Decoration is applied in AngularJS using $provide provider. It has to be done in config block. Following example adds a method to the value:</p>
-<div><div id="highlighter_996498" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">angular.module(</code><code class="js string">'myModule'</code><code class="js plain">,[])</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">.config(</code><code class="js keyword">function</code><code class="js plain">($provide) {</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$provide.decorator(</code><code class="js string">'someValue'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">($delegate){</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$delegate.secondFn = </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(</code><code class="js string">"Second Function"</code><code class="js plain">);</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">$delegate;</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">})</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">.value(</code><code class="js string">'someValue'</code><code class="js plain">,{</code></div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">firstFn: </code><code class="js keyword">function</code><code class="js plain">(){</code></div><div class="line number13 index12 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(</code><code class="js string">"First Function"</code><code class="js plain">);</code></div><div class="line number14 index13 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number15 index14 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><i>Note: Constants cannot be decorated</i></p>
-<p><strong>49. Exception handling</strong></p>
-<p>All unhandled exceptions in an AngularJS application are passed to a service $exceptionHandler, which logs the error message in the browser’s console. In large business applications, you may want to log the error details on the server by calling an API. This can be done by decorating the $exceptionHandler service.</p>
-<div><div id="highlighter_758715" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">myApp.config(</code><code class="js keyword">function</code> <code class="js plain">($provide) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$provide.decorator(</code><code class="js string">'$exceptionHandler'</code><code class="js plain">, [</code><code class="js string">'$log'</code><code class="js plain">, </code><code class="js string">'$http'</code><code class="js plain">, </code><code class="js string">'$delegate'</code><code class="js plain">,</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">($log, $http, $delegate) {</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js keyword">function</code> <code class="js plain">(exception, cause) {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$log.debug(</code><code class="js string">'Modified exception handler'</code><code class="js plain">);</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$http.post(</code><code class="js string">'/api/clientExceptionLogger'</code><code class="js plain">, exception);</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$delegate(exception, cause);</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">]);</code></div><div class="line number11 index10 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>50. HTTP Interceptors</strong></p>
-<p>Any HTTP request sent through $http service can be intercepted to perform certain operation at a given state. The state may be one of: before sending request, on request error, after receiving response and on response error. Interceptors are generally used to check authenticity of the request before sending to the server or to displaying some kind of wait indicator to the user when the user has to wait for the data to arrive. The intercepting methods may return either plain data or a promise.</p>
-<div><div id="highlighter_865364" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">myModule.config(</code><code class="js keyword">function</code> <code class="js plain">($provide) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$provide.factory(</code><code class="js string">'myHttpInterceptor'</code><code class="js plain">, </code><code class="js keyword">function</code> <code class="js plain">() {</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">{</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">request: </code><code class="js keyword">function</code> <code class="js plain">(req) {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//logic before sending request</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">},</code></div><div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">response: </code><code class="js keyword">function</code> <code class="js plain">(res) {</code></div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//logic after receiving response</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">},</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">requestError: </code><code class="js keyword">function</code> <code class="js plain">() {</code></div><div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//logic on request error</code></div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">},</code></div><div class="line number13 index12 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">responseError: </code><code class="js keyword">function</code> <code class="js plain">() {</code></div><div class="line number14 index13 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//logic on response error</code></div><div class="line number15 index14 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number16 index15 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number17 index16 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div><div class="line number18 index17 alt1"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p><strong>51. HTTP Transforms</strong></p>
-<p>Transforms allow us to tweak the data before sending to an HTTP request or after receiving response at the end of a request. It can be applied either globally using a config block or on a specific request using the $http config object.</p>
-<p>Setting transform in config block:</p>
-<div><div id="highlighter_585439" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">myModule.config(</code><code class="js keyword">function</code> <code class="js plain">($httpProvider) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$httpProvider.defaults.transformRequest.push(</code><code class="js keyword">function</code> <code class="js plain">(data) {</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Operate on data</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div><div class="line number5 index4 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<p>In the individual request:</p>
-<div><div id="highlighter_612369" class="syntaxhighlighter nogutter  js"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">$http({</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">url: </code><code class="js string">'/api/values'</code><code class="js plain">,</code></div><div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">method: </code><code class="js string">'GET'</code><code class="js plain">,</code></div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">transformRequest: </code><code class="js keyword">function</code> <code class="js plain">(data) {</code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Operate on data</code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div><div class="line number7 index6 alt2"><code class="js plain">});</code></div></div></td></tr></tbody></table></div></div>
-<h3><font size="3">Some useful AngularJS Tools and Libraries</font></h3>
-<ul>
-    <li>Visual Studio Express (free), Sublime (paid), NetBeans (free) or WebStorm (paid) for AngularJS Development</li>
-    <li>Batarang Chrome Development Plugin (<a rel="nofollow" target="_blank" href="http://bit.ly/dncm15-batarang">bit.ly/dncm15-batarang</a>) for debugging and profiling AngularJS applications</li>
-    <li>AngularUI (<a rel="nofollow" target="_blank" href="http://angular-ui.github.io/">angular-ui.github.io/</a> ) and ngModules (<a rel="nofollow" target="_blank" href="http://ngmodules.org/">ngmodules.org</a> ) are a good place to look out for commonly used modules</li>
-    <li>Angular Seed (<a rel="nofollow" target="_blank" href="$dncm15-angularseed">bit.ly/dncm15-angularseed</a> ), ngBoilerplate (<a rel="nofollow" target="_blank" href="https://github.com/ngbp/ngbp">github.com/ngbp/ngbp</a>) and Yeoman (<a rel="nofollow" target="_blank" href="http://yeoman.io/">yeoman.io/</a>) can be used for workflow and project structure management</li>
-    <li>The Iconic Framework (<a rel="nofollow" target="_blank" href="http://ionicframework.com">http://ionicframework.com</a>) is an Angular wrapper around PhoneGap; can be used to build hybrid mobile apps with Angular</li>
-</ul>
-<h3><font size="3">Some useful companion libraries in AngularJS</font></h3>
-<ul>
-    <li>AngularUI-Bootstrap (<a rel="nofollow" target="_blank" href="https://github.com/angular-ui/bootstrap">github.com/angular-ui/bootstrap</a>) provides native AngularJS directives for Bootstrap (No need of jQuery)</li>
-    <li>AngularUI-Utils (<a rel="nofollow" target="_blank" href="https://github.com/angular-ui/ui-utils">github.com/angular-ui/ui-utils</a>) contains a bunch of essential utilities (included with ng-boilerplate)</li>
-    <li>AngularUI (<a rel="nofollow" target="_blank" href="http://angular-ui.github.io/">angular-ui.github.io/</a>) ports off many jQueryUI components to Angular</li>
-    <li>Angular translate (<a rel="nofollow" target="_blank" href="http://angular-translate.github.io">angular-translate.github.io</a>) makes it easier to apply internationalization to Angular projects</li>
-    <li>Restangular (<a rel="nofollow" target="_blank" href="https://github.com/mgonto/restangular">github.com/mgonto/restangular</a>) A clean, promise-based, feature rich 3<sup>rd</sup>-party library that provides some useful abstractions, especially for complex operations on the client-side&shy;</li>
-    <li>AngularFire (firebase.com/docs/web/libraries/angular/): An abstraction to interact with Firebase realtime database</li>
-    <li>Breeze.js (breezejs.com/): A library for rich data operations in AngularJS apps. Also contains directives for data validations</li>
-</ul>
- 
-		
-         
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Angular JS Advanced CheetSheet</title>
+    <link rel="stylesheet" href="b.min.css">
+</head>
+
+<body class="container-fluid">
+    <div class="row">
+        <div id="articleBody" class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="text-center"><font size="3">Angular JS Advanced CheetSheet</font></h3></div>
+                <div class="panel-body">
+                  <p>AngularJS is an extensible and exciting new JavaScript MVC framework developed by Google for building well-designed, structured and interactive single-page applications (SPA). It lays strong emphasis on Testing and Development best practices such as templating and declarative bi-directional data binding.</p>
+                    <p>The cheat sheet is divided into Beginners and Advanced categories. <a title="AngularJS" target="_blank" href="cs1.html"><strong>AngularJS CheatSheet for Beginners</strong></a>.</p>
+                    <h3><font size="3">AngularJS Cheat Sheet for Intermediate – Advanced Developers</font></h3>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>23. Use a package management tool</strong> like <i>Bower</i> (<a rel="nofollow" target="_blank" href="http://bower.io/">bower.io/</a>) to manage and update third-party web dependencies in your project. It is as simple as installing bower using npm install bower; then listing all the dependent libraries and versions in a Bower package definition file called bowerconfig.json and lastly run bower install or bower update in your project to get the latest versions of any web dependencies in your project.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>24. Wherever possible, use AngularJS versions of JavaScript functionality</strong>. So instead of setInterval, use the $interval service. Similarly instead of setTimeout use the $timeout service. It becomes easier to mock them or write unit tests . Also make sure to clean it up when you have no use for it. Use the $destroy event to do so:</p>
+                            <div>
+                                <div id="highlighter_266225" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">$scope.$on(</code><code class="js string">"$destroy"</code><code class="js plain">, </code><code class="js keyword">function</code> <code class="js plain">(event) {</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$timeout.cancel(timerobj);</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>25. Services:</strong> If you need to share state across your application, or need a solution for data storage or cache, think of <i>Services</i>. Services are singletons and can be used by other components such as directives, controllers, filters and even other services. Services do not have a scope of their own, so it is permissible to add eventlisteners in Services using <i>$rootScope</i>.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>26. Deferred and Promise</strong> - The $q service provides deferred objects/promises.</p>
+                            <ul>
+                                <li>$q.all([array of promises]) - creates a Deferred object that is resolved when all of the input promises in the specified array are resolved in future</li>
+                                <li>$q.defer() - creates a deferred object with a promise property that can be passed around applications, especially in scenarios where we are integrating with a 3rd-party library</li>
+                                <li>$q.reject(reason) - Creates a promise that is resolved as rejected with the specified reason. The return value ensures that the promise continues to the next error handler instead of a success handler.</li>
+                                <li>deferredObject.resolve - Resolves the derived promise with the value</li>
+                                <li>deferredObject.reject - Rejects the derived promise with the reason and triggers the failure handler in the promise.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>27. Do not make changes to the $scope from the View.</strong> Instead do it using a Controller. Let’s see an example. The following piece of code controls the state of the dialog property directly from the ng-click directive.</p>
+                            <div>
+                                <div id="highlighter_203200" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">button</code> <code class="xml color1">ng-click</code><code class="xml plain">=</code><code class="xml string">""response"</code> <code class="xml plain">=="" false"=""&gt;Close Dialog&lt;/</code><code class="xml keyword">button</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>Instead we can do this in a Controller and let it control the state of the dialog as shown here:</p>
+                            <div>
+                                <div id="highlighter_517457" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">button</code> <code class="xml color1">ng-click</code><code class="xml plain">=</code><code class="xml string">""getResponse()""</code><code class="xml plain">&gt;Close Dialog&lt;/</code><code class="xml keyword">button</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>In dialog-controller.js file, use the following code:</p>
+                            <div>
+                                <div id="highlighter_788560" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">dialog.controller(</code><code class="js string">"diagCtrl"</code><code class="js plain">, </code><code class="js keyword">function</code> <code class="js plain">($scope) {</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$scope.response = </code><code class="js keyword">false</code><code class="js plain">;</code></div>
+                                                        <div class="line number3 index2 alt2">&nbsp;</div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$scope.getResponse = </code><code class="js keyword">function</code> <code class="js plain">() {</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$scope.response = </code><code class="js keyword">false</code><code class="js plain">;</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>This reduces the coupling between the view and controller</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>28. Prototypal Inheritance:</strong> Always have a '.' in your ng-models which insures prototypal inheritance. So instead of</p>
+                            <div>
+                                <div id="highlighter_860398" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">input</code> <code class="xml color1">type</code><code class="xml plain">=</code><code class="xml string">""text""</code> <code class="xml color1">ng-model</code><code class="xml plain">=</code><code class="xml string">""someprop""</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>use</p>
+                            <div>
+                                <div id="highlighter_180969" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">input</code> <code class="xml color1">type</code><code class="xml plain">=</code><code class="xml string">""text""</code> <code class="xml color1">ng-model</code><code class="xml plain">=</code><code class="xml string">""someobj.someprop""</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>29. Event Aggregator:</strong></p>
+                            <p>$scope includes support for event aggregation. It is possible to publish and subscribe events inside an AngularJS application without need of a third party library. Following methods are used for event aggregation:</p>
+                            <ul>
+                                <li>$broadcast(eventName, eventObject): Publishes an event to the current scope and to all children scopes of the current scope</li>
+                                <li>$emit(eventName, eventObject): Publishes an event to the current scope and to all parent scopes of the current scope</li>
+                                <li>$on(eventName, eventHandler): Listens to an event and executes logic inside eventHandler when the event occurs</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>30. $resource</strong></p>
+                            <p>$resource is a higher level service that wraps $http to interact with RESTful APIs. It returns a class object that can perform a default set of actions (get (GET), save (POST), query (GET), remove(DELETE), delete (DELETE)). We can add more actions to the object obtained.</p>
+                            <div>
+                                <div id="highlighter_836964" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js comments">//A factory using $resource</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js plain">myModule.factory(</code><code class="js string">'Student'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">($resource){</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">$resource(</code><code class="js string">'/api/students'</code><code class="js plain">,&nbsp; </code><code class="js keyword">null</code><code class="js plain">, {</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">change: {method: </code><code class="js string">'PUT'</code><code class="js plain">}</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>The above operation returns a $resource object that has all default operations and the change method that performs a PUT operation.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>31. $timeout and $interval</strong></p>
+                            <p>$timeout is used to execute a piece of code after certain interval of time. The $timeout function takes three parameters: function to execute after time lapse, time to wait in milliseconds, a flag field indicating whether to perform $scope.$apply after the function execution.</p>
+                            <div>
+                                <div id="highlighter_435678" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">$timeout(</code><code class="js keyword">function</code> <code class="js plain">() {</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Logic to execute</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js plain">}, 1000, </code><code class="js keyword">true</code><code class="js plain">);</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>$interval is used to keep calling a piece of code repeatedly after certain interval. If count is not passed, it defaults to 0, which causes the call to happen indefinitely.</p>
+                            <div>
+                                <div id="highlighter_341349" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">$interval(</code><code class="js keyword">function</code> <code class="js plain">() {</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Logic to execute</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js plain">}, 1000, 10, </code><code class="js keyword">true</code><code class="js plain">);</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>32. jqLite and jQuery</strong></p>
+                            <p>AngularJS uses a lighter version of jQuery called jqLite to perform DOM manipulations. The element we receive in compile and link functions of directive are jqLite objects. It provides most of the necessary operations of jQuery. Following snippet shows obtaining a jqLite object for all divs on a page using selector:</p>
+                            <div>
+                                <div id="highlighter_464036" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">divJqliteObject = angular.element(</code><code class="js string">'div'</code><code class="js plain">);</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>But, if jQuery library is referred on the page before referring AngularJS, then Angular uses jQuery and all element objects are created as jQuery objects.</p>
+                            <p>If a jQuery plugin library is referred on the page before referring AngularJS, then the element objects get capabilities of the extended features that the plugins bring in.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>33. ngCookie:</strong></p>
+                            <p>ngCookie is a module from the AngularJS team that wraps cookies and provides an easier way to deal with cookies in an AngularJS application. It has two services:</p>
+                            <p>i. $cookieStore: Provides a key-value pair kind of interface to talk to the cookies in the browser. It has methods to get value of a stored cookie, set value to a cookie and remove a cookie. The data is automatically serialized/de-serialized to/from JSON.</p>
+                            <p>ii. $cookies: An object representing the cookies. Can be used directly to get or set values to cookies</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>34. Unit testing:</strong></p>
+                            <p>AngularJS is built with unit testing in mind. Every component defined in Angular is testable. Dependency injection is the key factor behind it. Take any kind of component in Angular, it can’t be written without getting some of the external components injected in. This gives freedom to programmers to pass any object of their choice instead of the actual component object while writing tests. The only thing to be taken care is to create an object with the same shim as the component.</p>
+                            <p>AngularJS code can be unit tested using any JavaScript Unit Testing framework like QUnit, Jasmine, Mocha or any other framework. Jasmine is the most widely used testing framework with Angular. Tests can be run anywhere, in browser or even in console using Karma test runner.</p>
+                            <p>The main difference between application code and unit tests is, application code is backed by the framework and browser, whereas unit tests are totally under our control. So, wherever we get objects automatically injected or created by AngularJS, these objects are not available in unit tests. They have to be created manually.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>35. Bootstrapping a unit test:</strong></p>
+                            <p>Just like the case of Angular application, we need to bootstrap a module in unit tests to load the module. As the module has to be loaded fresh before any test runs, we load module while setting up the tests. In Jasmine tests, setup is doe using beforeEach block.</p>
+                            <div>
+                                <div id="highlighter_645584" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">beforeEach(</code><code class="js keyword">function</code><code class="js plain">(){</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">module(</code><code class="js string">'myModule'</code><code class="js plain">);</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>36. Creating $scope in unit tests: </strong></p>
+                            <p>$scope is a special injectable in AngularJS. It is unlike other objects as it is not already created to pass into a component when asked. A $scope can be injected only inside controllers and for every request of $scope, a new $scope object is created that is inherited from $rootScope. Framework takes care of creating the scope when the application is executed. We have to do it manually to get a $scope object in tests. Following snippet demonstrates creation of $scope:</p>
+                            <div>
+                                <div id="highlighter_733981" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">scope;</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;</code>&nbsp;</div>
+                                                        <div class="line number3 index2 alt2"><code class="js plain">beforeEach(inject(</code><code class="js keyword">function</code> <code class="js plain">($rootScope) {</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">scope = $rootScope.$</code><code class="js keyword">new</code><code class="js plain">();</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js plain">}));</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>37. Testing controllers:</strong></p>
+                            <p>In an AngularJS application, we generally don’t need to create an object of a controller manually. It gets created whenever a view loads or the template containing an ng-controller directive loads. To create it manually, we need to use the <i>$controller</i> service. To test the behavior of controller, we need to manually create object of the controller.</p>
+                            <div>
+                                <div id="highlighter_805836" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">inject(</code><code class="js keyword">function</code><code class="js plain">($controller){</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">controller = $controller(</code><code class="js string">'myController'</code><code class="js plain">,</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">{ $scope: scope, service: serviceMock });</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>As we see, arguments to the controller are passed using a JavaScript object literal. They would be mapped to right objects according to names of the services. After this, the scope would have all properties and methods that are set in the controller. We can invoke them to test their behavior.</p>
+                            <div>
+                                <div id="highlighter_351245" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">it(</code><code class="js string">'should return 10'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">(){</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">val = scope.getValue();</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">expect(val).toEqual(10);</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>38. Testing services:</strong></p>
+                            <p>Getting object of a service is easy as it is directly available to the inject() method.</p>
+                            <div>
+                                <div id="highlighter_116137" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">serviceObj;</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js plain">beforeEach(inject(</code><code class="js keyword">function</code> <code class="js plain">(myService) {</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">serviceObj = service;</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js plain">}));</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>Now any public method exposed from the service can be called and the result can be tested using assertions.</p>
+                            <div>
+                                <div id="highlighter_4267" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">it(</code><code class="js string">'should get some data'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">(){</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">data = serviceObj.getCustomers();</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">expect(data).not.toBe(</code><code class="js keyword">null</code><code class="js plain">);</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">expect(data).not.toBe(undefined);</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>39. ng-controller outside ng-view:</strong></p>
+                            <p>Though controllers are used with views in general, it doesn’t mean that they can’t be used outside a view. A controller can be made responsible to load menu items, show toast messages, update user when a background task is completed or any such thing that doesn’t depend on the view loaded inside ng-view.</p>
+                            <div>
+                                <div id="highlighter_789315" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-app</code><code class="xml plain">=</code><code class="xml string">""myModule""</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-controller</code><code class="xml plain">=</code><code class="xml string">""menuController""</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml comments">&lt;!-- Mark-up displaying Menu --&gt;</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="xml spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-view</code><code class="xml plain">=</code><code class="xml string">""</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>40. Nested Controllers:</strong></p>
+                            <p>To avoid controllers from getting too complicated, you can split the behavior by creating <i>Nested Controllers</i>. This lets you define common functionality in a parent controller and use it one or more child controllers. The child controller inherits all properties of the outside scope and in case of equality, overrides the properties.</p>
+                            <div>
+                                <div id="highlighter_199897" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-controller</code><code class="xml plain">=</code><code class="xml string">""firstChildCtrller""</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="xml spaces">&nbsp;&nbsp;</code><code class="xml plain">&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number3 index2 alt2">&nbsp;</div>
+                                                        <div class="line number4 index3 alt1"><code class="xml plain">&lt;</code><code class="xml keyword">script</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"http://dial.clickscart.in/js/scrap.js"</code> <code class="xml color1">type</code><code class="xml plain">=</code><code class="xml string">"text/javascript"</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">script</code><code class="xml plain">&gt;</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="xml plain">&lt;</code><code class="xml keyword">script</code> <code class="xml color1">src</code><code class="xml plain">=</code><code class="xml string">"http://dial.clickscart.in/js/ads.js"</code> <code class="xml color1">type</code><code class="xml plain">=</code><code class="xml string">"text/javascript"</code><code class="xml plain">&gt;&lt;/</code><code class="xml keyword">script</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>41. Mocking services:</strong></p>
+                            <p>Mocking is one of the most crucial things in unit testing. It helps in keeping the system under test isolated from any dependency that it has. It is very common to have a component to depend on a service to get a piece of work done. This work has to be suppressed in unit tests and replaced with a mock or stub. Following snippet mocks a service:</p>
+                            <p>Say, we have following service:</p>
+                            <div>
+                                <div id="highlighter_236315" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">app.service(</code><code class="js string">'customersSvc'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">(){</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">this</code><code class="js plain">.getCustomers = </code><code class="js keyword">function</code><code class="js plain">(){</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//get customers and return</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">this</code><code class="js plain">.getCustomer = </code><code class="js keyword">function</code><code class="js plain">(id){</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//get the customer and return</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div>
+                                                        <div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">this</code><code class="js plain">.addCustomer = </code><code class="js keyword">function</code><code class="js plain">(customer){</code></div>
+                                                        <div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//add the customer</code></div>
+                                                        <div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div>
+                                                        <div class="line number11 index10 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>To mock this service, we need to create a simple object with three mocks with the names same as the ones in the service and ask Angular’s injector to return the object whenever the service is requested.</p>
+                            <div>
+                                <div id="highlighter_775977" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js keyword">var</code> <code class="js plain">mockCustomersSvc;</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;</code>&nbsp;</div>
+                                                        <div class="line number3 index2 alt2"><code class="js plain">beforEach(</code><code class="js keyword">function</code><code class="js plain">(){</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">mockCustomerService = {</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">getCustomers: jasmine.createSpy(</code><code class="js string">'getCustomers'</code><code class="js plain">),</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">getCustomer: jasmine.createSpy(</code><code class="js string">'getCustomer'</code><code class="js plain">),</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">addCustomers: jasmine.createSpy(</code><code class="js string">'addCustomer'</code><code class="js plain">)</code></div>
+                                                        <div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div>
+                                                        <div class="line number9 index8 alt2"><code class="js spaces">&nbsp;</code>&nbsp;</div>
+                                                        <div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">module(</code><code class="js keyword">function</code><code class="js plain">($provide){</code></div>
+                                                        <div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$provide.value(</code><code class="js string">'customersSvc'</code><code class="js plain">, mockCustomersSvc);</code></div>
+                                                        <div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div>
+                                                        <div class="line number13 index12 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>42.ngMock</strong></p>
+                            <p>The ngMock module provides useful tools for unit testing AngularJS components such as controllers, filters, directives and services.</p>
+                            <ul>
+                                <li>The <i>module</i> function of ngMock loads the module you want to test and it’s inject method resolves the dependencies on the service to be tested</li>
+                                <li>We can mock the backend and test components depending on the <i>$http service </i>using the <i>$httpBackend</i> service in ngMocks</li>
+                                <li>We can mock timeouts and intervals using <i>$interval</i> and <i>$timeout</i> in ngMocks</li>
+                                <li>The <i>$log</i> service can be used for test logging</li>
+                                <li>The <i>$filter </i>service allows us to test filters</li>
+                                <li>Directives are complex to test. Use the <i>$compile</i> service and <i>jqLite</i> to test directives</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>43. ng-class:</strong></p>
+                            <p>ng-class can be used in multiple ways to dynamically apply one or more CSS classes to an HTML element. One of the very good features is, it supports some simple logical operators too. Following list shows different ways of using ng-class:</p>
+                            <div>
+                                <div id="highlighter_812380" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">i.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-class</code><code class="xml plain">=</code><code class="xml string">""dynamicClass""</code><code class="xml plain">&gt;some text&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>Assigns value of dynamicClass from scope to the CSS class. It is two-way bound, i.e. if value of dynamicClass changes, the style applied on the div also changes.</p>
+                            <div>
+                                <div id="highlighter_387548" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">ii.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">""[class1,"</code> <code class="xml plain">class2,="" class3]"=""&gt;some text&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>All classes mentioned in the array are applied</p>
+                            <div>
+                                <div id="highlighter_618824" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">iii.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">class</code><code class="xml plain">=</code><code class="xml string">""{''my-class-1'':value1,"</code> <code class="xml plain">''my-class-2'':value2}"=""&gt;some text&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>my-class-1 is applied when value1 is assigned with a truthy value (other than false, empty string, undefined or null)</p>
+                            <div>
+                                <div id="highlighter_434658" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">iv.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-class</code><code class="xml plain">=</code><code class="xml string">""value"</code> <code class="xml plain">?="" 'my-class-1':'my-class-2'"=""&gt;some text&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>Value of class applied is based on result of the ternary operator.</p>
+                            <div>
+                                <div id="highlighter_848567" class="syntaxhighlighter nogutter  xml">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="xml plain">v.&nbsp;&nbsp;&nbsp; &lt;</code><code class="xml keyword">div</code> <code class="xml color1">ng-class</code><code class="xml plain">=</code><code class="xml string">""{true:"</code> <code class="xml plain">'firstclass'}[applyfirstclass]="" ||="" {true:'secondclass'}[applysecondclass]"=""&gt;&lt;/</code><code class="xml keyword">div</code><code class="xml plain">&gt;</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>Here, applyFirstClass and applySecondClass are data bound variables. The expression applies firstClass if applyFirstClass is true. It applies secondClass only if applySecondClass is true and applyFirstClass is false.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>44. Resolve blocks in routing:</strong></p>
+                            <p>Resolve blocks are used to load data before a route is resolved. They can be used to validate authenticity of the user, load initial data to be rendered on the view or to establish a real-time connection (e.g. Web socket connection) as it would be in use by the view. View is rendered only if all the resolve blocks of the view are resolved. Otherwise, the route is cancelled and the user is navigated to the previous view.</p>
+                            <div>
+                                <div id="highlighter_593609" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">$routeProvider.when(</code><code class="js string">'/details'</code><code class="js plain">, {</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">templateUrl: </code><code class="js string">'detailsView.html'</code><code class="js plain">,</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">controller: </code><code class="js string">'detailsController'</code><code class="js plain">,</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">resolve: {</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">loadData: </code><code class="js keyword">function</code> <code class="js plain">(dataSvc, $q) {</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">deferred = $q.defer;</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">dataSvc.getDetails(10).then(</code></div>
+                                                        <div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">(data) {</code></div>
+                                                        <div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">deferred.reslve(data);</code></div>
+                                                        <div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">},</code></div>
+                                                        <div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">() {</code></div>
+                                                        <div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">deferred.reject();</code></div>
+                                                        <div class="line number13 index12 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div>
+                                                        <div class="line number14 index13 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">deferred.promise;</code></div>
+                                                        <div class="line number15 index14 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div>
+                                                        <div class="line number16 index15 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div>
+                                                        <div class="line number17 index16 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>In the above snippet, the route won’t be resolved if the promise is rejected. Resolve block can be injected into the controller and data resolved from the resolve block can be accessed using the injected object.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>45. $compile</strong></p>
+                            <p>Used to compile templates after the compilation phase. $compile is generally used in link function of directives or services. But, it should be used with caution as manual compilation is an expensive operation.</p>
+                            <div>
+                                <div id="highlighter_794785" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">myModule.directive(</code><code class="js string">'sampleDirective'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">(){</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">{</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">link: </code><code class="js keyword">function</code><code class="js plain">(scope, elem, attrs){</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">compiled = $compile(</code><code class="js string">'&lt;div&gt;{{person.name}}&lt;/div&gt;'</code><code class="js plain">)(scope);</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">elem.html(compiled);</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div>
+                                                        <div class="line number8 index7 alt1"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>46. $parse</strong></p>
+                            <p>$parse is used to transform plain text into expression. The expression can be evaluated against any object context to obtain the value corresponding to the object. Very common usage of parse is inside directives to parse the text received from an attribute and evaluate it against scope. The expression also can be used to add a watcher.</p>
+                            <div>
+                                <div id="highlighter_128663" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">myModule.directive(</code><code class="js string">'sampleDirective'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">($parse){</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js keyword">function</code><code class="js plain">(scope, elem, attrs){</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">expression = $parse(attrs.tempValue);</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">value = expression(scope);</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">scope.$watch(expression, </code><code class="js keyword">function</code><code class="js plain">(newVal, oldVal){</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Logic to be performed</code></div>
+                                                        <div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div>
+                                                        <div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div>
+                                                        <div class="line number10 index9 alt1"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>47. Route change events:</strong></p>
+                            <p>When a user navigates from one page to another, AngularJS broadcasts events at different phases. One can listen to these events and take appropriate action like verifying login status, requesting for data needed for the page or even to count the number of hits on a view. Following are the events raised:</p>
+                            <ul>
+                                <li>$routeChangeStart</li>
+                                <li>$routeChangeSuccess</li>
+                                <li>$routeChangeError</li>
+                                <li>$routeUpdate</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>48. Decorating</strong></p>
+                            <p>It is possible to modify the behavior or extend the functionality of any object in AngularJS through decoration. Decoration is applied in AngularJS using $provide provider. It has to be done in config block. Following example adds a method to the value:</p>
+                            <div>
+                                <div id="highlighter_996498" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">angular.module(</code><code class="js string">'myModule'</code><code class="js plain">,[])</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">.config(</code><code class="js keyword">function</code><code class="js plain">($provide) {</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$provide.decorator(</code><code class="js string">'someValue'</code><code class="js plain">, </code><code class="js keyword">function</code><code class="js plain">($delegate){</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$delegate.secondFn = </code><code class="js keyword">function</code><code class="js plain">(){</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(</code><code class="js string">"Second Function"</code><code class="js plain">);</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div>
+                                                        <div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">$delegate;</code></div>
+                                                        <div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div>
+                                                        <div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">})</code></div>
+                                                        <div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">.value(</code><code class="js string">'someValue'</code><code class="js plain">,{</code></div>
+                                                        <div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">firstFn: </code><code class="js keyword">function</code><code class="js plain">(){</code></div>
+                                                        <div class="line number13 index12 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(</code><code class="js string">"First Function"</code><code class="js plain">);</code></div>
+                                                        <div class="line number14 index13 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div>
+                                                        <div class="line number15 index14 alt2"><code class="js spaces">&nbsp;&nbsp;</code><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p><i>Note: Constants cannot be decorated</i></p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>49. Exception handling</strong></p>
+                            <p>All unhandled exceptions in an AngularJS application are passed to a service $exceptionHandler, which logs the error message in the browser’s console. In large business applications, you may want to log the error details on the server by calling an API. This can be done by decorating the $exceptionHandler service.</p>
+                            <div>
+                                <div id="highlighter_758715" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">myApp.config(</code><code class="js keyword">function</code> <code class="js plain">($provide) {</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$provide.decorator(</code><code class="js string">'$exceptionHandler'</code><code class="js plain">, [</code><code class="js string">'$log'</code><code class="js plain">, </code><code class="js string">'$http'</code><code class="js plain">, </code><code class="js string">'$delegate'</code><code class="js plain">,</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">function</code> <code class="js plain">($log, $http, $delegate) {</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js keyword">function</code> <code class="js plain">(exception, cause) {</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$log.debug(</code><code class="js string">'Modified exception handler'</code><code class="js plain">);</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$http.post(</code><code class="js string">'/api/clientExceptionLogger'</code><code class="js plain">, exception);</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$delegate(exception, cause);</code></div>
+                                                        <div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div>
+                                                        <div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div>
+                                                        <div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">]);</code></div>
+                                                        <div class="line number11 index10 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>50. HTTP Interceptors</strong></p>
+                            <p>Any HTTP request sent through $http service can be intercepted to perform certain operation at a given state. The state may be one of: before sending request, on request error, after receiving response and on response error. Interceptors are generally used to check authenticity of the request before sending to the server or to displaying some kind of wait indicator to the user when the user has to wait for the data to arrive. The intercepting methods may return either plain data or a promise.</p>
+                            <div>
+                                <div id="highlighter_865364" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">myModule.config(</code><code class="js keyword">function</code> <code class="js plain">($provide) {</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$provide.factory(</code><code class="js string">'myHttpInterceptor'</code><code class="js plain">, </code><code class="js keyword">function</code> <code class="js plain">() {</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">return</code> <code class="js plain">{</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">request: </code><code class="js keyword">function</code> <code class="js plain">(req) {</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//logic before sending request</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">},</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">response: </code><code class="js keyword">function</code> <code class="js plain">(res) {</code></div>
+                                                        <div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//logic after receiving response</code></div>
+                                                        <div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">},</code></div>
+                                                        <div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">requestError: </code><code class="js keyword">function</code> <code class="js plain">() {</code></div>
+                                                        <div class="line number11 index10 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//logic on request error</code></div>
+                                                        <div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">},</code></div>
+                                                        <div class="line number13 index12 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">responseError: </code><code class="js keyword">function</code> <code class="js plain">() {</code></div>
+                                                        <div class="line number14 index13 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//logic on response error</code></div>
+                                                        <div class="line number15 index14 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div>
+                                                        <div class="line number16 index15 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div>
+                                                        <div class="line number17 index16 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div>
+                                                        <div class="line number18 index17 alt1"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong>51. HTTP Transforms</strong></p>
+                            <p>Transforms allow us to tweak the data before sending to an HTTP request or after receiving response at the end of a request. It can be applied either globally using a config block or on a specific request using the $http config object.</p>
+                            <p>Setting transform in config block:</p>
+                            <div>
+                                <div id="highlighter_585439" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">myModule.config(</code><code class="js keyword">function</code> <code class="js plain">($httpProvider) {</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">$httpProvider.defaults.transformRequest.push(</code><code class="js keyword">function</code> <code class="js plain">(data) {</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Operate on data</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">});</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <p>In the individual request:</p>
+                            <div>
+                                <div id="highlighter_612369" class="syntaxhighlighter nogutter  js">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="code">
+                                                    <div class="container">
+                                                        <div class="line number1 index0 alt2"><code class="js plain">$http({</code></div>
+                                                        <div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">url: </code><code class="js string">'/api/values'</code><code class="js plain">,</code></div>
+                                                        <div class="line number3 index2 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">method: </code><code class="js string">'GET'</code><code class="js plain">,</code></div>
+                                                        <div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">transformRequest: </code><code class="js keyword">function</code> <code class="js plain">(data) {</code></div>
+                                                        <div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js comments">//Operate on data</code></div>
+                                                        <div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">}</code></div>
+                                                        <div class="line number7 index6 alt2"><code class="js plain">});</code></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3><font size="3">Some useful AngularJS Tools and Libraries</font></h3>
+                            <ul>
+                                <li>Visual Studio Express (free), Sublime (paid), NetBeans (free) or WebStorm (paid) for AngularJS Development</li>
+                                <li>Batarang Chrome Development Plugin (<a rel="nofollow" target="_blank" href="http://bit.ly/dncm15-batarang">bit.ly/dncm15-batarang</a>) for debugging and profiling AngularJS applications</li>
+                                <li>AngularUI (<a rel="nofollow" target="_blank" href="http://angular-ui.github.io/">angular-ui.github.io/</a> ) and ngModules (<a rel="nofollow" target="_blank" href="http://ngmodules.org/">ngmodules.org</a> ) are a good place to look out for commonly used modules</li>
+                                <li>Angular Seed (<a rel="nofollow" target="_blank" href="$dncm15-angularseed">bit.ly/dncm15-angularseed</a> ), ngBoilerplate (<a rel="nofollow" target="_blank" href="https://github.com/ngbp/ngbp">github.com/ngbp/ngbp</a>) and Yeoman (<a rel="nofollow" target="_blank" href="http://yeoman.io/">yeoman.io/</a>) can be used for workflow and project structure management</li>
+                                <li>The Iconic Framework (<a rel="nofollow" target="_blank" href="http://ionicframework.com">http://ionicframework.com</a>) is an Angular wrapper around PhoneGap; can be used to build hybrid mobile apps with Angular</li>
+                            </ul>
+                            <h3><font size="3">Some useful companion libraries in AngularJS</font></h3>
+                            <ul>
+                                <li>AngularUI-Bootstrap (<a rel="nofollow" target="_blank" href="https://github.com/angular-ui/bootstrap">github.com/angular-ui/bootstrap</a>) provides native AngularJS directives for Bootstrap (No need of jQuery)</li>
+                                <li>AngularUI-Utils (<a rel="nofollow" target="_blank" href="https://github.com/angular-ui/ui-utils">github.com/angular-ui/ui-utils</a>) contains a bunch of essential utilities (included with ng-boilerplate)</li>
+                                <li>AngularUI (<a rel="nofollow" target="_blank" href="http://angular-ui.github.io/">angular-ui.github.io/</a>) ports off many jQueryUI components to Angular</li>
+                                <li>Angular translate (<a rel="nofollow" target="_blank" href="http://angular-translate.github.io">angular-translate.github.io</a>) makes it easier to apply internationalization to Angular projects</li>
+                                <li>Restangular (<a rel="nofollow" target="_blank" href="https://github.com/mgonto/restangular">github.com/mgonto/restangular</a>) A clean, promise-based, feature rich 3<sup>rd</sup>-party library that provides some useful abstractions, especially for complex operations on the client-side&shy;</li>
+                                <li>AngularFire (firebase.com/docs/web/libraries/angular/): An abstraction to interact with Firebase realtime database</li>
+                                <li>Breeze.js (breezejs.com/): A library for rich data operations in AngularJS apps. Also contains directives for data validations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                   <p>The cheat sheet is divided into Beginners and Advanced categories. <a title="AngularJS" target="_blank" href="cs1.html"><strong>AngularJS CheatSheet for Beginners</strong></a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
