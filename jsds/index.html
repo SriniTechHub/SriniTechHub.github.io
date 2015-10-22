@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CheatSheet for Beginners</title>
+    <link rel="stylesheet" href="b.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+</head>
+
+<body class="container-fluid">
+    <div class="row">
+        <div id="articleBody" class="col-md-12">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">JDS</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#arrays" data-toggle="tooltip" title="Hooray!">AR</a></li>
+                            <li><a href="#lists" data-toggle="tooltip" title="List">LT</a></li>
+                            <li><a href="#stacks" data-toggle="tooltip" title="Stack">SK</a></li>
+                            <li><a href="#queues" data-toggle="tooltip" title="Queue">QU</a></li>
+                            <li><a href="#ll" data-toggle="tooltip" title="Linked List">LL</a></li>
+                            <li><a href="#dictionaries" data-toggle="tooltip" title="Dictionaries">DI</a></li>
+                            <li><a href="#hashing" data-toggle="tooltip" title="Hashing">HS</a></li>
+                            <li><a href="#set" data-toggle="tooltip" title="Set">St</a></li>
+                            <li><a href="#binarysearch" data-toggle="tooltip" title="Binary Trees">BT</a></li>
+                            <li><a href="#graph" data-toggle="tooltip" title="Graph">GP</a></li>
+                            <li><a href="#sorting" data-toggle="tooltip" title="Sorting">Sr</a></li>
+                            <li><a href="#search" data-toggle="tooltip" title="Searching">Se</a></li>
+                            <li data-toggle="tooltip" title="Advanced Algorithms"><a href="#advancedalgorithms">AA</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="text-center"><font size="3">JavaScript Data Structures and Algorithms</font></h3>
+                </div>
+                <div class="panel-body">
+                    <p>Data Structures in JavaScript - Arrays,Lists,Stacks,Queues,Linked Lists, Dictionaries, Hashing, Sets, Binary Trees and Binary Search Trees, Graph and Graph Algorithms,Sorting Algorithms, Searching Algorithms and Advanced Algorithms.</p>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="arrays">1. Arrays:</strong> Array is a linear collection of elements.</p>
+                            <h4>Usage:</h4>
+                            <code contenteditable="true">
+                             var numbers = [];  <br>
+                             var numbers = [1,2,3,4,5];<br>
+                             console.log(numbers.length); // displays 5<br>
+                             var numbers = new Array();<br>
+                            console.log(numbers.length); // displays 0
+<br> var numbers = new Array(1,2,3,4,5);
+<br> console.log(numbers.length); // displays 5
+
+<br> var numbers = new Array(10);
+<br> console.log(numbers.length); // displays 10
+<br>
+
+                           </code>
+                            <h4>JavaScript array elements do not have to be of the same type:</h4>
+                            <code contenteditable="true">
+                               var objects = [1, "Joe", true, null];<br>
+                           </code>
+                            <h4>We can verify that an object is an array by calling the Array.isArray() function:</h4>
+                            <code contenteditable="true">
+                               var numbers = 3;<br>
+var arr = [7,4,1776];<br>
+console.log(Array.isArray(number)); // displays false<br>
+console.log(Array.isArray(arr)); // displays true<br>
+                           </code>
+                            <h4>Creating Arrays from Strings using split() function:</h4>
+                            <code contenteditable="true">
+                                var sentence = "the quick brown fox jumped over the lazy dog";<br>
+var words = sentence.split(" ");<br>
+for (var i = 0; i < words.length; ++i) {<br>
+&nbsp; console.log("word " + i + ": " + words[i]);<br>
+}<br>
+                            </code>
+                            <p>The output from this program is:</p>
+                            <code contenteditable="true">
+                                word 0: the<br>
+word 1: quick<br>
+word 2: brown<br>
+word 3: fox<br>
+word 4: jumped<br>
+word 5: over<br>
+word 6: the<br>
+word 7: lazy<br>
+word 8: dog
+                            </code>
+                            <h4>When we assign one array to another array, you are assigning a reference to
+the assigned array. When you make a change to the original array, that change is reflected
+in the other array as well:This is called a shallow copy.</h4>
+                            <code contenteditable="true">
+    var nums = [1,2];<br>
+
+var samenums = nums;<br>
+nums[0] = 400;<br>
+console.log(samenums[0]); // displays 400
+</code>
+                            <h4>A better alternative is to make each of the original array’s elements
+ copied to the new array’s elements:This is called deep copy.</h4> <code contenteditable="true">function copy(arr1, arr2) {
+                            <br> &nbsp; for (var i = 0; i &lt; arr1.length; ++i) {
+                            <br> &nbsp; arr2[i]=arr1[i];
+                            <br> &nbsp; }
+                            <br>}<br> var nums=[ ];
+                            <br> var nums = [1,2];<br>var samenums=[ ]; <br>copy(nums, samenums); <br>nums[0]=400; <br>console.log(samenums[0]); // displays 1
+                                    </code>
+                            <h4>One of the most commonly used accessor functions is <strong>indexOf()</strong>, which looks to see if
+the argument passed to the function is found in the array.</h4>
+                            <code contenteditable="true">
+    var names = ["David", "Cynthia", "Raymond", "Clayton", "Jennifer"]; <br>
+    names.indexOf("Cynthia"); //displays 1
+</code>
+                            <p>Note:If you have multiple occurrences of the same data in an array, the indexOf() function will always return the position of the first occurrence.</p>
+                            <h4><strong>lastIndex
+Of()</strong>, will return the position of the last occurrence of the argument in the array, or -1
+if the argument isn’t found.</h4>
+                            <code contenteditable="true">
+    var names = ["David", "Cynthia", "Raymond", "Clayton", "Cynthia"]; <br>
+    names.lastIndexOf("Cynthia"); //displays 4
+</code>
+                            <h4>There are two functions that return string representations of an array: join() and
+toString():</h4>
+                            <code contenteditable="true">
+    var names = ["David", "Cynthia", "Raymond", "Clayton", "Mike", "Jennifer"];<br>
+var namestr = names.join();<br>
+console.log(namestr); // David,Cynthia,Raymond,Clayton,Mike,Jennifer<br>
+namestr = names.toString();<br>
+console.log(namestr); // David,Cynthia,Raymond,Clayton,Mike,Jennifer<br>
+</code>
+                            <h4>There are two accessor functions that allow you create new arrays from existing arrays:
+concat() and splice(). The concat() function allows you to put together two or more
+arrays to create a new array, and the splice() function allows you to create a new array
+from a subset of an existing array.</h4>
+                            <code contenteditable="true">
+    var cisDept = ["Mike", "Clayton", "Terrill", "Danny", "Jennifer"];<br>
+var dmpDept = ["Raymond", "Cynthia", "Bryan"];<br>
+var itDiv = cisDept.concat(dmpDept);<br>
+console.log(itDiv);<br><br>
+var itDiv = ["Mike","Clayton","Terrill","Raymond","Cynthia","Danny","Jennifer"];<br>
+var dmpDept = itDiv.splice(3,3);<br>
+var cisDept = itDiv;<br>
+console.log(dmpDept); // Raymond,Cynthia,Danny<br>
+console.log(cisDept); // Mike,Clayton,Terrill,Jennifer<br>
+</code>
+                            <h4>There are two mutator functions for adding elements to an array: push() and un
+shift().</h4>
+                            <h5>The push() function adds an element to the end of an array:</h5>
+                            <code contenteditable="true">
+                                var nums = [1,2,3,4,5];<br>
+console.log(nums); // 1,2,3,4,5<br>
+nums.push(6);<br>
+console.log(nums); // 1,2,3,4,5,6<br>
+                            </code>
+                            <h5>The mutator function for adding array elements to the beginning of an array is un
+shift().</h5><code contenteditable="true">
+    var nums = [2,3,4,5];<br>
+console.log(nums); // 2,3,4,5<br>
+var newnum = 1;<br>
+nums.unshift(newnum);<br>
+console.log(nums); // 1,2,3,4,5<br>
+nums = [3,4,5];<br>
+nums.unshift(newnum,1,2);<br>
+console.log(nums); // 1,1,2,3,4,5<br>
+</code>
+                            <h4>Removing an element from the end of an array is easy using the pop() mutator function:</h4>
+                            <code contenteditable="true">
+    var nums = [1,2,3,4,5,9];<br>
+nums.pop();<br>
+console.log(nums); // 1,2,3,4,5
+</code>
+                            <h4>The mutator function we need to remove an element from the beginning of an array is
+shift().</h4>
+                            <code contenteditable="true">
+    var nums = [9,1,2,3,4,5];
+nums.shift();
+console.log
+(nums); // 1,2,3,4,5
+</code>
+                            <p>Note:Both pop() and shift() return the values they remove, so you can collect the values in a variable:</p>
+                            <h4>The mutator function we can use to perform add and remove from middle of array
+operations:splice().</h4>
+                            <h5>Adding element in middle of array:</h5>
+                            <h6>
+    To add elements to an array using splice(), you have to provide the following arguments:
+
+</h6>
+                            <p>• The starting index (where you want to begin adding elements)</p>
+                            <p> • The number of elements to remove (0 when you are adding elements)</p>
+                            <p> • The elements you want to add to the array</p>
+                            <code contenteditable="true">
+    var nums = [1,2,3,7,8,9];<br>
+var newElements = [4,5,6];<br>
+nums.splice(3,0,newElements);<br>
+console.log(nums); // 1,2,3,4,5,6,7,8,9<br>
+var nums = [1,2,3,7,8,9];<br>
+nums.splice(3,0,4,5,6);<br>
+console.log(nums);<br>
+</code>
+                            <h5>Using splice() to remove elements from an array:</h5>
+                            <code contenteditable="true">
+                                var nums = [1,2,3,100,200,300,400,4,5];<br>
+nums.splice(3,4);<br>
+console.log(nums); // 1,2,3,4,5<br>
+                            </code>
+                            <h4>Reverses the order of the elements of an array:</h4><code contenteditable="true">
+                                var nums = [1,2,3,4,5];<br>
+nums.reverse();<br>
+console.log(nums); // 5,4,3,2,1<br></code>
+                            <h4>The mutator function for sorting
+task, sort(),</h4>
+                            <code contenteditable="true">
+    var names = ["David","Mike","Cynthia","Clayton","Bryan","Raymond"];<br>
+names.sort();<br>
+console.log(names); // Bryan,Clayton,Cynthia,David,Mike,Raymondc
+
+                            </code>
+                            <h4>Non–Array-Generating Iterator Functions:</h4>
+                            <h5>forEach():This function takes a function as an argument
+and applies the called function to each element of an array.</h5><code contenteditable="true">
+                                function square(num) {<br>
+&nbsp; console.log(num, num * num);<br>
+}<br>
+var nums = [1,2,3,4,5,6,7,8,9,10];<br>
+nums.forEach(square);<br>
+                            </code>
+                            <h5>every():applies a Boolean function to an array and returns
+true if the function can return true for every element in the array</h5><code contenteditable="true">
+function isEven(num) {<br>
+&nbsp; return num % 2 == 0;<br>
+}<br>
+    var nums = [2,4,6,8,10];<br>
+var even = nums.every(isEven);<br>
+if (even) {<br>
+&nbsp; console.log("all numbers are even");<br>
+}<br>
+else {<br>
+&nbsp; console.log("not all numbers are even");<br>
+}<br>
+</code>
+                            <h5>some():This function will take a Boolean function and return true if at least one of the
+elements in the array meets the criterion of the Boolean function</h5>
+                            <code contenteditable="true">
+    function isEven(num) {<br>
+&nbsp; return num % 2 == 0;<br>
+}<br>
+var nums = [1,2,3,4,5,6,7,8,9,10];<br>
+var someEven = nums.some(isEven);<br>
+if (someEven) {<br>
+&nbsp;console.log("some numbers are even");<br>
+}<br>
+else {<br>
+&nbsp;console.log("no numbers are even");<br>
+}<br>
+nums = [1,3,5,7,9];<br>
+someEven = nums.some(isEven);<br>
+if (someEven) {<br>
+&nbsp;console.log("some numbers are even");<br>
+}<br>
+else {<br>
+&nbsp;console.log("no numbers are even");<br>
+}<br>
+</code>
+                            <h5>reduce():This function applies a function to an accumulator and the successive elements
+of an array until the end of the array is reached, yielding a single value.</h5><code contenteditable="true"> function add(runningTotal, currentValue) {
+                            <br> &nbsp;return runningTotal + currentValue;
+                            <br> }
+                            <br> var nums = [1,2,3,4,5,6,7,8,9,10];
+                            <br> var sum = nums.reduce(add);
+                            <br> console.log(sum); // displays 55
+                            <br> 
+    
+</code>
+                            <p>Note:We can also use reduce() with strings to perform concatenation.</p>
+                            <h4>Iterator Functions That Return a New Array</h4>
+                            <h5>map(): This funtion returns a new array with
+the results of the function application.</h5><code contenteditable="true">
+    function curve(grade) { <br> 
+&nbsp; return grade += 5; <br> 
+} <br> 
+var grades = [77, 65, 81, 92, 83]; <br> 
+var newgrades = grades.map(curve); <br> 
+console.log
+(newgrades); // 82, 70, 86, 97, 88 <br> 
+function first(word) {<br> 
+&nbsp; return word[0];<br> 
+}<br> 
+var words = ["for","your","information"];<br> 
+var acronym = words.map(first);<br> 
+console.log(acronym.join("")); // displays "fyi"<br> 
+</code>
+                            <h5>filter():The filter() function works similarly to every(), but instead of returning true if all
+the elements of an array satisfy a Boolean function, the function returns a new array
+consisting of those elements that satisfy the Boolean function.</h5>
+                            <code contenteditable="true">
+    function isEven(num) {<br> 
+return num % 2 == 0;<br> 
+}<br> 
+function isOdd(num) {<br> 
+return num % 2 != 0;<br> 
+}<br> 
+var nums = [1,2,3,4,5,6,7,8,9,10];<br> 
+
+var evens = nums.filter(isEven);<br> 
+console.log("Even numbers: ");<br> 
+console.log(evens);//[2, 4, 6, 8, 10]<br> 
+var odds = nums.filter(isOdd);<br> 
+console.log("Odd numbers: ");<br> 
+console.log(odds);//[1, 3, 5, 7, 9]<br> 
+-------------------------------------<br>
+function afterc(str) {<br>
+if (str.indexOf("cie") > -1) {<br>
+&nbsp; return true;<br>
+}<br>
+return false;<br>
+}<br>
+var words = ["recieve","deceive","percieve","deceit","concieve"];<br>
+var misspelled = words.filter(afterc);<br>
+console.log(misspelled); // displays recieve,percieve,concieve<br>
+</code>
+                            <h4>Creating Two-Dimensional Arrays</h4>
+                            <code contenteditable="true">
+                                Array.matrix = function(numrows, numcols, initial) {<br>
+&nbsp;var arr = [];<br>
+&nbsp;for (var i = 0; i &lt; numrows; ++i) {<br>
+&nbsp;&nbsp; var columns = [];<br>
+&nbsp;&nbsp;for (var j = 0; j &lt; numcols; ++j) {<br>
+&nbsp;&nbsp;&nbsp;columns[j] = initial;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;arr[i] = columns;<br>
+&nbsp;}<br>
+&nbsp;return arr;<br>
+}<br>
+------------------ <br>
+var nums = Array.matrix(5,5,0);<br>
+console.log(nums[1][1]); // displays 0<br>
+var names = Array.matrix(3,3,"");<br>
+names[1][2] = "Joe";<br>
+console.log(names[1][2]); // display "Joe"<br>
+----------------- <br>
+var grades = [[89, 77, 78],[76, 82, 81],[91, 94, 89]];<br>
+console.log(grades[2][2]); // displays 89<br>
+                            </code>
+                            <h4>Jagged Arrays:A jagged array is an array where the rows in the array may have a different number of
+elements.</h4><code contenteditable="true">
+    var grades = [[89, 77],[76, 82, 81],[91, 94, 89, 99]];<br>
+var total = 0;<br>
+var average = 0.0;<br>
+for (var row = 0; row &lt; grades.length; ++row) {<br>
+&nbsp;&nbsp;for (var col = 0; col &lt; grades[row].length; ++col) {<br>
+&nbsp;&nbsp;&nbsp;total += grades[row][col];<br>
+&nbsp;&nbsp;}<br>
+&nbsp;average = total / grades[row].length;<br>
+&nbsp;console.log("Student " + parseInt(row+1) + " average: " +average.toFixed(2));<br>
+&nbsp;total = 0;<br>
+&nbsp;average = 0.0;<br>
+}<br>
+/*
+<br>Student 1 average: 83.00<br>
+Student 2 average: 79.67<br>
+Student 3 average: 93.25<br>
+*/
+</code>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="#lists">2. Lists:</strong> A list is an ordered sequence of data. Each data item stored in a list is called an element.</p>
+                            <p>• A list with no elements is an empty list.</p>
+                            <p>• The number of elements stored in a list is called the length of the list.Internally, the number of elements in a list is kept in a listSize variable.</p>
+                            <p>• We can append an element to the end of a list, or you can insert an element into a list after an existing element or at the beginning of a list.</p>
+                            <p>• Elements are deleted from a list using a remove operation.</p>
+                            <p>• We can also clear a list so that all of its current elements are removed.</p>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>Complete List ADT:</h3>
+                                    <h4>listSize (property)</h4>
+                                    <p>Number of elements in list</p>
+                                    <h4>pos (property)</h4>
+                                    <p>Current position in list</p>
+                                    <h4>length (property)</h4>
+                                    <p>Returns the number of elements in list</p>
+                                    <h4>clear (function)</h4>
+                                    <p>Clears all elements from list</p>
+                                    <h4>toString (function)</h4>
+                                    <p>Returns string representation of list</p>
+                                    <h4>getElement (function)</h4>
+                                    <p>Returns element at current position</p>
+                                    <h4>insert (function)</h4>
+                                    <p>Inserts new element after existing element</p>
+                                    <h4>append (function)</h4>
+                                    <p>Adds new element to end of list</p>
+                                    <h4>remove (function)</h4>
+                                    <p>Removes element from list</p>
+                                    <h4>front (function)</h4>
+                                    <p>Sets current position to first element of list</p>
+                                    <h4>end (function)</h4>
+                                    <p>Sets current position to last element of list</p>
+                                    <h4>prev (function)</h4>
+                                    <p>Moves current position back one element</p>
+                                    <h4>next (function)</h4>
+                                    <p>Moves current position forward one element</p>
+                                    <h4>currPos (function)</h4>
+                                    <p>Returns the current position in list</p>
+                                    <h4>moveTo (function)</h4>
+                                    <p>Moves the current position to specified position</p>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3>A List Class Implementation</h3>
+                                    <code contenteditable="true">
+                                        function List() <br>{<br>
+&nbsp;this.listSize = 0;<br>
+&nbsp;this.pos = 0;<br>
+&nbsp;this.dataStore = []; // initializes an empty array to store list elements<br>
+&nbsp;this.clear = clear;<br>
+&nbsp;this.find = find;<br>
+&nbsp;this.toString = toString;<br>
+&nbsp;this.insert = insert;<br>
+&nbsp;this.append = append;<br>
+&nbsp;this.remove = remove;<br>
+&nbsp;this.front = front;<br>
+&nbsp;this.end = end;<br>
+&nbsp;this.prev = prev;<br>
+&nbsp;this.next = next;<br>
+&nbsp;this.length = length;<br>
+&nbsp;this.currPos = currPos;<br>
+&nbsp;this.moveTo = moveTo;<br>
+&nbsp;this.getElement = getElement;<br>
+&nbsp;this.length = length;<br>
+&nbsp;this.contains = contains;<br>
+}<br>
+                                    </code>
+                                    <h4>Append: Adding an Element to a List</h4>
+                                    <code contenteditable="true">
+                                        function append(element) {<br>
+&nbsp;&nbsp;this.dataStore[this.listSize++] = element;<br>
+}
+                                    </code>
+                                    <h4>Find: Finding an Element in a List</h4>
+                                    <code contenteditable="true">
+                function find(element) <br>
+                 {<br>
+&nbsp;&nbsp;for (var i = 0; i &lt; this.dataStore.length; ++i) {<br>
+&nbsp;&nbsp;&nbsp;if (this.dataStore[i] == element) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return i;<br>
+&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;return -1;<br>
+}
+                                    </code>
+                                    <h4>Remove: Removing an Element from a List</h4>
+                                    <code contenteditable="true">
+                               function remove(element)<br> {<br>
+&nbsp;var foundAt = this.find(element);<br>
+&nbsp;&nbsp;if (foundAt > -1) {<br>
+&nbsp;&nbsp;&nbsp;this.dataStore.splice(foundAt,1);<br>
+&nbsp;&nbsp;&nbsp;--this.listSize;<br>
+&nbsp;&nbsp;&nbsp;return true;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;return false;<br>
+}                            </code>
+                                    <h4>Length: Determining the Number of Elements in a List</h4>
+                                    <code contenteditable="true">
+                                        function length() <br>{<br>
+&nbsp;return this.listSize;<br>
+}
+                                    </code>
+                                    <h4>toString: Retrieving a List’s Elements</h4>
+                                    <code contenteditable="true">
+                                        function toString()<br> {<br>
+&nbsp;return this.dataStore;<br>
+}
+                                    </code>
+                                    <h4>Insert: Inserting an Element into a List</h4>
+                                    <code contenteditable="true">
+                                        function insert(element, after)<br> {<br>
+&nbsp;var insertPos = this.find(after);<br>
+&nbsp;&nbsp;if (insertPos > -1) {<br>
+&nbsp;&nbsp;&nbsp;this.dataStore.splice(insertPos+1, 0, element);<br>
+&nbsp;&nbsp;&nbsp;++this.listSize;<br>
+&nbsp;&nbsp;&nbsp;return true;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;return false;<br>
+}
+                                    </code>
+                                    <h4>Clear: Removing All Elements from a List</h4>
+                                    <code contenteditable="true">
+                                        function clear()<br> {<br>
+&nbsp;delete this.dataStore;<br>
+&nbsp;this.dataStore = [];<br>
+&nbsp;this.listSize = this.pos = 0;<br>
+}
+                                    </code>
+                                    <h4>Contains: Determining if a Given Value Is in a List</h4>
+                                    <code contenteditable="true">
+                                        function contains(element) <br>{<br>
+&nbsp;for (var i = 0; i < this.dataStore.length; ++i) {<br>
+&nbsp;&nbsp;if (this.dataStore[i] == element) {<br>
+&nbsp;&nbsp;&nbsp;return true;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;}<br>
+&nbsp;return false;<br>
+}
+                                    </code>
+                                    <h4>Traversing a List</h4>
+                                    <code contenteditable="true">
+                                        function front() <br>{<br>
+&nbsp;this.pos = 0;<br>
+}<br><br>
+function end() {<br>
+&nbsp;this.pos = this.listSize-1;<br>
+}<br><br>
+function prev() <br>{<br>
+&nbsp;if (this.pos > 0) {<br>
+&nbsp;&nbsp;--this.pos;<br>
+&nbsp;}<br>
+}<br><br>
+function next() <br>{<br>
+&nbsp;if (this.pos &lt; this.listSize-1) {<br>
+&nbsp;&nbsp;++this.pos;<br>
+&nbsp;}<br>
+}<br><br>
+function currPos()<br> {<br>
+&nbsp;return this.pos;<br>
+}<br><br>
+function moveTo(position) <br>{<br>
+&nbsp;this.pos = position;<br>
+}<br><br>
+function getElement() <br>{<br>
+&nbsp;return this.dataStore[this.pos];<br>
+}<br>
+                                    </code>
+                                    <h4>Iterating Through a List</h4>
+                                    <code contenteditable="true">
+                                        for(names.front(); names.currPos() &lt; names.length(); names.next()) <br>{<br>
+&nbsp;console.log(names.getElement());<br>
+}<br><br>
+----------------<br>//We can also traverse a list backward using an iterator.<br>
+for(names.end(); names.currPos() >= 0; names.prev()) <br>{<br>
+&nbsp;console.log(names.getElement());<br>
+}
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="stack">3. Stack:</strong> A stack is a list of elements that are accessible only from one end of the list, which is called the top.</p>
+                            <p>• The stack is known as a last-in, first-out (LIFO) data structure.</p>
+                            <img src="stackoperations.png" class="img-responsive" alt="Responsive image">
+                            <h4>A Stack Implementation</h4>
+                            <br>
+                            <br>
+                            <code contenteditable="true">
+                                function Stack()<br> {<br>
+&nbsp;this.dataStore = [];<br>
+&nbsp;this.top = 0;<br>
+&nbsp;this.push = push;<br>
+&nbsp;this.pop = pop;<br>
+&nbsp;this.peek = peek;<br>
+&nbsp;this.length = length;<br>
+&nbsp;this.clear = clear;<br>
+}<br><br>
+//push(): push a new element onto a stack<br>
+function push(element) <br>{<br>
+&nbsp;this.dataStore[this.top++] = element;<br>
+}<br><br>
+//pop(): returns the element in the top position of the stack and then decrements the top variable<br>
+function pop() <br>{<br>
+&nbsp;return this.dataStore[--this.top];<br>
+}<br><br>
+
+//peek(): returns the top element of the stack<br>
+function peek() <br>{<br>
+&nbsp;return this.dataStore[this.top-1];<br>
+}<br><br>
+//lenght(): returns length of the stack<br>
+function length() <br>{<br>
+&nbsp;return this.top;<br>
+}<br><br>
+
+//clear() : clear a stack<br>
+function clear() <br>{<br>
+&nbsp;this.top = 0;<br>
+}<br>
+                            </code>
+                            <h4>Testing the Stack class implementation</h4>
+                            <code contenteditable="true">
+                                
+                                var s = new Stack();<br>
+s.push("David");<br>
+s.push("Raymond");<br>
+s.push("Bryan");<br>
+console.log("length: " + s.length());<br>
+console.log(s.peek());<br>
+var popped = s.pop();<br>
+console.log("The popped element is: " + popped);<br>
+console.log(s.peek());<br>
+s.push("Cynthia");<br>
+console.log(s.peek());<br>
+s.clear();<br>
+console.log("length: " + s.length());<br>
+console.log(s.peek());<br>
+s.push("Clayton");<br>
+console.log(s.peek());<br>
+                            </code>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="queue">4. Queue:</strong> A queue is a type of list where data are inserted at the end and are removed from the front.
+                            </p>
+                            <p>• A queue is an example of a first-in, first-out (FIFO) data structure.</p>
+                            <p>• The two primary operations involving queues are inserting a new element into a queue and removing an element from a queue.</p>
+                            <p>• The insertion operation is called enqueue, and the removal operation is called dequeue.</p>
+                            <p>• The enqueue operation inserts a new element at the end of a queue, and the dequeue operation removes an element from the front of a queue.</p>
+                            <p>• The peek operation returns the element stored at the front of a queue without removing it from the queue.</p>
+                            <p>• The length operation returns the length of the queue.</p>
+                            <p>• The clear operation removes all elements from the queue.</p>
+                            <div class="row">
+                                <div class="col-md-6"><img src="queue.png" class="img-responsive" alt="Responsive image"></div>
+                                <div class="col-md-6"><img src="Data_Queue.png" class="img-responsive" alt="Responsive image"></div>
+                            </div>
+                            <h4>An Array-Based Queue Class Implementation</h4>
+                            <code contenteditable="true">
+                                function Queue() <br> {<br>
+&nbsp;this.dataStore = [];<br>
+&nbsp;this.enqueue = enqueue;<br>
+&nbsp;this.dequeue = dequeue;<br>
+&nbsp;this.front = front;<br>
+&nbsp;this.back = back;<br>
+&nbsp;this.toString = toString;<br>
+&nbsp;this.empty = empty;<br>
+}<br><br>
+function enqueue(element)<br> {<br>
+&nbsp;this.dataStore.push(element);<br>
+}<br><br>
+function dequeue()<br> {<br>
+&nbsp;return this.dataStore.shift();<br>
+}<br><br>
+function front() <br>{<br>
+&nbsp;return this.dataStore[0];<br>
+}<br><br>
+function back()<br> {<br>
+&nbsp;return this.dataStore[this.dataStore.length-1];<br>
+}<br><br>
+function toString() <br>{<br>
+&nbsp;var retStr = "";<br>
+&nbsp;for (var i = 0; i &lt; this.dataStore.length; ++i) {<br>
+&nbsp;&nbsp;retStr += this.dataStore[i] + "\n";<br>
+&nbsp;}<br>
+&nbsp;return retStr;<br>
+}<br><br>
+function empty() <br>{<br>
+&nbsp;if (this.dataStore.length == 0) <br>{<br>
+&nbsp;&nbsp;return true;<br>
+&nbsp;}<br>
+&nbsp;else {<br>
+&nbsp;&nbsp;return false;<br>
+&nbsp;}<br>
+}<br>
+                            </code>
+                            <br>
+                            <br>
+                            <br>
+                            <h4>Example of queue implementation</h4>
+                            <code contenteditable="true">
+                                var q = new Queue();<br>
+q.enqueue("Meredith");<br>
+q.enqueue("Cynthia");<br>
+q.enqueue("Jennifer");<br>
+console.log(q.toString());<br>
+q.dequeue();<br>
+console.log(q.toString());<br>
+console.log("Front of queue: " + q.front());<br>
+console.log("Back of queue: " + q.back());<br>
+                            </code>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="ll">5. Linked list:</strong> A linked list is a collection of objects called nodes. Each node is linked to a successor node in the list using an object reference. The reference to another node is called a link.</p>
+                            <p>• End of a linked list marked by pointing to a null node.</p>
+                            <p>• Many linked-list implementations include a special node, called the head, to denote the beginning of a linked list.</p>
+                            <p>Note:the operations performed on an array are too slow for practical use, you can consider using the linked list as an alternative data structure. The linked list can be used in almost every situation where a one-dimensional array is used, except when you need random access to the elements of a list. When random access is required, an array is the better data structure to use.</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Linked List</h4><img src="ll.png" class="img-responsive" alt="Responsive image"></div>
+                                <div class="col-md-6">
+                                    <h4>Linked List with header</h4> <img src="llwithheader.png" class="img-responsive" alt="Responsive image"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Adding element to linked list</h4><img src="llInsertingele.png" class="img-responsive" alt="Responsive image"></div>
+                                <div class="col-md-6">
+                                    <h4>Removing element from linked List</h4> <img src="llremoveele.png" class="img-responsive" alt="Responsive image"></div>
+                            </div>
+                            <h4>An Object-Based Linked List Design:</h4>
+                            <code contenteditable="true">
+                               function Node(element) <br>{<br>
+&nbsp;this.element = element;<br>
+&nbsp;this.next = null;<br>
+}<br><br>
+                                function LList() <br>{<br>
+&nbsp;this.head = new Node("head");<br>
+&nbsp;this.find = find;<br>
+&nbsp;this.insert = insert;<br>
+&nbsp;this.remove = remove;<br>
+&nbsp;this.findPrevious = findPrevious;<br>
+&nbsp;this.display = display;<br>
+}<br><br>
+function find(item) <br>{<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;while (currNode.element != item) {<br>
+&nbsp;&nbsp;currNode = currNode.next;<br>
+&nbsp;}<br>
+&nbsp;return currNode;<br>
+}<br><br>
+function insert(newElement, item) <br>{<br>
+&nbsp;var newNode = new Node(newElement);<br>
+&nbsp;var current = this.find(item);<br>
+&nbsp;newNode.next = current.next;<br>
+&nbsp;current.next = newNode;<br>
+}<br><br>
+function display() <br>{<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;while (!(currNode.next == null)) {<br>
+&nbsp;&nbsp;console.log(currNode.next.element);<br>
+&nbsp;&nbsp;currNode = currNode.next;<br>
+&nbsp;}<br>
+}<br><br>
+function findPrevious(item)<br> {<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;while (!(currNode.next == null) &amp;&amp; (currNode.next.element != item)) {<br>
+&nbsp;&nbsp;currNode = currNode.next;<br>
+&nbsp;}<br>
+&nbsp;return currNode;<br>
+}<br><br>
+function remove(item)<br> {<br>
+&nbsp;var prevNode = this.findPrevious(item);<br>
+&nbsp;if (!(prevNode.next == null)) {<br>
+&nbsp;&nbsp;prevNode.next = prevNode.next.next;<br>
+&nbsp;}<br>
+}<br><br>
+                            </code>
+                            <h4>Example for Linked List Operations</h4>
+                            <code contenteditable="true">
+                                var cities = new LList();<br>
+cities.insert("Conway", "head");<br>
+cities.insert("Russellville", "Conway");<br>
+cities.insert("Carlisle", "Russellville");<br>
+cities.insert("Alma", "Carlisle");<br>
+cities.display();<br>
+console.log();<br>
+cities.remove("Carlisle");<br>
+cities.display();<br>
+                            </code>
+                            <h4>Doubly Linked Lists</h4>
+                            <p>Although traversing a linked list from the first node to the last node is straightforward, it is not as easy to traverse a linked list backward. We can simplify this procedure if we add a property to our Node class that stores a link to the previous node.doubly linked list will do this.</p>
+                            <img src="dll.png" class="img-responsive" alt="Responsive image">
+                            <code contenteditable="true">
+                                function Node(element) <br>{<br>
+&nbsp;this.element = element;<br>
+&nbsp;this.next = null;<br>
+&nbsp;this.previous = null;<br>
+}<br><br>
+function LList() <br>{<br>
+&nbsp;this.head = new Node("head");<br>
+&nbsp;this.find = find;<br>
+&nbsp;this.insert = insert;<br>
+&nbsp;this.display = display;<br>
+&nbsp;this.remove = remove;<br>
+&nbsp;this.findLast = findLast;<br>
+&nbsp;this.dispReverse = dispReverse;<br>
+}<br><br>
+function dispReverse() <br>{<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;currNode = this.findLast();<br>
+&nbsp;while (!(currNode.previous == null)) {<br>
+&nbsp;&nbsp;console.log(currNode.element);<br>
+&nbsp;&nbsp;currNode = currNode.previous;<br>
+&nbsp;}<br>
+}<br>
+function findLast() <br>{<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;while (!(currNode.next == null)) {<br>
+&nbsp;&nbsp;currNode = currNode.next;<br>
+&nbsp;}<br>
+&nbsp;return currNode;<br>
+}<br><br>
+function remove(item) <br>{<br>
+&nbsp;var currNode = this.find(item);<br>
+&nbsp;if (!(currNode.next == null)) {<br>
+&nbsp;&nbsp;currNode.previous.next = currNode.next;<br>
+&nbsp;&nbsp;currNode.next.previous = currNode.previous;<br>
+&nbsp;&nbsp;currNode.next = null;<br>
+&nbsp;&nbsp;currNode.previous = null;<br>
+&nbsp;}<br>
+}<br><br>
+function display() <br>{<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;while (!(currNode.next == null)) {<br>
+&nbsp;&nbsp;console.log(currNode.next.element);<br>
+&nbsp;&nbsp;currNode = currNode.next;<br>
+&nbsp;}<br>
+}<br><br>
+function find(item) <br>{<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;while (currNode.element != item) {<br>
+&nbsp;&nbsp;currNode = currNode.next;<br>
+&nbsp;}<br>
+&nbsp;return currNode;<br>
+}<br><br>
+function insert(newElement, item) <br>{<br>
+&nbsp;var newNode = new Node(newElement);<br>
+&nbsp;var current = this.find(item);<br>
+&nbsp;newNode.next = current.next;<br>
+&nbsp;newNode.previous = current;<br>
+&nbsp;current.next = newNode;<br>
+}<br><br>
+                            </code>
+                            <h4>Example of double linked list</h4>
+                            <code contenteditable="true">
+                                var cities = new LList();<br>
+cities.insert("Conway", "head");<br>
+cities.insert("Russellville", "Conway");<br>
+cities.insert("Carlisle", "Russellville");<br>
+cities.insert("Alma", "Carlisle");<br>
+cities.display();<br>
+console.log();<br>
+cities.remove("Carlisle");<br>
+cities.display();<br>
+console.log();<br>
+cities.dispReverse();<br>
+                            </code>
+                            <h4>Circularly Linked Lists</h4>
+                            <p>A circularly linked list is similar to a singly linked list and has the same type of nodes. The only difference is that a circularly linked list, when created, has its head node’s next property point back to itself. This means that the assignment is propagated throughout the circularly linked list so that every new node has its next property pointing to the head of the list. In other words, the last node of the list is always pointing back to the head of the list, creating a circular list.</p>
+                            <img src="cll.png" class="img-responsive" alt="Responsive image">
+                            <code contenteditable="true">
+                                 function Node(element) <br>{<br>
+&nbsp;this.element = element;<br>
+&nbsp;this.next = null;<br>
+}<br><br>
+                                function LList() <br>{<br>
+&nbsp;this.head = new Node("head");<br>
+&nbsp;this.head.next = this.head;<br>
+&nbsp;this.find = find;<br>
+&nbsp;this.insert = insert;<br>
+&nbsp;this.remove = remove;<br>
+&nbsp;this.findPrevious = findPrevious;<br>
+&nbsp;this.display = display;<br>
+}<br><br>
+function find(item) <br>{<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;while (currNode.element != item) {<br>
+&nbsp;&nbsp;currNode = currNode.next;<br>
+&nbsp;}<br>
+&nbsp;return currNode;<br>
+}<br><br>
+function insert(newElement, item) <br>{<br>
+&nbsp;var newNode = new Node(newElement);<br>
+&nbsp;var current = this.find(item);<br>
+&nbsp;newNode.next = current.next;<br>
+&nbsp;current.next = newNode;<br>
+}<br><br>
+function display() <br>{<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;while (!(currNode.next == null) &amp;&amp;!(currNode.next.element == "head")) {<br>
+&nbsp;&nbsp;console.log(currNode.next.element);<br>
+&nbsp;&nbsp;currNode = currNode.next;<br>
+&nbsp;}<br>
+}<br><br>
+function findPrevious(item)<br> {<br>
+&nbsp;var currNode = this.head;<br>
+&nbsp;while (!(currNode.next == null) &amp;&amp; (currNode.next.element != item)) {<br>
+&nbsp;&nbsp;currNode = currNode.next;<br>
+&nbsp;}<br>
+&nbsp;return currNode;<br>
+}<br><br>
+function remove(item)<br> {<br>
+&nbsp;var prevNode = this.findPrevious(item);<br>
+&nbsp;if (!(prevNode.next == null)) {<br>
+&nbsp;&nbsp;prevNode.next = prevNode.next.next;<br>
+&nbsp;}<br>
+}<br><br>
+                            </code>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="dictionaries">6. Dictionaries:</strong> A dictionary is a data structure that stores data as key-value pairs.</p>
+                            <p>• The JavaScript Object class is designed to operate as a dictionary.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="hashing">7. Hashing:</strong> Hashing is a common technique for storing data in such a way that the data can be inserted and retrieved very quickly. Hashing uses a data structure called a hash table.</p>
+                            <p>• The JavaScript Object class is designed to operate as a dictionary.</p>
+                            <p>• Although hash tables provide fast insertion, deletion, and retrieval, they perform poorly for operations that involve searching, such as finding the minimum and maximum values in a data set. For these operations, other data structures such as the binary search tree are more appropriate.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="set">8. Sets:</strong> A set is a collection of unique elements. The elements of a set are called members. The two most important properties of sets are that the members of a set are unordered and that no member can occur in a set more than once.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="binarytrees">9. Binary Trees:</strong> Binary tree is one where each node can have no more than two children. By limiting the number of children to two, we can write efficient programs for inserting data, searching for data, and deleting data in a tree.</p>
+                            <p>• A tree is a nonlinear data structure that is used to store data in a hierarchical manner. Tree data structures are used to store hierarchical data, such as the files in a file system, and for storing sorted lists of data.</p>
+                            <p>• A tree is made up of a set of nodes connected by edges.</p>
+                            <p>• Binary trees are chosen over other more primary data structures because you can search a binary tree very quickly (as opposed to a linked list, for example) and you can quickly insert and delete data from a binary tree (as opposed to an array).</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="graph">10. Graphs:</strong> A graph consists of a set of vertices and a set of edges.</p>
+                            <p>• Edges are defined as a pair (v1, v2), where v1 and v2 are two vertices in a graph.</p>
+                            <p>• A vertex can also have a weight, which is sometimes called a cost.</p>
+                            <p>• A vertex can also have a weight, which is sometimes called a cost.</p>
+                            <p>• A graph whose pairs are ordered is called a directed graph, or just a digraph. When pairs are ordered in a directed graph, an arrow is drawn from one pair to another pair. Directed graphs indicate the flow direction from vertex to vertex.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="sorting">11. Sorting:</strong> Sorting is used rearrange list of data into specific order</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="searching">8. Searching:</strong> Finding one or more elements from specified list of elements is termed as searching.</p>
+                            <p>• There are two ways to search for data in a list: sequential search and binary search.</p>
+                            <p>• A sequential search is used when the items in a list are in random order</p>
+                            <p>• A binary search is used when the items in a list are in sorted order.</p>
+                            <p>• Binary search is the more efficient algorithm, but you also have to take into account the extra time it takes to sort the data set before being able to search it for a value.</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p><strong id="advancedalgorithms">12. Advanced Algorithms:</strong></p>
+                            <p>• Dynamic programming is a technique that is sometimes considered the opposite of recursion.</p>
+                            <p>• Where a recursive solution starts at the top and breaks the problem down, solving all small problems until the complete problem is solved.</p>
+                            <p>• A dynamic programming solution starts at the bottom, solving small problems and combining them to form an overall solution to the big problem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+</body>
+
+</html>
