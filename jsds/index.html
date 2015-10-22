@@ -34,10 +34,10 @@
                             <li><a href="#dictionaries" data-toggle="tooltip" title="Dictionaries">DI</a></li>
                             <li><a href="#hashing" data-toggle="tooltip" title="Hashing">HS</a></li>
                             <li><a href="#set" data-toggle="tooltip" title="Set">St</a></li>
-                            <li><a href="#binarysearch" data-toggle="tooltip" title="Binary Trees">BT</a></li>
+                            <li><a href="#binarytrees" data-toggle="tooltip" title="Binary Trees">BT</a></li>
                             <li><a href="#graph" data-toggle="tooltip" title="Graph">GP</a></li>
-                            <li><a href="#sorting" data-toggle="tooltip" title="Sorting">Sr</a></li>
-                            <li><a href="#search" data-toggle="tooltip" title="Searching">Se</a></li>
+                            <li><a href="#sorting" data-toggle="tooltip" title="Sorting">SR</a></li>
+                            <li><a href="#searching" data-toggle="tooltip" title="Searching">SE</a></li>
                             <li data-toggle="tooltip" title="Advanced Algorithms"><a href="#advancedalgorithms">AA</a></li>
                         </ul>
                     </div>
@@ -51,7 +51,8 @@
                     <p>Data Structures in JavaScript - Arrays,Lists,Stacks,Queues,Linked Lists, Dictionaries, Hashing, Sets, Binary Trees and Binary Search Trees, Graph and Graph Algorithms,Sorting Algorithms, Searching Algorithms and Advanced Algorithms.</p>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="arrays">1. Arrays:</strong> Array is a linear collection of elements.</p>
+                            <p><strong class="concept" id
+="arrays">1. Arrays:</strong> Array is a linear collection of elements.</p>
                             <h4>Usage:</h4>
                             <code contenteditable="true">
                              var numbers = [];  <br>
@@ -376,7 +377,7 @@ Student 3 average: 93.25<br>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="#lists">2. Lists:</strong> A list is an ordered sequence of data. Each data item stored in a list is called an element.</p>
+                            <p><strong class="concept" id="lists">2. Lists:</strong> A list is an ordered sequence of data. Each data item stored in a list is called an element.</p>
                             <p>• A list with no elements is an empty list.</p>
                             <p>• The number of elements stored in a list is called the length of the list.Internally, the number of elements in a list is kept in a listSize variable.</p>
                             <p>• We can append an element to the end of a list, or you can insert an element into a list after an existing element or at the beginning of a list.</p>
@@ -559,7 +560,7 @@ for(names.end(); names.currPos() >= 0; names.prev()) <br>{<br>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="stack">3. Stack:</strong> A stack is a list of elements that are accessible only from one end of the list, which is called the top.</p>
+                            <p><strong class="concept" id="stacks">3. Stack:</strong> A stack is a list of elements that are accessible only from one end of the list, which is called the top.</p>
                             <p>• The stack is known as a last-in, first-out (LIFO) data structure.</p>
                             <img src="stackoperations.png" class="img-responsive" alt="Responsive image">
                             <h4>A Stack Implementation</h4>
@@ -622,7 +623,7 @@ console.log(s.peek());<br>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="queue">4. Queue:</strong> A queue is a type of list where data are inserted at the end and are removed from the front.
+                            <p><strong class="concept" id="queues">4. Queue:</strong> A queue is a type of list where data are inserted at the end and are removed from the front.
                             </p>
                             <p>• A queue is an example of a first-in, first-out (FIFO) data structure.</p>
                             <p>• The two primary operations involving queues are inserting a new element into a queue and removing an element from a queue.</p>
@@ -693,7 +694,7 @@ console.log("Back of queue: " + q.back());<br>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="ll">5. Linked list:</strong> A linked list is a collection of objects called nodes. Each node is linked to a successor node in the list using an object reference. The reference to another node is called a link.</p>
+                            <p><strong class="concept" id="ll">5. Linked list:</strong> A linked list is a collection of objects called nodes. Each node is linked to a successor node in the list using an object reference. The reference to another node is called a link.</p>
                             <p>• End of a linked list marked by pointing to a null node.</p>
                             <p>• Many linked-list implementations include a special node, called the head, to denote the beginning of a linked list.</p>
                             <p>Note:the operations performed on an array are too slow for practical use, you can consider using the linked list as an alternative data structure. The linked list can be used in almost every situation where a one-dimensional array is used, except when you need random access to the elements of a list. When random access is required, an array is the better data structure to use.</p>
@@ -902,25 +903,25 @@ function remove(item)<br> {<br>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="dictionaries">6. Dictionaries:</strong> A dictionary is a data structure that stores data as key-value pairs.</p>
+                            <p><strong class="concept" id="dictionaries">6. Dictionaries:</strong> A dictionary is a data structure that stores data as key-value pairs.</p>
                             <p>• The JavaScript Object class is designed to operate as a dictionary.</p>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="hashing">7. Hashing:</strong> Hashing is a common technique for storing data in such a way that the data can be inserted and retrieved very quickly. Hashing uses a data structure called a hash table.</p>
+                            <p><strong class="concept" id="hashing">7. Hashing:</strong> Hashing is a common technique for storing data in such a way that the data can be inserted and retrieved very quickly. Hashing uses a data structure called a hash table.</p>
                             <p>• The JavaScript Object class is designed to operate as a dictionary.</p>
                             <p>• Although hash tables provide fast insertion, deletion, and retrieval, they perform poorly for operations that involve searching, such as finding the minimum and maximum values in a data set. For these operations, other data structures such as the binary search tree are more appropriate.</p>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="set">8. Sets:</strong> A set is a collection of unique elements. The elements of a set are called members. The two most important properties of sets are that the members of a set are unordered and that no member can occur in a set more than once.</p>
+                            <p><strong class="concept" id="set">8. Sets:</strong> A set is a collection of unique elements. The elements of a set are called members. The two most important properties of sets are that the members of a set are unordered and that no member can occur in a set more than once.</p>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="binarytrees">9. Binary Trees:</strong> Binary tree is one where each node can have no more than two children. By limiting the number of children to two, we can write efficient programs for inserting data, searching for data, and deleting data in a tree.</p>
+                            <p><strong class="concept" id="binarytrees">9. Binary Trees:</strong> Binary tree is one where each node can have no more than two children. By limiting the number of children to two, we can write efficient programs for inserting data, searching for data, and deleting data in a tree.</p>
                             <p>• A tree is a nonlinear data structure that is used to store data in a hierarchical manner. Tree data structures are used to store hierarchical data, such as the files in a file system, and for storing sorted lists of data.</p>
                             <p>• A tree is made up of a set of nodes connected by edges.</p>
                             <p>• Binary trees are chosen over other more primary data structures because you can search a binary tree very quickly (as opposed to a linked list, for example) and you can quickly insert and delete data from a binary tree (as opposed to an array).</p>
@@ -928,7 +929,7 @@ function remove(item)<br> {<br>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="graph">10. Graphs:</strong> A graph consists of a set of vertices and a set of edges.</p>
+                            <p><strong class="concept" id="graph">10. Graphs:</strong> A graph consists of a set of vertices and a set of edges.</p>
                             <p>• Edges are defined as a pair (v1, v2), where v1 and v2 are two vertices in a graph.</p>
                             <p>• A vertex can also have a weight, which is sometimes called a cost.</p>
                             <p>• A vertex can also have a weight, which is sometimes called a cost.</p>
@@ -937,12 +938,12 @@ function remove(item)<br> {<br>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="sorting">11. Sorting:</strong> Sorting is used rearrange list of data into specific order</p>
+                            <p><strong class="concept" id="sorting">11. Sorting:</strong> Sorting is used rearrange list of data into specific order</p>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="searching">8. Searching:</strong> Finding one or more elements from specified list of elements is termed as searching.</p>
+                            <p><strong class="concept" id="searching">8. Searching:</strong> Finding one or more elements from specified list of elements is termed as searching.</p>
                             <p>• There are two ways to search for data in a list: sequential search and binary search.</p>
                             <p>• A sequential search is used when the items in a list are in random order</p>
                             <p>• A binary search is used when the items in a list are in sorted order.</p>
@@ -951,7 +952,7 @@ function remove(item)<br> {<br>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong id="advancedalgorithms">12. Advanced Algorithms:</strong></p>
+                            <p><strong class="concept" id="advancedalgorithms">12. Advanced Algorithms:</strong></p>
                             <p>• Dynamic programming is a technique that is sometimes considered the opposite of recursion.</p>
                             <p>• Where a recursive solution starts at the top and breaks the problem down, solving all small problems until the complete problem is solved.</p>
                             <p>• A dynamic programming solution starts at the bottom, solving small problems and combining them to form an overall solution to the big problem.</p>
