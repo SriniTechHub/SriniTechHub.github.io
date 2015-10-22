@@ -51,8 +51,7 @@
                     <p>Data Structures in JavaScript - Arrays,Lists,Stacks,Queues,Linked Lists, Dictionaries, Hashing, Sets, Binary Trees and Binary Search Trees, Graph and Graph Algorithms,Sorting Algorithms, Searching Algorithms and Advanced Algorithms.</p>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <p><strong class="concept" id
-="arrays">1. Arrays:</strong> Array is a linear collection of elements.</p>
+                            <p><strong class="concept" id="arrays">1. Arrays:</strong> Array is a linear collection of elements.</p>
                             <h4>Usage:</h4>
                             <code contenteditable="true">
                              var numbers = [];  <br>
@@ -964,7 +963,12 @@ function remove(item)<br> {<br>
     </div>
     <script>
     $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="tooltip"]').tooltip({
+            'placement': 'bottom'
+        });
+        $(".navbar-nav li a").click(function(event) {
+            $(".navbar-collapse").collapse('hide');
+        });
     });
     </script>
 </body>

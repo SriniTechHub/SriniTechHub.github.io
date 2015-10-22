@@ -4835,12 +4835,16 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .nav {
     padding-left: 0;
     margin-bottom: 0;
-    list-style: none
+    list-style: none;
 }
 
 .nav>li {
     position: relative;
     display: block
+}
+
+.nav>li a {
+    background: #eee;
 }
 
 .nav>li>a {
@@ -4852,7 +4856,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .nav>li>a:focus,
 .nav>li>a:hover {
     text-decoration: none;
-    background-color: #eee
+    background-color: #eee;
 }
 
 .nav>li.disabled>a {
