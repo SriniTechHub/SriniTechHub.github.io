@@ -8137,7 +8137,7 @@ input[type=email].ng-empty.errorInput {
     color: #A60707;
 }
 
-input[type=radio].errorCheck.ng-empty:before {
+input[type=radio].errorInput.ng-empty:before {
     content: "";
     display: block;
     position: relative;
