@@ -12,7 +12,20 @@
              $scope.selection.splice(idx, 1);
          }
      };
-
+     $scope.clickedReset = function() {
+         $scope.isSuccess = false;
+         $scope.isError = false;
+         $scope.name = undefined;
+         $scope.email = undefined;
+         $scope.phone = undefined;
+         $scope.password = undefined;
+         $scope.inputGenderOptions = undefined;
+         $scope.nameInput = undefined;
+         $scope.emailInput = undefined;
+         $scope.phoneInput = undefined;
+         $scope.passwordInput = undefined;
+         $scope.genderInput = undefined;
+     };
 
      $scope.showModal = false;
      $scope.clickedSubmit = function() {
