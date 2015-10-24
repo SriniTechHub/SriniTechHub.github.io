@@ -72,7 +72,7 @@
                         <div class="col-lg-10">
                             <label class="checkbox-inline" for="{{item}}" ng-repeat="item in interests" ng-class="checkboxInput?'errorCheck':''">
                                 <input type="checkbox" id="{{item}}" ng-checked="checkedInterest
-" ng-click="toggleSelection(checkedInterest,item)">{{item}}</label>
+" ng-click="toggleSelection(checkedInterest,item)" ng-required="required">{{item}}</label>
                         </div>
                     </div>
                     <div class="row ">

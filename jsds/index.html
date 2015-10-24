@@ -938,6 +938,25 @@ function remove(item)<br> {<br>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p><strong class="concept" id="sorting">11. Sorting:</strong> Sorting is used rearrange list of data into specific order</p>
+                            <h4>Bubble Sort time complexity:o(n^2),o(n)</h4>
+                            <code>
+                                function b(ary)<br>{ <br>
+  &nbsp;var temp;<br>
+  &nbsp;for(var i=0;i &lt; ary.length-1;i++){<br>
+   &nbsp;&nbsp;for(var j=0;j &lt; ary.length-1;j++){<br>
+     &nbsp;&nbsp;&nbsp;if(ary[j] > ary[j+1]){<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;temp = ary[j];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;ary[j] = ary[j+1];<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;ary[j+1] = temp;<br>
+     &nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;   }<br>
+ &nbsp; }<br>
+  &nbsp;return ary;<br>
+}<br>
+var a = [4,1,2,7,3];<br>
+b(a);<br>
+
+                            </code>
                         </div>
                     </div>
                     <div class="panel panel-default">
