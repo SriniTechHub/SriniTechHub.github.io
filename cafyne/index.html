@@ -34,23 +34,25 @@
                         <label for="inputGender" class="col-lg-2 control-label text-left">Gender</label>
                         <div class="col-lg-10">
                             <label class="radio-inline">
-                                <input type="radio" ng-class="genderInput?'errorInput':''" ng-model="inputGenderOptions" name="inputGenderOptions" id="Male" value="Male"> Male
+                                <input type="radio" ng-class="genderInput?'errorCheck':''" ng-model="inputGenderOptions" name="inputGenderOptions" id="Male" value="Male"> Male
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" ng-class="genderInput?'errorInput':''" ng-model="inputGenderOptions" id="Female" value="Female"> Female
+                                <input type="radio" ng-class="genderInput?'errorCheck':''" ng-model="inputGenderOptions" id="Female" value="Female"> Female
                             </label>
                         </div>
                     </div>
                     <div class="form-group required">
                         <label for="inputEmail" name="email" class="col-lg-2 control-label text-left">Email</label>
                         <div class="col-lg-3">
-                            <input type="email" name="email" ng-class="emailInput?'errorInput':''" ng-model="email" class="form-control" id="inputEmail" placeholder="Email">
+                            <span class="errorOutput" ng-show="signup.email.$dirty && signup.email.$invalid"><span ng-show="signup.email.$error.email">Please enter a valid email address!</span></span>
+                            <input type="email" name="email" ng-class="(signup.email.$dirty && signup.email.$invalid)||(emailInput)?'errorInput':''" ng-model="email" class="form-control" id="inputEmail" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group required">
                         <label for="inputPhone" class="col-lg-2 control-label text-left">Phone</label>
                         <div class="col-lg-3">
-                            <input type="tel" ng-class="phoneInput?'errorInput':''" class="form-control" id="inputPhone" ng-model="phone" name="phone" placeholder="(555) 555-5555">
+                            <span class="errorOutput" class="help-block" ng-show="((signup.phone.$error.minlength || signup.phone.$error.maxlength) && signup.phone.$dirty) ">phone number should be 10 digits</span>
+                            <input type="number" ng-minlength="10" ng-maxlength="10" ng-class="((signup.phone.$error.minlength || signup.phone.$error.maxlength) && signup.phone.$dirty)||(phoneInput)?'errorInput':''" class="form-control" id="inputPhone" ng-model="phone" name="phone" placeholder="Phone">
                         </div>
                     </div>
                     <div class="form-group required">
@@ -101,6 +103,7 @@
     <script src="js/bootstrap.min.js "></script>
     <script src="js/angular.min.js "></script>
     <script src="js/ui-bootstrap.min.js"></script>
+    <script src="js/angular-messages.js"></script>
     <script>
     var app = angular.module('singup', ['ui.bootstrap']);
     app.controller('signupController', ['$scope', '$uibModal', '$log', function($scope, $uibModal, $log) {
@@ -116,6 +119,7 @@
                 $scope.selection.splice(idx, 1);
             }
         };
+
 
         $scope.showModal = false;
         $scope.clickedSubmit = function() {

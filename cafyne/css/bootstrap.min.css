@@ -8124,7 +8124,20 @@ body {
     color: #A60707;
 }
 
-input[type=radio].errorInput.ng-empty:before {
+input[type=number].ng-invalid.errorInput,
+input[type=number].ng-empty.errorInput,
+input[type=email].ng-invalid.errorInput,
+input[type=email].ng-empty.errorInput {
+    background: #FEEFEB;
+    border: 1px solid #A60707;
+    color: #A60707;
+}
+
+.errorOutput {
+    color: #A60707;
+}
+
+input[type=radio].errorCheck.ng-empty:before {
     content: "";
     display: block;
     position: relative;
@@ -8136,8 +8149,7 @@ input[type=radio].errorInput.ng-empty:before {
     border-radius: 5px;
 }
 
-label.errorCheck
- >input[type=checkbox]:before {
+label.errorCheck >input[type=checkbox]:before {
     content: "";
     display: block;
     position: relative;
