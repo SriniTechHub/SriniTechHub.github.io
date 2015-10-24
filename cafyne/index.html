@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="singup">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+</head>
+
+<body ng-controller="signupController">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Logo Text</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <form name="signup" id="signup" class="form-horizontal custom">
+                    <div id="error" class="alert alert-danger error" role="alert" ng-if="isError">
+                        Fields marked with * are mandatory.
+                    </div>
+                    <div class="alert alert-success success" role="alert" ng-if="isSuccess">Form Submitted Succefully</div>
+                    <h3>Signup Form</h3>
+                    <div class="form-group required">
+                        <label for="inputName" class="col-lg-2 control-label text-left">Name</label>
+                        <div class="col-lg-3">
+                            <input type="text" ng-class="nameInput?'errorInput':''" ng-model="name" name="name" class="form-control" id="inputName" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label for="inputGender" class="col-lg-2 control-label text-left">Gender</label>
+                        <div class="col-lg-10">
+                            <label class="radio-inline">
+                                <input type="radio" ng-class="genderInput?'errorInput':''" ng-model="inputGenderOptions" name="inputGenderOptions" id="Male" value="Male"> Male
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" ng-class="genderInput?'errorInput':''" ng-model="inputGenderOptions" id="Female" value="Female"> Female
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label for="inputEmail" name="email" class="col-lg-2 control-label text-left">Email</label>
+                        <div class="col-lg-3">
+                            <input type="email" name="email" ng-class="emailInput?'errorInput':''" ng-model="email" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label for="inputPhone" class="col-lg-2 control-label text-left">Phone</label>
+                        <div class="col-lg-3">
+                            <input type="tel" ng-class="phoneInput?'errorInput':''" class="form-control" id="inputPhone" ng-model="phone" name="phone" placeholder="(555) 555-5555">
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label for="password" class="col-lg-2 control-label text-left">Password</label>
+                        <div class="col-lg-3">
+                            <input type="password" ng-class="passwordInput?'errorInput':''" name="password" ng-model="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="col-lg-2 control-label text-left">Confirm Password</label>
+                        <div class="col-lg-3">
+                            <input type="password" ng-class="confirmPasswordInput?'errorInput':''" ng-model="confirmPassword" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label for="inputInterest" class="col-lg-2 control-label text-left">Personal Interests</label>
+                        <div class="col-lg-10">
+                            <label class="checkbox-inline" for="{{item}}" ng-repeat="item in interests" ng-class="checkboxInput?'errorCheck':''">
+                                <input type="checkbox" id="{{item}}" ng-checked="checkedInterest
+" ng-click="toggleSelection(checkedInterest,item)">{{item}}</label>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-10 col-lg-offset-2 ">
+                            <button ng-click="clickedSubmit();" type="button " id="submit " class="btn btn-primary ">Submit</button>
+                            <button type="reset" class="btn btn-default ">Clear</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer ">
+        <div class="container ">
+            <p class="text-muted ">Footer Text</p>
+        </div>
+    </footer>
+    <modal title="Signup form" visible="showModal">
+        <div class="col-lg-12">
+            <p> Name:{{name}}</p>
+            <p> Gender:{{inputGenderOptions}}</p>
+            <p> Email:{{email}}</p>
+            <p>Phone:{{phone}}</p>
+            <p>Personal Interest(s): <span ng-repeat="i in selection">{{i}}{{$last ? '' : ','}}</span></p>
+        </div>
+    </modal>
+    <script src="js/jquery.min.js "></script>
+    <script src="js/bootstrap.min.js "></script>
+    <script src="js/angular.min.js "></script>
+    <script src="js/ui-bootstrap.min.js"></script>
+    <script>
+    var app = angular.module('singup', ['ui.bootstrap']);
+    app.controller('signupController', ['$scope', '$uibModal', '$log', function($scope, $uibModal, $log) {
+        $scope.interests = ['check 1', 'check 2', 'check 3', 'check 4'];
+        $scope.selection = [];
+        $scope.animationsEnabled = true;
+        $scope.isSuccess = false;
+        $scope.toggleSelection = function toggleSelection(checkedState, item) {
+            var idx = $scope.selection.indexOf(item);
+            if (idx === -1) {
+                $scope.selection.push(item);
+            } else {
+                $scope.selection.splice(idx, 1);
+            }
+        };
+
+        $scope.showModal = false;
+        $scope.clickedSubmit = function() {
+            var name = $scope.name;
+            var email = $scope.email;
+
+            var phone = $scope.phone;
+            var password = $scope.password;
+            var confirmPassword = $scope.confirmPassword;
+            var gender = $scope.inputGenderOptions;
+            $scope.nameInput = !$scope.name;
+            $scope.emailInput = !$scope.email;
+            $scope.phoneInput = !$scope.phone;
+            $scope.passwordInput = !$scope.password;
+            $scope.genderInput = !$scope.inputGenderOptions;
+
+            if ($scope.selection.length === 0) {
+                $scope.checkboxInput = true;
+            } else {
+                $scope.checkboxInput = false;
+            }
+
+            if (name && email && phone && password && gender && $scope.selection.length) {
+                $scope.isSuccess = true;
+                $scope.isError = false;
+            } else {
+                $scope.isSuccess = false;
+                $scope.isError = true;
+            }
+            if ($scope.isSuccess) {
+                if (($scope.password) && ($scope.password === $scope.confirmPassword)) {
+                    $scope.confirmPasswordInput = false;
+                    $scope.toggleModal();
+                } else {
+                    $scope.confirmPasswordInput = true;
+                    $scope.isSuccess = false;
+                    $scope.isError = true;
+                }
+            }
+
+
+        };
+        $scope.toggleModal = function() {
+            $scope.showModal = !$scope.showModal;
+        };
+
+    }]);
+
+    app.directive('modal', function() {
+        return {
+            template: '<div class="modal fade">' +
+                '<div class="modal-dialog">' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                '<h4 class="modal-title">{{ title }}</h4>' +
+                '</div>' +
+                '<div class="modal-body" ng-transclude></div>' +
+                '</div>' +
+                '</div>' +
+                '</div>',
+            restrict: 'E',
+            transclude: true,
+            replace: true,
+            scope: true,
+            link: function postLink(scope, element, attrs) {
+                scope.title = attrs.title;
+
+                scope.$watch(attrs.visible, function(value) {
+                    if (value == true)
+                        $(element).modal('show');
+                    else
+                        $(element).modal('hide');
+                });
+
+                $(element).on('shown.bs.modal', function() {
+                    scope.$apply(function() {
+                        scope.$parent[attrs.visible] = true;
+                    });
+                });
+
+                $(element).on('hidden.bs.modal', function() {
+                    scope.$apply(function() {
+                        scope.$parent[attrs.visible] = false;
+                    });
+                });
+            }
+        };
+    });
+    </script>
+</body>
+
+</html>
