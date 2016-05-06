@@ -1,0 +1,50 @@
+<div class="col-md-12 no_float block-center">
+
+    <form name="userLoginForm" ng-submit="login()" class="form-horizontal center-block login_container" novalidate>
+
+
+        <fieldset>
+            <div class="form-group">
+                <div class="col-xs-10 col-sm-6 col-md-4 center-block no_float">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input ng-model="username" id="username"
+                               name="username" class="form-control" placeholder="Username" type="text">
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-xs-10 col-sm-6 col-md-4 center-block no_float">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input id="userPassword" ng-model="userpassword"
+                               name="userPassword" class="form-control" placeholder="Password"
+                               type="password">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-10 col-sm-6 col-md-4 center-block no_float">
+                    <input ng-disabled="!username || !userpassword " class="btn btn-block btn-primary btn-primary"
+                           type="submit" value="Login"/>
+                </div>
+            </div>
+
+        </fieldset>
+        <div class="col-md-12 text-center  center-block no_float" ng-if="showLoader"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></div>
+        <div class="row" ng-if="invalid">
+            <div class="col-xs-10 col-sm-6 col-md-4 center-block no_float">
+                <div ng-messages="userLoginForm.username.$error" role="alert">
+                    <div class="alert alert-danger" role="alert">
+                        <i class="fa fa-times-circle"></i>
+                        Invalid Credentials
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
