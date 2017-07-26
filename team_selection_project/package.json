@@ -7,6 +7,10 @@
     "start": "webpack && node server.js",
     "serve":"webpack-dev-server --hot --inline"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SriniTechHub/SriniTechHub.github.io/tree/master/team_selection_project"
+  },
   "author": "Srinivas T",
   "license": "MIT",
   "devDependencies": {
