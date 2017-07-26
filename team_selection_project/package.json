@@ -4,11 +4,11 @@
   "description": "A project focusing selection of team and employees",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "webpack && node server.js",
+    "serve":"webpack-dev-server --hot --inline"
   },
   "author": "Srinivas T",
   "license": "MIT",
-  "repository":{"type":"git", "url": "https://github.com/SriniTechHub/SriniTechHub.github.io/tree/master/team_selection_project"},
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.18.0",
@@ -21,6 +21,7 @@
     "file-loader": "^0.11.2",
     "html-loader": "^0.4.5",
     "json-loader": "^0.5.4",
+    "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "ngtemplate-loader": "^1.3.1",
     "node-less": "^1.0.0",
@@ -31,10 +32,13 @@
   },
   "dependencies": {
     "angular": "^1.6.5",
+    "angular-sanitize": "^1.6.5",
+    "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^1.0.3",
     "bootstrap": "^3.3.7",
     "bootstrap-less": "^3.3.8",
+    "express": "^4.15.3",
     "jquery": "^3.2.1",
-    "express": "^4.15.3"
+    "ui-select": "^0.19.8"
   }
 }
