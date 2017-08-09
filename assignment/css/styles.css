@@ -1,0 +1,99 @@
+body {
+    padding-top: 70px;
+    background-color: #f6f6f9;
+}
+.tex-c{
+    text-align:center;
+}
+.tex-r{
+    text-align:right;
+}
+.tex-l{
+    text-align:left;
+}
+.navbar-inverse {
+    background-color: #838383;
+    border-color: #080808;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff;
+}
+a{
+    color:#333;
+}
+.custom-panel{
+    padding-left:0;
+    padding-right:0;
+    border:0;
+}
+.custom-panel > .panel-default{
+    border: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+.panel-default.custom-panel>.panel-heading {
+    color: #fff;
+    background-color: #b2b2b2;
+}
+.credit-info{
+    clear:both;
+}
+.credit-info-item{
+    margin-bottom:20px;
+}
+.credit-info-item p{
+    color:#ebebeb;
+}
+.credit-info-item h5{
+    color:#b2b2b2;
+}
+.nav-pills.custom-nav-pills>li{
+    border-bottom: 5px solid #ddd;
+}
+.nav-pills.custom-nav-pills>li.active{
+    border-bottom: 5px solid #333;
+}
+
+.nav-pills.custom-nav-pills>li>a{
+    text-align:center;
+}
+.nav-pills.custom-nav-pills>li>a>i{
+    font-size: 30px;
+}
+.nav-pills.custom-nav-pills>li>a>span{
+    display: block;
+}
+.nav-pills>li>a,.nav-pills>li>a:focus,.nav-pills>li>a:hover  {
+   color: #ddd;
+   background-color: transparent;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+color: #333;
+  background-color: transparent;
+}
+.margin-bottom-20{
+    margin-bottom:20px;
+}
+.margin-top-20{
+    margin-top:20px;
+}
+.confirm-table p{
+        color: #b2b2b2;
+}
+.confirm-table h5{
+       font-weight: bold;
+}
+.confirm-table input{
+         height: 30px;
+         max-width: 100%;
+}
+.confirm-table-container{
+    margin-bottom:30px;
+    margin-top:60px;
+}
+.agree-btn{
+        border-radius: 20px;
+        color:#fff;
+        background-color:#000;
+}
